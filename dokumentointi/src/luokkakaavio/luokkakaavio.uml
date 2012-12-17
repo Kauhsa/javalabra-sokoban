@@ -10,7 +10,7 @@ class Box
 class BoxTarget
 
 Sokoban --> Map
-Map --> Block
+Map "1" --> "1..*" Block : sisältää >
 
 Floor ..|> Block
 Wall ..|> Block
