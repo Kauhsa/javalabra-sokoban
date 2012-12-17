@@ -1,0 +1,21 @@
+@startuml
+
+class Sokoban
+class Map
+interface Block
+class Floor
+class Wall
+class Player
+class Box
+class BoxTarget
+
+Sokoban --> Map
+Map --> Block
+
+Floor ..|> Block
+Wall ..|> Block
+Player ..|> Block
+Box ..|> Block
+BoxTarget ..|> Block
+
+@enduml
