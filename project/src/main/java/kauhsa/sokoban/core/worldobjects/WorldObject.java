@@ -43,7 +43,7 @@ public abstract class WorldObject {
         this.world = world;
     }
     
-    public void setPoint(Point point) {
+    public void setPosition(Point point) {
         if (this.world == null) {
             throw new IllegalStateException("The world is not set for this WorldObject");
         } else if (!this.world.isPointInWorld(point)) {
@@ -51,5 +51,6 @@ public abstract class WorldObject {
         }
         
         this.position = point;
+        
     }
 }

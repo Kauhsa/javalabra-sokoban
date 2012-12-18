@@ -58,6 +58,6 @@ public class World {
      */
     public void placeWorldObject(Point point, WorldObject object) {
         object.setWorld(this);
-        object.setPoint(point);    
+        object.setPosition(point);    
     }
 }
