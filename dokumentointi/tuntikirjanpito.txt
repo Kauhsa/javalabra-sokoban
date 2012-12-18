@@ -1,2 +1,3 @@
 17.12.  2h      Repository kuntoon, aihemäärittelyn kirjoittamista, tuntikirjanpito alulle
 17.12.  0,75h   Maven kuntoon
+18.12.  5h      Koodauksen aloitus, testausta, ympäristön säätämistä
