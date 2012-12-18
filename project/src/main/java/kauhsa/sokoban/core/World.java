@@ -1,5 +1,7 @@
 package kauhsa.sokoban.core;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -58,6 +60,14 @@ public class World {
         }
     }
     
+    public Collection<WorldObject> getWorldObjectsInPoint(Point point) {
+        return Collections.unmodifiableCollection(worldObjectGrid[point.getX()][point.getY()]);
+    }
+    
+    public Collection<WorldObject> getWorldObjectsOfType(WorldObjectType type) {
+        return Collections.unmodifiableCollection(worldObjectsByType.get(type));
+    }
+    
     public Iterator<Point> getPointIterator() {
         return new PointIterator(this.width, this.height);
     }
@@ -84,7 +94,6 @@ public class World {
      */
     public void placeWorldObject(Point point, WorldObject object) {
         object.setWorld(this);
-        object.setPosition(point);
-        
+        object.setPosition(point);        
     }
 }
