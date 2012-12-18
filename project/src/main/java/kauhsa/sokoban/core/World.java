@@ -1,8 +1,10 @@
 package kauhsa.sokoban.core;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import kauhsa.sokoban.core.worldobjects.WorldObject;
 import kauhsa.sokoban.core.worldobjects.WorldObjectType;
@@ -16,7 +18,7 @@ public class World {
     private final int height;
     private final int width;    
     private Set<WorldObject>[][] worldObjectGrid;
-    private HashMap<WorldObjectType, Set<WorldObject>> worldObjectsByType;
+    private Map<WorldObjectType, Set<WorldObject>> worldObjectsByType;
     
     public World(int height, int width) {
         if (height <= 0 || width <= 0) {
@@ -39,12 +41,15 @@ public class World {
     }
     
     private void InitalizeWorldObjectsByType() {
+        worldObjectsByType = new EnumMap<WorldObjectType, Set<WorldObject>>(WorldObjectType.class);
+        
         for (WorldObjectType type : WorldObjectType.values()) {
             worldObjectsByType.put(type, new HashSet<WorldObject>());
         }
     }
     
     private void InitalizeWorldObjectGrid() {
+        worldObjectGrid = new Set[this.width][this.height];
         Iterator<Point> pointIterator = this.getPointIterator();
         
         while (pointIterator.hasNext()) {
