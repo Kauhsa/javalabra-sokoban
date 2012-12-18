@@ -1,8 +1,5 @@
 package kauhsa.sokoban.core.worldobjects;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import kauhsa.sokoban.core.Point;
 import kauhsa.sokoban.core.World;
 

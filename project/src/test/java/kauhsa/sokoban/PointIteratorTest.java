@@ -2,10 +2,7 @@ package kauhsa.sokoban;
 
 import kauhsa.sokoban.core.Point;
 import kauhsa.sokoban.core.PointIterator;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

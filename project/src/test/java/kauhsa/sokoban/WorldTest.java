@@ -1,7 +1,6 @@
 package kauhsa.sokoban;
 
 import java.util.Collection;
-import java.util.Iterator;
 import kauhsa.sokoban.core.Point;
 import kauhsa.sokoban.core.World;
 import kauhsa.sokoban.core.worldobjects.WorldObject;
