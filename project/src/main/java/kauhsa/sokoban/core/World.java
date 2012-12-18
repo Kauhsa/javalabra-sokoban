@@ -1,6 +1,11 @@
 package kauhsa.sokoban.core;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import kauhsa.sokoban.core.worldobjects.WorldObject;
+import kauhsa.sokoban.core.worldobjects.WorldObjectType;
 
 /**
  * This class contains the WorldObjects and provides methods for accessing them.
@@ -9,7 +14,9 @@ import kauhsa.sokoban.core.worldobjects.WorldObject;
  */
 public class World {
     private final int height;
-    private final int width;
+    private final int width;    
+    private Set<WorldObject>[][] worldObjectGrid;
+    private HashMap<WorldObjectType, Set<WorldObject>> worldObjectsByType;
     
     public World(int height, int width) {
         if (height <= 0 || width <= 0) {
@@ -18,6 +25,9 @@ public class World {
         
         this.height = height;
         this.width = width;
+        
+        InitalizeWorldObjectsByType();
+        InitalizeWorldObjectGrid();
     }
 
     public int getHeight() {
@@ -26,6 +36,25 @@ public class World {
 
     public int getWidth() {
         return width;
+    }
+    
+    private void InitalizeWorldObjectsByType() {
+        for (WorldObjectType type : WorldObjectType.values()) {
+            worldObjectsByType.put(type, new HashSet<WorldObject>());
+        }
+    }
+    
+    private void InitalizeWorldObjectGrid() {
+        Iterator<Point> pointIterator = this.getPointIterator();
+        
+        while (pointIterator.hasNext()) {
+            Point point = pointIterator.next();
+            worldObjectGrid[point.getX()][point.getY()] = new HashSet<WorldObject>();
+        }
+    }
+    
+    public Iterator<Point> getPointIterator() {
+        return new PointIterator(this.width, this.height);
     }
     
     /**
@@ -58,6 +87,7 @@ public class World {
      */
     public void placeWorldObject(Point point, WorldObject object) {
         object.setWorld(this);
-        object.setPosition(point);    
+        object.setPosition(point);
+        
     }
 }
