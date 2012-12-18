@@ -1,5 +1,8 @@
 package kauhsa.sokoban.core.worldobjects;
 
+import kauhsa.sokoban.core.Point;
+import kauhsa.sokoban.core.World;
+
 /**
  * Base class for everything the map can contain.
  * 
@@ -8,6 +11,8 @@ package kauhsa.sokoban.core.worldobjects;
  * @author mika
  */
 public abstract class WorldObject {
+    private World world;
+    private Point position;
     
     /**
      * Get the WorldObjectType of this object.
@@ -28,5 +33,23 @@ public abstract class WorldObject {
      */
     public abstract boolean canMove(WorldObject worldObject);
     
+    public void setWorld(World world) {
+        if (this.world != null) {
+            throw new IllegalStateException("The world can be assigned only once");
+        } else if (world == null) {
+            throw new IllegalArgumentException("WorldObject can't be assigned to null world");
+        }
+        
+        this.world = world;
+    }
     
+    public void setPoint(Point point) {
+        if (this.world == null) {
+            throw new IllegalStateException("The world is not set for this WorldObject");
+        } else if (!this.world.isPointInWorld(point)) {
+            throw new IllegalArgumentException("Invalid Point for World of this WorldObject");
+        }
+        
+        this.position = point;
+    }
 }
