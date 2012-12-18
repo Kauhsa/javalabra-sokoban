@@ -55,14 +55,12 @@ public class PointIteratorTest {
      * 2) Returns correct amount of Points total
      */
     private void everyPointExactlyOnceTest(int width, int height) {
-        pointIterator = new PointIterator(width, height);
         boolean[][] points = new boolean[width][height];
         int pointCount = 0;
         
-        while (pointIterator.hasNext()) {
-            Point currentPoint = pointIterator.next();
-            assertTrue(String.format("Point %s is not inside %dx%d array", currentPoint, width, height), currentPoint.pointExistInArray(width, height));
-            points[currentPoint.getX()][currentPoint.getY()] = true;
+        for (Point point : new PointIterator(width, height)) {
+            assertTrue(String.format("Point %s is not inside %dx%d array", point, width, height), point.pointExistInArray(width, height));
+            points[point.getX()][point.getY()] = true;
             pointCount++;
         }
         
@@ -74,8 +72,8 @@ public class PointIteratorTest {
     public void testEveryPointIsReturnedExactlyOnce() {
         everyPointExactlyOnceTest(1, 5);
         everyPointExactlyOnceTest(1, 1);
-        everyPointExactlyOnceTest(1000, 1000);
-        everyPointExactlyOnceTest(400, 2341);        
-        everyPointExactlyOnceTest(2341, 400);
+        everyPointExactlyOnceTest(10, 50);
+        everyPointExactlyOnceTest(40, 23);        
+        everyPointExactlyOnceTest(21, 62);
     }
 }

@@ -17,6 +17,9 @@ import kauhsa.sokoban.core.worldobjects.WorldObjectType;
  * @author mika
  */
 public class World {
+    private static final int INITIAL_CAPACITY_FOR_EACH_TYPE = 50;
+    private static final int INITIAL_CAPACITY_FOR_EACH_POINT = 2;
+    
     private final int height;
     private final int width;    
     private Set<WorldObject>[][] worldObjectGrid;
@@ -34,30 +37,28 @@ public class World {
         InitalizeWorldObjectGrid();
     }
 
+    private void InitalizeWorldObjectsByType() {
+        worldObjectsByType = new EnumMap<WorldObjectType, Set<WorldObject>>(WorldObjectType.class);
+        
+        for (WorldObjectType type : WorldObjectType.values()) {
+            worldObjectsByType.put(type, new HashSet<WorldObject>(INITIAL_CAPACITY_FOR_EACH_TYPE));
+        }
+    }
+    
+    private void InitalizeWorldObjectGrid() {
+        worldObjectGrid = new Set[this.width][this.height];
+        
+        for (Point point : this.getPoints()) {
+            worldObjectGrid[point.getX()][point.getY()] = new HashSet<WorldObject>(INITIAL_CAPACITY_FOR_EACH_POINT);
+        }
+    }
+    
     public int getHeight() {
         return height;
     }
 
     public int getWidth() {
         return width;
-    }
-    
-    private void InitalizeWorldObjectsByType() {
-        worldObjectsByType = new EnumMap<WorldObjectType, Set<WorldObject>>(WorldObjectType.class);
-        
-        for (WorldObjectType type : WorldObjectType.values()) {
-            worldObjectsByType.put(type, new HashSet<WorldObject>());
-        }
-    }
-    
-    private void InitalizeWorldObjectGrid() {
-        worldObjectGrid = new Set[this.width][this.height];
-        Iterator<Point> pointIterator = this.getPointIterator();
-        
-        while (pointIterator.hasNext()) {
-            Point point = pointIterator.next();
-            worldObjectGrid[point.getX()][point.getY()] = new HashSet<WorldObject>();
-        }
     }
     
     public Collection<WorldObject> getWorldObjectsInPoint(Point point) {
@@ -68,7 +69,7 @@ public class World {
         return Collections.unmodifiableCollection(worldObjectsByType.get(type));
     }
     
-    public Iterator<Point> getPointIterator() {
+    public Iterable<Point> getPoints() {
         return new PointIterator(this.width, this.height);
     }
     
@@ -94,6 +95,7 @@ public class World {
      */
     public void placeWorldObject(Point point, WorldObject object) {
         object.setWorld(this);
-        object.setPosition(point);        
+        object.setPosition(point);
+        
     }
 }

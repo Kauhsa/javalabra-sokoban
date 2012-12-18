@@ -1,8 +1,11 @@
 package kauhsa.sokoban;
 
+import java.util.Collection;
 import java.util.Iterator;
 import kauhsa.sokoban.core.Point;
 import kauhsa.sokoban.core.World;
+import kauhsa.sokoban.core.worldobjects.WorldObject;
+import kauhsa.sokoban.core.worldobjects.WorldObjectType;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -34,6 +37,22 @@ public class WorldTest {
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidSize4() {
         world = new World(0, 1);
+    }
+    
+    @Test
+    public void testNoAnyWorldObjectsAnAnyPointAtInit() {        
+       for (Point point : world.getPoints()) {
+            Collection<WorldObject> worldObjectsAtCurrentPoint = world.getWorldObjectsInPoint(point);
+            assertTrue(worldObjectsAtCurrentPoint.isEmpty());
+        }
+    }
+    
+    @Test
+    public void testNoWorldObjectsOfAnyTypeAtInit() {
+        for (WorldObjectType type : WorldObjectType.values()) {
+            Collection<WorldObject> worldObjectsOfCurrentType = world.getWorldObjectsOfType(type);
+            assertTrue(worldObjectsOfCurrentType.isEmpty());            
+        }
     }
     
     private void widthAndHeightTest(int width, int height) {
@@ -80,11 +99,8 @@ public class WorldTest {
     
     @Test
     public void testWorldPointIterator() {
-        Iterator<Point> iterator = world.getPointIterator();
-        
-        while (iterator.hasNext()) {
-            Point currentPoint = iterator.next();
-            assertTrue(world.isPointInWorld(currentPoint));
+        for (Point point : world.getPoints()) {
+            assertTrue(world.isPointInWorld(point));
         }
     }
 

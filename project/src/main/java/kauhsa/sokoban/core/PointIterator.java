@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
  * 
  * @author mika
  */
-public class PointIterator implements Iterator<Point> {
+public class PointIterator implements Iterable<Point>, Iterator<Point> {
     private int currentX = 0;
     private int currentY = 0;
     private final int width;
@@ -74,6 +74,10 @@ public class PointIterator implements Iterator<Point> {
 
     public void remove() {
         throw new UnsupportedOperationException("Removal is not supported");
+    }
+
+    public Iterator<Point> iterator() {
+        return new PointIterator(width, height);
     }
     
 }
