@@ -20,7 +20,7 @@ public class World {
     private Set<WorldObject>[][] worldObjectGrid;
     private Map<WorldObjectType, Set<WorldObject>> worldObjectsByType;
     
-    public World(int height, int width) {
+    public World(int width, int height) {
         if (height <= 0 || width <= 0) {
             throw new IllegalArgumentException("Width and height of the world has to be at least 1");
         }
@@ -71,15 +71,7 @@ public class World {
      * @param point
      */
     public boolean isPointInWorld(Point point) {
-        /*
-         * No need to check for negative coordinates, as Point object can't have
-         * them in the first place.
-         */
-        if (point.getX() > this.getWidth() - 1 || point.getY() > this.getHeight() - 1) {
-            return false;
-        } 
-        
-        return true;
+        return point.pointExistInArray(this.width, this.height);
     }
     
     /**

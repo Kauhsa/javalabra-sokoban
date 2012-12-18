@@ -26,4 +26,21 @@ public class Point {
         return y;
     }
     
+    public boolean pointExistInArray(int width, int height) {
+        /*
+         * No need to check for negative coordinates, as Point object can't have
+         * them in the first place.
+         */
+        if (this.x > width - 1 || this.y > height - 1) {
+            return false;
+        } 
+        
+        return true;
+    }
+    
+    @Override
+    public String toString() {
+        return String.format("(%d, %d)", this.x, this.y);
+    }
+    
 }
