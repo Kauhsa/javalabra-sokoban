@@ -30,7 +30,7 @@ public abstract class WorldObject {
      */
     public abstract boolean canMove(WorldObject worldObject);
     
-    public void setWorld(World world) {
+    protected void setWorld(World world) {
         if (this.world != null) {
             throw new IllegalStateException("The world can be assigned only once");
         } else if (world == null) {
@@ -40,7 +40,7 @@ public abstract class WorldObject {
         this.world = world;
     }
     
-    public void setPosition(Point point) {
+    protected void setPosition(Point point) {
         if (this.world == null) {
             throw new IllegalStateException("The world is not set for this WorldObject");
         } else if (!this.world.isPointInWorld(point)) {
