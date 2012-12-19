@@ -52,4 +52,14 @@ public abstract class WorldObject {
         
         this.position = point;
     }
+    
+    public Point getPosition() {
+        return this.position;
+    }
+    
+    public void move(Point point) {
+        this.world.moveWorldObject(this, point);
+    }
+    
+    
 }

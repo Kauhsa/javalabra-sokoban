@@ -60,7 +60,11 @@ public class World {
     }
     
     public Collection<WorldObject> getWorldObjectsInPoint(Point point) {
-        return Collections.unmodifiableCollection(worldObjectGrid[point.getX()][point.getY()]);
+        return Collections.unmodifiableCollection(getWorldObjectSetInPoint(point));
+    }
+    
+    private Set<WorldObject> getWorldObjectSetInPoint(Point point) {
+        return worldObjectGrid[point.getX()][point.getY()];
     }
     
     public Collection<WorldObject> getWorldObjectsOfType(WorldObjectType type) {
@@ -91,9 +95,16 @@ public class World {
      * @param point
      * @param object
      */
-    public void placeWorldObject(Point point, WorldObject object) {
+    public void placeWorldObject(WorldObject object, Point point) {
         object.setWorld(this);
         object.setPosition(point);
-        
+        worldObjectsByType.get(object.getType()).add(object);
+        getWorldObjectSetInPoint(object.getPosition()).add(object);        
+    }
+    
+    public void moveWorldObject(WorldObject object, Point point) {
+        getWorldObjectSetInPoint(object.getPosition()).remove(object);
+        getWorldObjectSetInPoint(point).add(object);
+        object.setPosition(point);
     }
 }
