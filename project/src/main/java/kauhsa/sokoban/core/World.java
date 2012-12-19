@@ -6,8 +6,6 @@ import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import kauhsa.sokoban.core.worldobjects.WorldObject;
-import kauhsa.sokoban.core.worldobjects.WorldObjectType;
 
 /**
  * This class contains the WorldObjects and provides methods for accessing them.

@@ -1,4 +1,4 @@
-package kauhsa.sokoban.core.worldobjects;
+package kauhsa.sokoban.core;
 
 /**
  * Enum for different object types.
