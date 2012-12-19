@@ -1,10 +1,6 @@
 package kauhsa.sokoban.core;
 
 import java.util.Collection;
-import kauhsa.sokoban.core.Point;
-import kauhsa.sokoban.core.World;
-import kauhsa.sokoban.core.WorldObject;
-import kauhsa.sokoban.core.WorldObjectType;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
