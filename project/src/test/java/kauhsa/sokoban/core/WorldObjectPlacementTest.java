@@ -32,11 +32,11 @@ public class WorldObjectPlacementTest {
     }
     
     @Test
-    public void testObjectMovement() {
+    public void testObjectRelocation() {
         Floor floor = new Floor();
         world.placeWorldObject(floor, new Point(0, 0));
         
-        floor.move(new Point(1, 0));
+        floor.relocate(new Point(1, 0));
         assertTrue("Floor's old position should be empty", world.getWorldObjectsInPoint(new Point(0, 0)).isEmpty());
         assertTrue("New position should contain floor", world.getWorldObjectsInPoint(new Point(1, 0)).contains(floor));
         assertEquals("floor's position should be now 1, 0", new Point(1, 0), floor.getPosition());

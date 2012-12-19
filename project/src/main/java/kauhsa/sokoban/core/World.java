@@ -100,7 +100,7 @@ public class World {
         getWorldObjectSetInPoint(object.getPosition()).add(object);        
     }
     
-    public void moveWorldObject(WorldObject object, Point point) {
+    public void relocateWorldObject(WorldObject object, Point point) {
         getWorldObjectSetInPoint(object.getPosition()).remove(object);
         getWorldObjectSetInPoint(point).add(object);
         object.setPosition(point);

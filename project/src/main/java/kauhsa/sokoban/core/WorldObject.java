@@ -54,8 +54,8 @@ public abstract class WorldObject {
         return this.position;
     }
     
-    public void move(Point point) {
-        this.world.moveWorldObject(this, point);
+    public void relocate(Point point) {
+        this.world.relocateWorldObject(this, point);
     }
     
     
