@@ -1,4 +1,4 @@
-package kauhsa.sokoban;
+package kauhsa.sokoban.core;
 
 import kauhsa.sokoban.core.Point;
 import kauhsa.sokoban.core.PointIterator;

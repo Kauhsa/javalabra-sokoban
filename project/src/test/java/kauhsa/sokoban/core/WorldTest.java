@@ -1,4 +1,4 @@
-package kauhsa.sokoban;
+package kauhsa.sokoban.core;
 
 import java.util.Collection;
 import kauhsa.sokoban.core.Point;
