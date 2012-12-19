@@ -11,24 +11,17 @@ import static org.junit.Assert.*;
  * @author mika
  */
 public class PointIteratorTest {
-    public static final int DEFAULT_WIDTH = 10;
-    public static final int DEFAULT_HEIGHT = 5;
-    
-    private PointIterator pointIterator;
-   
-    @Before
-    public void setUp() {
-        pointIterator = new PointIterator(DEFAULT_WIDTH, DEFAULT_HEIGHT);
-    }
-    
-    @Test(expected=IllegalArgumentException.class)
+       
+    @Test(expected=IllegalArgumentException.class)    
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void testIllegalSize1() {
-        pointIterator = new PointIterator(-1, 0);
+        new PointIterator(-1, 0);
     }
         
     @Test(expected=IllegalArgumentException.class)
+    @SuppressWarnings("ResultOfObjectAllocationIgnored")
     public void testIllegalSize2() {
-        pointIterator = new PointIterator(1, -1);
+        new PointIterator(1, -1);
     }
     
     /**
