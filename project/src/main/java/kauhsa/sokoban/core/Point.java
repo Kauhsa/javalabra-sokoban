@@ -64,6 +64,16 @@ public class Point {
         return new Point(x, y);
     }
     
+    public boolean appliedDirectionWouldBeInvalid(Direction direction) {
+        try {
+            this.applyDirection(direction);
+        } catch (IllegalArgumentException e) {
+            return true;
+        }
+        
+        return false;
+    }
+    
     @Override
     public String toString() {
         return String.format("(%d, %d)", this.x, this.y);
