@@ -11,7 +11,7 @@ public class Point {
     private final int y;
 
     public Point(int x, int y) {
-        if (x < 0 || y < 0) {
+        if (wouldBeInvalid(x, y)) {
             throw new IllegalArgumentException("Point cannot have negative x or y");
         }
 
@@ -19,6 +19,10 @@ public class Point {
         this.y = y;
     }
 
+    public static boolean wouldBeInvalid(int x, int y) {
+        return (x < 0 || y < 0);
+    }
+    
     public int getX() {
         return x;
     }
@@ -26,7 +30,7 @@ public class Point {
     public int getY() {
         return y;
     }
-
+    
     public boolean pointExistInArray(int width, int height) {
         /*
          * No need to check for negative coordinates, as Point object can't have
@@ -39,6 +43,27 @@ public class Point {
         return true;
     }
 
+    public Point copy() {
+        return new Point(this.x, this.y);
+    }
+    
+    public Point applyDirection(Direction direction) {
+        int x = this.getX();
+        int y = this.getY();
+        
+        if (direction == Direction.DOWN) {
+            y++;
+        } else if (direction == Direction.UP) {
+            y--;
+        } else if (direction == Direction.LEFT) {
+            x--;
+        } else if (direction == Direction.RIGHT) {
+            x++;
+        }
+        
+        return new Point(x, y);
+    }
+    
     @Override
     public String toString() {
         return String.format("(%d, %d)", this.x, this.y);
@@ -60,5 +85,13 @@ public class Point {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 61 * hash + this.x;
+        hash = 61 * hash + this.y;
+        return hash;
     }
 }

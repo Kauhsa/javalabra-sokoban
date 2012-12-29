@@ -19,7 +19,8 @@ public abstract class WorldObject {
     public abstract WorldObjectType getType();
     
     /**
-     * Can the object given as parameter move to same tile where this object is.
+     * Can the worldObject given as parameter move to same tile where this
+     * object is.
      * 
      * For example, player object can move to tile where an floor object exist, 
      * but player object can not move to tile containing wall object.
@@ -29,6 +30,17 @@ public abstract class WorldObject {
      * false.
      */
     public abstract boolean canMove(WorldObject worldObject);
+    
+    /**
+     * Can the worldObject given as parameter push this object, if it would be
+     * next to this worldObject.
+     * 
+     * For example, player can push boxes, but boxes can't push boxes.
+     * 
+     * @param worldObject tested object.
+     * @return true if worldObject can push this object, otherwise false.
+     */
+    public abstract boolean canPush(WorldObject worldObject);
     
     protected void setWorld(World world) {
         if (this.world != null) {

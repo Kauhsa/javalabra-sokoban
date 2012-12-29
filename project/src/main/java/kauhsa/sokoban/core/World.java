@@ -1,7 +1,5 @@
 package kauhsa.sokoban.core;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -57,16 +55,12 @@ public class World {
         return width;
     }
     
-    public Collection<WorldObject> getWorldObjectsInPoint(Point point) {
-        return Collections.unmodifiableCollection(getWorldObjectSetInPoint(point));
-    }
-    
-    private Set<WorldObject> getWorldObjectSetInPoint(Point point) {
+    public Set<WorldObject> getWorldObjectsInPoint(Point point) {
         return worldObjectGrid[point.getX()][point.getY()];
     }
     
-    public Collection<WorldObject> getWorldObjectsOfType(WorldObjectType type) {
-        return Collections.unmodifiableCollection(worldObjectsByType.get(type));
+    public Set<WorldObject> getWorldObjectsOfType(WorldObjectType type) {
+        return worldObjectsByType.get(type);
     }
     
     public Iterable<Point> getPoints() {
@@ -97,12 +91,12 @@ public class World {
         object.setWorld(this);
         object.setPosition(point);
         worldObjectsByType.get(object.getType()).add(object);
-        getWorldObjectSetInPoint(object.getPosition()).add(object);        
+        getWorldObjectsInPoint(object.getPosition()).add(object);        
     }
     
     public void relocateWorldObject(WorldObject object, Point point) {
-        getWorldObjectSetInPoint(object.getPosition()).remove(object);
-        getWorldObjectSetInPoint(point).add(object);
+        getWorldObjectsInPoint(object.getPosition()).remove(object);
+        getWorldObjectsInPoint(point).add(object);
         object.setPosition(point);
     }
 }
