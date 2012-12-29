@@ -20,26 +20,19 @@ public class WorldMovementHandler {
 
     public boolean move(WorldObject worldObject, Direction direction) {
         Point currentPoint = worldObject.getPosition();
-      
-        // The point where we are trying to more is negative
-        if (currentPoint.appliedDirectionWouldBeInvalid(direction)) {
-            return false;
-        }
-        Point adjacentPoint = currentPoint.applyDirection(direction);                
-        
-        // The point where we are trying to move is out of the bounds
-        if (!world.isPointInWorld(adjacentPoint)) {
+
+        if (!isAdjacentPointValid(currentPoint, direction)) {
             return false;
         }
 
         // If movement is possible, we can just move the worldObject
         if (checkIfMovementPossible(worldObject, direction)) {
-            worldObject.relocate(worldObject.getPosition().applyDirection(direction));
+            worldObject.relocate(currentPoint.applyDirection(direction));
             return true;
         }
-        
+
         // Otherwise we will try pushing it instead
-        return push(worldObject, direction);        
+        return push(worldObject, direction);
     }
 
     private boolean push(WorldObject worldObject, Direction direction) {
@@ -86,7 +79,7 @@ public class WorldMovementHandler {
 
     private boolean checkIfMovementPossible(WorldObject worldObject, Direction direction) {
         Point adjacentPoint = worldObject.getPosition().applyDirection(direction);
-        
+
         // Check if object can be in the space next to it without pushing
         boolean canMove = true;
         for (WorldObject adjacentWorldObject : world.getWorldObjectsInPoint(adjacentPoint)) {
@@ -96,5 +89,19 @@ public class WorldMovementHandler {
             }
         }
         return canMove;
+    }
+
+    private boolean isAdjacentPointValid(Point currentPoint, Direction direction) {
+        // The point where we are trying to more is negative
+        if (currentPoint.appliedDirectionWouldBeInvalid(direction)) {
+            return false;
+        }
+        
+        // The point where we are trying to move is out of the bounds
+        if (!world.isPointInWorld(currentPoint.applyDirection(direction))) {
+            return false;
+        }
+        
+        return true;
     }
 }
