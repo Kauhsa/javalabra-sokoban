@@ -49,7 +49,7 @@ public class WorldMovementHandler {
 
         if (canMove) {
             // if movement is possible, that's enough for us
-            world.relocateWorldObject(worldObject, worldObject.getPosition().applyDirection(direction));
+            worldObject.relocate(worldObject.getPosition().applyDirection(direction));
             return true;
         } else {
             /*
