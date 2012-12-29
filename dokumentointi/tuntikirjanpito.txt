@@ -3,3 +3,4 @@
 17.12.  1h      Luokkakaavion generoimista deklaratiivisesta kuvauksesta, turhaa työtä
 18.12.  5h      Koodauksen aloitus, testausta, ympäristön säätämistä
 18.12.  2h      Testejä, koodia, luokkakaaviota
+29.12.  3h	Takaisin sorvin ääreen, liikkuminen ja laatikoiden työntely implementoitu
