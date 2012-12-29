@@ -32,6 +32,28 @@ public class PointTest {
         new Point(0, -1);
     }
     
+    @Test
+    public void testEquivalence() {
+        assertEquals(new Point(0, 0), new Point(0, 0));        
+        assertEquals(new Point(1, 1), new Point(1, 1));   
+        assertNotEquals(new Point(0, 0), new Point(0, 1));         
+        assertNotEquals(new Point(1, 0), new Point(0, 0));                 
+        assertNotEquals(new Point(1, 0), null);
+        assertNotEquals(new Point(1, 0), "GREAT SYSTEMS COLLIDE");
+    }
+    
+    private void testPointIsEqualToCopy(Point point) {
+        assertEquals(point, point.copy());
+    }
+    
+    @Test
+    public void testCopy() {
+        testPointIsEqualToCopy(new Point(0, 0));
+        testPointIsEqualToCopy(new Point(3, 0));
+        testPointIsEqualToCopy(new Point(0, 3));
+    }
+    
+    @Test
     public void testPointExists() {
         // TODO: Is tested better elsewhere - move those test maybe here instead
         assertTrue(point.pointExistInArray(1, 1));

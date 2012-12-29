@@ -129,6 +129,15 @@ public class WorldObjectMovementTest {
     }
     
     @Test
+    public void testCanNotPushOtherPlayer() {              
+        Player player = placePlayer(new Point(0, 1));
+        Player player2 = placePlayer(new Point(1, 1));        
+              
+        checkMovementAndNewPoint(player, Direction.RIGHT, new Point(0, 1));        
+        checkWorldObjectIsInPoint(player2, new Point(1, 1));
+    }
+    
+    @Test
     public void testCanNotPushOutsideWorld() {             
         Player player = placePlayer(new Point(0, 1));
         Box box = placeBox(new Point(1, 1));

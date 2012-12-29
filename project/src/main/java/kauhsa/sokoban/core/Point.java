@@ -86,12 +86,4 @@ public class Point {
         }
         return true;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 61 * hash + this.x;
-        hash = 61 * hash + this.y;
-        return hash;
-    }
 }

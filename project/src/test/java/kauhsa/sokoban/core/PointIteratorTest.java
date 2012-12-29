@@ -1,5 +1,6 @@
 package kauhsa.sokoban.core;
 
+import java.util.NoSuchElementException;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -62,5 +63,19 @@ public class PointIteratorTest {
         everyPointExactlyOnceTest(10, 50);
         everyPointExactlyOnceTest(40, 23);        
         everyPointExactlyOnceTest(21, 62);
+    }
+    
+    @Test(expected=UnsupportedOperationException.class)
+    public void testUnsupportedRemoval() {
+        PointIterator pointIterator = new PointIterator(10, 10);
+        pointIterator.remove();
+    }
+    
+    @Test(expected=NoSuchElementException.class)
+    public void testIteratorDoesNotLoop() {
+        PointIterator pointIterator = new PointIterator(10, 10);
+        while (true) {
+            pointIterator.next();
+        }
     }
 }
