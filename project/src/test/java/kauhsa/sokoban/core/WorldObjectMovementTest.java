@@ -81,7 +81,7 @@ public class WorldObjectMovementTest {
     }
     
     @Test
-    public void testMovingIfWallsEverywhere() { 
+    public void testMovingIfWallsInEveryDirection() { 
         placeWall(new Point(0, 1));         
         placeWall(new Point(2, 1));
         placeWall(new Point(1, 0));        
@@ -91,7 +91,6 @@ public class WorldObjectMovementTest {
         checkMovementAndNewPoint(Direction.UP, new Point(1, 1));        
         checkMovementAndNewPoint(Direction.DOWN, new Point(1, 1));        
         checkMovementAndNewPoint(Direction.RIGHT, new Point(1, 1)); 
-    }
-    
+    }    
     
 }
