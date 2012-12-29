@@ -4,6 +4,8 @@
  */
 package kauhsa.sokoban.core;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author mika
@@ -66,10 +68,16 @@ public class WorldMovementHandler {
              * happen there, but needs rework if something fancier is
              * implemented.
              * 
+             * The next two lines are to avoid ConcurrentModificationException -
+             * there could possibly be cleaner solution though.
              */
+            ArrayList<WorldObject> adjacentWorldObjects = new ArrayList<WorldObject>();
+            adjacentWorldObjects.addAll(world.getWorldObjectsInPoint(adjacentPoint));
+            
             boolean didPushesSucceed = true;
             boolean atLeastOnePush = false;
-            for (WorldObject adjacentWorldObject : world.getWorldObjectsInPoint(adjacentPoint)) {
+            
+            for (WorldObject adjacentWorldObject : adjacentWorldObjects) {
                 if (adjacentWorldObject.canPush(worldObject)) {
                     didPushesSucceed = move(adjacentWorldObject, direction) && didPushesSucceed;
                     atLeastOnePush = atLeastOnePush || didPushesSucceed;

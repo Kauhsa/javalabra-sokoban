@@ -3,6 +3,9 @@
  * and open the template in the editor.
  */
 package kauhsa.sokoban.core;
+import java.util.ArrayList;
+import java.util.Collection;
+import kauhsa.sokoban.core.worldobjects.Box;
 import kauhsa.sokoban.core.worldobjects.Floor;
 import kauhsa.sokoban.core.worldobjects.Player;
 import kauhsa.sokoban.core.worldobjects.Wall;
@@ -19,17 +22,14 @@ import static org.junit.Assert.*;
  */
 public class WorldObjectMovementTest {
     private World world;
-    private Player player;
     private WorldMovementHandler worldMovementHandler;
-    
     
     @Before
     public void setUp() {
         world = new World(3, 3);        
+        worldMovementHandler = new WorldMovementHandler(world);   
+        
         fillWorldWithFloor();
-        worldMovementHandler = new WorldMovementHandler(world);
-        player = new Player();
-        world.placeWorldObject(player, new Point(1, 1));        
     }
     
     private void fillWorldWithFloor() {
@@ -39,16 +39,29 @@ public class WorldObjectMovementTest {
         }
     }
     
-    private void placeWall(Point point) {
+    private Player placePlayer(Point point) {
+        Player player = new Player();
+        world.placeWorldObject(player, point);
+        return player;
+    }
+    
+    private Wall placeWall(Point point) {
         Wall wall = new Wall();
         world.placeWorldObject(wall, point);
+        return wall;
+    }
+    
+    private Box placeBox(Point point) {
+        Box box = new Box();
+        world.placeWorldObject(box, point);
+        return box;
     }
     
     private void checkWorldObjectIsInPoint(WorldObject worldObject, Point point) {
-        boolean isPlayerInPoint = world.getWorldObjectsInPoint(point).contains(player);
+        boolean isWorldObjectInPoint = world.getWorldObjectsInPoint(point).contains(worldObject);
         String assertMessage = String.format("WorldObject should now be in %s", point);
-        assertTrue(assertMessage, isPlayerInPoint);        
-        assertEquals(point, player.getPosition()); // Just to be extra sure
+        assertTrue(assertMessage, isWorldObjectInPoint);        
+        assertEquals(point, worldObject.getPosition()); // Just to be extra sure
     }
     
     private void checkMovementAndNewPoint(WorldObject worldObject, Direction direction, Point point) {
@@ -57,7 +70,9 @@ public class WorldObjectMovementTest {
     }
     
     @Test
-    public void testWorldBounds() {       
+    public void testCanNotMoveOutsideWorld() {       
+        Player player = placePlayer(new Point(1, 1));
+        
         checkMovementAndNewPoint(player, Direction.LEFT, new Point(0, 1));        
         checkMovementAndNewPoint(player, Direction.LEFT, new Point(0, 1));        
         checkMovementAndNewPoint(player, Direction.UP, new Point(0, 0));
@@ -71,7 +86,8 @@ public class WorldObjectMovementTest {
     }
     
     @Test
-    public void testMovingToWall() {
+    public void testCanNotMoveToWall1() {             
+        Player player = placePlayer(new Point(1, 1));
         placeWall(new Point(0, 1));
         
         checkMovementAndNewPoint(player, Direction.LEFT, new Point(1, 1));        
@@ -81,7 +97,8 @@ public class WorldObjectMovementTest {
     }
     
     @Test
-    public void testMovingIfWallsInEveryDirection() { 
+    public void testCanNotMoveToWall2() {              
+        Player player = placePlayer(new Point(1, 1));
         placeWall(new Point(0, 1));         
         placeWall(new Point(2, 1));
         placeWall(new Point(1, 0));        
@@ -91,6 +108,56 @@ public class WorldObjectMovementTest {
         checkMovementAndNewPoint(player, Direction.UP, new Point(1, 1));        
         checkMovementAndNewPoint(player, Direction.DOWN, new Point(1, 1));        
         checkMovementAndNewPoint(player, Direction.RIGHT, new Point(1, 1)); 
-    }    
+    }
     
+    @Test
+    public void testPush() {             
+        Player player = placePlayer(new Point(0, 1));
+        Box box = placeBox(new Point(1, 1));
+        
+        checkMovementAndNewPoint(player, Direction.RIGHT, new Point(1, 1));
+        checkWorldObjectIsInPoint(box, new Point(2, 1));
+    }
+
+    @Test
+    public void testCanNotPushWall() {              
+        Player player = placePlayer(new Point(0, 1));
+        Wall wall = placeWall(new Point(1, 1));         
+              
+        checkMovementAndNewPoint(player, Direction.RIGHT, new Point(0, 1));        
+        checkWorldObjectIsInPoint(wall, new Point(1, 1));
+    }
+    
+    @Test
+    public void testCanNotPushOutsideWorld() {             
+        Player player = placePlayer(new Point(0, 1));
+        Box box = placeBox(new Point(1, 1));
+        
+        checkMovementAndNewPoint(player, Direction.RIGHT, new Point(1, 1));
+        checkWorldObjectIsInPoint(box, new Point(2, 1));
+        checkMovementAndNewPoint(player, Direction.RIGHT, new Point(1, 1));
+        checkWorldObjectIsInPoint(box, new Point(2, 1));
+    }
+    
+    @Test
+    public void testCanNotPushTwoBoxes() {             
+        Player player = placePlayer(new Point(0, 1));
+        Box box = placeBox(new Point(1, 1));
+        Box box2 = placeBox(new Point(2, 1));
+        
+        checkMovementAndNewPoint(player, Direction.RIGHT, new Point(0, 1));
+        checkWorldObjectIsInPoint(box, new Point(1, 1));
+        checkWorldObjectIsInPoint(box2, new Point(2, 1));
+    }
+    
+    @Test
+    public void testCanNotPushToWall() {             
+        Player player = placePlayer(new Point(0, 1));
+        Box box = placeBox(new Point(1, 1));
+        placeWall(new Point(2, 1));
+        
+        checkMovementAndNewPoint(player, Direction.RIGHT, new Point(0, 1));
+        checkWorldObjectIsInPoint(box, new Point(1, 1));
+    }
+       
 }
