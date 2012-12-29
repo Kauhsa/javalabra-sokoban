@@ -44,40 +44,40 @@ public class WorldObjectMovementTest {
         world.placeWorldObject(wall, point);
     }
     
-    private void checkPlayerIsInPoint(Point point) {
+    private void checkWorldObjectIsInPoint(WorldObject worldObject, Point point) {
         boolean isPlayerInPoint = world.getWorldObjectsInPoint(point).contains(player);
-        String assertMessage = String.format("Player should now be in %s", point);
+        String assertMessage = String.format("WorldObject should now be in %s", point);
         assertTrue(assertMessage, isPlayerInPoint);        
         assertEquals(point, player.getPosition()); // Just to be extra sure
     }
     
-    private void checkMovementAndNewPoint(Direction direction, Point point) {
-        worldMovementHandler.move(player, direction);
-        checkPlayerIsInPoint(point);
+    private void checkMovementAndNewPoint(WorldObject worldObject, Direction direction, Point point) {
+        worldMovementHandler.move(worldObject, direction);
+        checkWorldObjectIsInPoint(worldObject, point);
     }
     
     @Test
     public void testWorldBounds() {       
-        checkMovementAndNewPoint(Direction.LEFT, new Point(0, 1));        
-        checkMovementAndNewPoint(Direction.LEFT, new Point(0, 1));        
-        checkMovementAndNewPoint(Direction.UP, new Point(0, 0));
-        checkMovementAndNewPoint(Direction.UP, new Point(0, 0));
-        checkMovementAndNewPoint(Direction.RIGHT, new Point(1, 0));        
-        checkMovementAndNewPoint(Direction.RIGHT, new Point(2, 0));        
-        checkMovementAndNewPoint(Direction.RIGHT, new Point(2, 0));        
-        checkMovementAndNewPoint(Direction.DOWN, new Point(2, 1));
-        checkMovementAndNewPoint(Direction.DOWN, new Point(2, 2));
-        checkMovementAndNewPoint(Direction.DOWN, new Point(2, 2));        
+        checkMovementAndNewPoint(player, Direction.LEFT, new Point(0, 1));        
+        checkMovementAndNewPoint(player, Direction.LEFT, new Point(0, 1));        
+        checkMovementAndNewPoint(player, Direction.UP, new Point(0, 0));
+        checkMovementAndNewPoint(player, Direction.UP, new Point(0, 0));
+        checkMovementAndNewPoint(player, Direction.RIGHT, new Point(1, 0));        
+        checkMovementAndNewPoint(player, Direction.RIGHT, new Point(2, 0));        
+        checkMovementAndNewPoint(player, Direction.RIGHT, new Point(2, 0));        
+        checkMovementAndNewPoint(player, Direction.DOWN, new Point(2, 1));
+        checkMovementAndNewPoint(player, Direction.DOWN, new Point(2, 2));
+        checkMovementAndNewPoint(player, Direction.DOWN, new Point(2, 2));        
     }
     
     @Test
     public void testMovingToWall() {
         placeWall(new Point(0, 1));
         
-        checkMovementAndNewPoint(Direction.LEFT, new Point(1, 1));        
-        checkMovementAndNewPoint(Direction.UP, new Point(1, 0));        
-        checkMovementAndNewPoint(Direction.LEFT, new Point(0, 0));        
-        checkMovementAndNewPoint(Direction.DOWN, new Point(0, 0)); 
+        checkMovementAndNewPoint(player, Direction.LEFT, new Point(1, 1));        
+        checkMovementAndNewPoint(player, Direction.UP, new Point(1, 0));        
+        checkMovementAndNewPoint(player, Direction.LEFT, new Point(0, 0));        
+        checkMovementAndNewPoint(player, Direction.DOWN, new Point(0, 0)); 
     }
     
     @Test
@@ -87,10 +87,10 @@ public class WorldObjectMovementTest {
         placeWall(new Point(1, 0));        
         placeWall(new Point(1, 2));
         
-        checkMovementAndNewPoint(Direction.LEFT, new Point(1, 1));        
-        checkMovementAndNewPoint(Direction.UP, new Point(1, 1));        
-        checkMovementAndNewPoint(Direction.DOWN, new Point(1, 1));        
-        checkMovementAndNewPoint(Direction.RIGHT, new Point(1, 1)); 
+        checkMovementAndNewPoint(player, Direction.LEFT, new Point(1, 1));        
+        checkMovementAndNewPoint(player, Direction.UP, new Point(1, 1));        
+        checkMovementAndNewPoint(player, Direction.DOWN, new Point(1, 1));        
+        checkMovementAndNewPoint(player, Direction.RIGHT, new Point(1, 1)); 
     }    
     
 }
