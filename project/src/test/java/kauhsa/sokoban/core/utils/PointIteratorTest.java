@@ -1,5 +1,7 @@
-package kauhsa.sokoban.core;
+package kauhsa.sokoban.core.utils;
 
+import kauhsa.sokoban.core.utils.PointIterator;
+import kauhsa.sokoban.core.utils.Point;
 import java.util.NoSuchElementException;
 import static org.junit.Assert.*;
 import org.junit.Test;

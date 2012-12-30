@@ -1,5 +1,7 @@
 package kauhsa.sokoban.core;
 
+import kauhsa.sokoban.core.utils.Point;
+import kauhsa.sokoban.core.utils.PointIterator;
 import java.util.EnumMap;
 import java.util.HashSet;
 import java.util.Map;

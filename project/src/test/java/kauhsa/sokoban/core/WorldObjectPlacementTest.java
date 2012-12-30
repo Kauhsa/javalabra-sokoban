@@ -1,5 +1,6 @@
 package kauhsa.sokoban.core;
 
+import kauhsa.sokoban.core.utils.Point;
 import kauhsa.sokoban.core.worldobjects.Floor;
 import org.junit.After;
 import org.junit.AfterClass;

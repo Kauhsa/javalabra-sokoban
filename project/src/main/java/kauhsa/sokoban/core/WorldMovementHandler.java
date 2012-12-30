@@ -4,6 +4,8 @@
  */
 package kauhsa.sokoban.core;
 
+import kauhsa.sokoban.core.utils.Direction;
+import kauhsa.sokoban.core.utils.Point;
 import java.util.ArrayList;
 
 /**

@@ -1,4 +1,4 @@
-package kauhsa.sokoban.core;
+package kauhsa.sokoban.core.utils;
 
 /**
  * Single point in the world.

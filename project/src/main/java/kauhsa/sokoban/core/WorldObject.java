@@ -1,5 +1,7 @@
 package kauhsa.sokoban.core;
 
+import kauhsa.sokoban.core.utils.Point;
+
 /**
  * Base class for everything the map can contain.
  * 

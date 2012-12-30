@@ -1,5 +1,6 @@
-package kauhsa.sokoban.core;
+package kauhsa.sokoban.core.utils;
 
+import kauhsa.sokoban.core.utils.Point;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -3,6 +3,8 @@
  * and open the template in the editor.
  */
 package kauhsa.sokoban.core;
+import kauhsa.sokoban.core.utils.Direction;
+import kauhsa.sokoban.core.utils.Point;
 import java.util.ArrayList;
 import java.util.Collection;
 import kauhsa.sokoban.core.worldobjects.Box;

@@ -1,4 +1,4 @@
-package kauhsa.sokoban.core;
+package kauhsa.sokoban.core.utils;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

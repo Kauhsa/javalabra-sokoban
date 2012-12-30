@@ -1,5 +1,6 @@
 package kauhsa.sokoban.core;
 
+import kauhsa.sokoban.core.utils.Point;
 import java.util.Collection;
 import static org.junit.Assert.*;
 import org.junit.Before;

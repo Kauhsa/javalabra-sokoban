@@ -1,5 +1,6 @@
 package kauhsa.sokoban.core;
 
+import kauhsa.sokoban.core.utils.Point;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
