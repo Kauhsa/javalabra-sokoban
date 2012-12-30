@@ -1,5 +1,5 @@
 
-package kauhsa.sokoban.core.levels;
+package kauhsa.sokoban.core;
 
 import kauhsa.sokoban.core.World;
 
