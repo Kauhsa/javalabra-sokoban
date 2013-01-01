@@ -5,7 +5,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Collection;
 import kauhsa.sokoban.core.World;
+import kauhsa.sokoban.core.WorldObject;
+import kauhsa.sokoban.core.WorldObjectType;
+import kauhsa.sokoban.core.utils.Point;
 import kauhsa.sokoban.level.InvalidLevelException;
 import kauhsa.sokoban.level.Level;
 import org.junit.After;
@@ -33,11 +37,46 @@ public class YAMLLevelTest {
     }
     
     @Test
-    public void validWorldTest() throws InvalidLevelException {
+    public void widthAndHeightTest() throws InvalidLevelException {
         Level level = getYAMLLevelFromResource("valid1.yaml");
         World world = level.getWorld();
         assertEquals(5, world.getWidth());        
         assertEquals(3, world.getHeight());
+    }
+    
+    private boolean isObjectOfTypeInCollection(Collection<WorldObject> worldObjects, WorldObjectType worldObjectType) {
+        for (WorldObject worldObject : worldObjects) {
+            if (worldObject.getType() == worldObjectType) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    private void worldHasObjectInPointTest(World world, Point point, WorldObjectType worldObjectType) {
+        assertTrue(isObjectOfTypeInCollection(world.getWorldObjectsInPoint(point), worldObjectType));
+    }
+    
+    @Test
+    public void floorOnEveryPointTest() throws InvalidLevelException {
+        Level level = getYAMLLevelFromResource("valid1.yaml");
+        World world = level.getWorld();
+        for (Point point : world.getPoints()) {
+            worldHasObjectInPointTest(world, point, WorldObjectType.FLOOR);
+        }
+    }
+    
+    @Test
+    public void objectsCreatedCorrectlyTest() throws InvalidLevelException {
+        Level level = getYAMLLevelFromResource("valid1.yaml");
+        World world = level.getWorld();
+        
+        worldHasObjectInPointTest(world, new Point(4, 0), WorldObjectType.WALL);
+        worldHasObjectInPointTest(world, new Point(4, 1), WorldObjectType.WALL);
+        worldHasObjectInPointTest(world, new Point(4, 2), WorldObjectType.WALL);
+        worldHasObjectInPointTest(world, new Point(0, 1), WorldObjectType.PLAYER);
+        worldHasObjectInPointTest(world, new Point(3, 2), WorldObjectType.BOX);
     }
     
     @Test(expected=InvalidYAMLLevelException.class)

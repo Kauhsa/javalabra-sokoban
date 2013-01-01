@@ -13,7 +13,7 @@ import kauhsa.sokoban.core.worldobjects.Wall;
  *
  * @author mika
  */
-public class YAMLLevelWorldCreator {
+public final class YAMLLevelWorldCreator {
     
     private final static char FLOOR_CHAR = '.';
     private final static char WALL_CHAR = '#';    
