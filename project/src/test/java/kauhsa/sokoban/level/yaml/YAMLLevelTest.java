@@ -1,10 +1,12 @@
-package kauhsa.sokoban.yamllevel;
+package kauhsa.sokoban.level.yaml;
 
+import kauhsa.sokoban.level.yaml.YAMLLevel;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import kauhsa.sokoban.core.Level;
+import kauhsa.sokoban.level.InvalidLevelException;
+import kauhsa.sokoban.level.Level;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -23,7 +25,7 @@ public class YAMLLevelTest {
     }
     
     @Test
-    public void metaDataTest() throws FileNotFoundException {
+    public void metaDataTest() throws InvalidLevelException {
         Level level = getYAMLLevelFromResource("test_level.yaml");
         assertEquals("Kauhsa", level.getAuthor());
         assertEquals("TestLevel", level.getName());
