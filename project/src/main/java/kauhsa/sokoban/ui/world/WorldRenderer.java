@@ -14,8 +14,11 @@ import org.newdawn.slick.Image;
  * @author mika
  */
 public class WorldRenderer {
-    private final int TILE_WIDTH = 32;
-    private final int TILE_HEIGHT = 32;
+    private final int TILE_WIDTH = 101;
+    private final int TILE_HEIGHT = 211;
+    
+    private final int TILE_X_MOVE = 100;
+    private final int TILE_Y_MOVE = 80;
     
     private final World world;
     private final WorldPointImages worldPointImages;
@@ -35,11 +38,11 @@ public class WorldRenderer {
     }
     
     private float worldXToScreenX(int x) {
-        return x * TILE_WIDTH * scale + renderX + canvasX1;
+        return x * TILE_X_MOVE * scale + renderX + canvasX1;
     }
     
     private float worldYToScreenY(int y) {
-        return y * TILE_WIDTH * scale + renderY + canvasY1;
+        return y * TILE_Y_MOVE * scale + renderY + canvasY1;
     }
     
     private void calculateDrawingPositions(float x1, float y1, float x2, float y2) {
@@ -51,8 +54,8 @@ public class WorldRenderer {
         float canvasWidth = canvasX2 - canvasX1;
         float canvasHeight = canvasY2 - canvasY1;
         
-        int worldWidth = world.getWidth() * TILE_WIDTH;
-        int worldHeight = world.getHeight() * TILE_HEIGHT;
+        int worldWidth = (world.getWidth() - 1) * TILE_X_MOVE + TILE_WIDTH;
+        int worldHeight = (world.getHeight() - 1) * TILE_Y_MOVE + TILE_HEIGHT;
         
         float scaleX = canvasWidth / worldWidth;
         float scaleY = canvasHeight / worldHeight;
@@ -80,7 +83,7 @@ public class WorldRenderer {
         for (Point point : world.getPoints()) {
             float x = worldXToScreenX(point.getX());
             float y = worldYToScreenY(point.getY());
-            
+                        
             for (Image image : worldPointImages.imagesInPoint(point)) {
                 image.draw(x, y, scale);
             }

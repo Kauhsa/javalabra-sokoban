@@ -1,3 +1,2 @@
-Osa käyttämistäni graafisista elementeistä ovat CC0-lisenssin (http://code.google.com/p/crawl-tiles/) alaisia, ja löytyvät täältä: http://code.google.com/p/crawl-tiles/
-
+Osa käyttämästäni grafiikasta löytyy täältä: http://www.lostgarden.com/2007/05/cutegod-prototyping-challenge.html - varsinaista lisenssiä en löytänyt, mutta blogiviesti antaa ymmärtää että ovat vapaasti käytettävissä - postaus on muun muassa tagattu labelilla "free game graphics".
 

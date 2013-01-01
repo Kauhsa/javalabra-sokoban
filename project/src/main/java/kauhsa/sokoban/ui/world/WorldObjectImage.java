@@ -22,11 +22,11 @@ public class WorldObjectImage {
     private Map<String, Image> imageCache = new HashMap<String, Image>();
     
     public WorldObjectImage() {
-        imageCache.put("FLOOR", resourceToImage("cobble_blood1.png"));
-        imageCache.put("PLAYER", resourceToImage("lich_form.png"));
-        imageCache.put("WALL", resourceToImage("stone_brick1.png"));
-        imageCache.put("BOX", resourceToImage("eye_of_draining.png"));        
-        imageCache.put("BOXTARGET", resourceToImage("dngn_trap_zot.png"));
+        imageCache.put("FLOOR", resourceToImage("Grass Block new.png"));
+        imageCache.put("PLAYER", resourceToImage("Character Princess Girl.png"));
+        imageCache.put("WALL", resourceToImage("Stone Block Tall new.png"));
+        imageCache.put("BOX", resourceToImage("Rock.png"));        
+        imageCache.put("BOXTARGET", resourceToImage("Selector.png"));
     }
     
     public Image getImageForWorldObject(WorldObject worldObject) {
