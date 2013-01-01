@@ -10,7 +10,7 @@ import java.util.Map;
  *
  * @author mika
  */
-class YAMLLevelData {
+public class YAMLLevelData {
     private Map<String, String> metadata;
     private String world;
 
