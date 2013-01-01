@@ -5,6 +5,7 @@ import kauhsa.sokoban.core.World;
 import kauhsa.sokoban.core.WorldObject;
 import kauhsa.sokoban.core.utils.Point;
 import kauhsa.sokoban.core.worldobjects.Box;
+import kauhsa.sokoban.core.worldobjects.BoxTarget;
 import kauhsa.sokoban.core.worldobjects.Floor;
 import kauhsa.sokoban.core.worldobjects.Player;
 import kauhsa.sokoban.core.worldobjects.Wall;
@@ -18,7 +19,8 @@ public final class YAMLLevelWorldCreator {
     private final static char FLOOR_CHAR = '.';
     private final static char WALL_CHAR = '#';    
     private final static char PLAYER_CHAR = '@';
-    private final static char BOX_CHAR = 'o';
+    private final static char BOX_CHAR = 'o';    
+    private final static char BOX_TARGET_CHAR = 'x';
     
     public static World createWorld(String worldString) throws InvalidYAMLLevelException {
         World world = createEmptyWorld(worldString);
@@ -68,6 +70,8 @@ public final class YAMLLevelWorldCreator {
             return new Player();
         } else if (c == BOX_CHAR) {
             return new Box();
+        } else if (c == BOX_TARGET_CHAR) {
+            return new BoxTarget();
         }
         
         throw new InvalidYAMLLevelException(String.format("Unknown char %s in world data", c));

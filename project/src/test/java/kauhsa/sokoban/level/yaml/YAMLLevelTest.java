@@ -76,7 +76,8 @@ public class YAMLLevelTest {
         worldHasObjectInPointTest(world, new Point(4, 1), WorldObjectType.WALL);
         worldHasObjectInPointTest(world, new Point(4, 2), WorldObjectType.WALL);
         worldHasObjectInPointTest(world, new Point(0, 1), WorldObjectType.PLAYER);
-        worldHasObjectInPointTest(world, new Point(3, 2), WorldObjectType.BOX);
+        worldHasObjectInPointTest(world, new Point(3, 2), WorldObjectType.BOX);        
+        worldHasObjectInPointTest(world, new Point(2, 2), WorldObjectType.BOXTARGET);
     }
     
     @Test(expected=InvalidYAMLLevelException.class)
