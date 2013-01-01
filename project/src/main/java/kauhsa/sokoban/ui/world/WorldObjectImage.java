@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import kauhsa.sokoban.core.WorldObject;
+import kauhsa.sokoban.core.WorldObjectType;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -21,18 +22,35 @@ public class WorldObjectImage {
     private Map<String, Image> imageCache = new HashMap<String, Image>();
     
     public WorldObjectImage() {
-        imageCache.put("wall", resourceToImage("cobble_blood1.png"));
+        imageCache.put("FLOOR", resourceToImage("cobble_blood1.png"));
+        imageCache.put("PLAYER", resourceToImage("lich_form.png"));
+        imageCache.put("WALL", resourceToImage("stone_brick1.png"));
+        imageCache.put("BOX", resourceToImage("eye_of_draining.png"));        
+        imageCache.put("BOXTARGET", resourceToImage("dngn_trap_zot.png"));
     }
     
     public Image getImageForWorldObject(WorldObject worldObject) {
-        return imageCache.get("wall");
+        WorldObjectType worldObjectType = worldObject.getType();
+        if (worldObjectType == WorldObjectType.WALL) {
+            return imageCache.get("WALL");
+        } else if (worldObjectType == WorldObjectType.PLAYER) {
+            return imageCache.get("PLAYER");
+        } else if (worldObjectType == WorldObjectType.FLOOR) {
+            return imageCache.get("FLOOR");
+        } else if (worldObjectType == WorldObjectType.BOX) {
+            return imageCache.get("BOX");
+        } else if (worldObjectType == WorldObjectType.BOXTARGET) {
+            return imageCache.get("BOXTARGET");
+        } else {
+            return imageCache.get("PLAYER");
+        }
     }
             
     private Image resourceToImage(String location) {
         InputStream resource = WorldObjectImage.class.getResourceAsStream(location);
         
         try {
-            return new Image(resource, location, true);
+            return new Image(resource, location, false);
         } catch (SlickException ex) {
             Logger.getLogger(WorldObjectImage.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -18,7 +18,7 @@ public class WorldRenderer {
     private final int TILE_HEIGHT = 32;
     
     private final World world;
-    private final WorldObjectImage worldObjectImage;
+    private final WorldPointImages worldPointImages;
     
     private float canvasX1;    
     private float canvasY1;
@@ -31,7 +31,7 @@ public class WorldRenderer {
     
     public WorldRenderer(World world) {
         this.world = world;        
-        this.worldObjectImage = new WorldObjectImage();
+        this.worldPointImages = new WorldPointImages(world);
     }
     
     private float worldXToScreenX(int x) {
@@ -81,8 +81,9 @@ public class WorldRenderer {
             float x = worldXToScreenX(point.getX());
             float y = worldYToScreenY(point.getY());
             
-            Image image = worldObjectImage.getImageForWorldObject(null);
-            image.draw(x, y, scale);
+            for (Image image : worldPointImages.imagesInPoint(point)) {
+                image.draw(x, y, scale);
+            }
         }        
     }
 

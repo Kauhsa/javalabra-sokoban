@@ -4,10 +4,12 @@
  */
 package kauhsa.sokoban.ui;
 
+import kauhsa.sokoban.core.utils.Direction;
 import kauhsa.sokoban.game.Game;
 import kauhsa.sokoban.ui.world.WorldRenderer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -19,7 +21,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class InGameState extends BasicGameState {
     private final Game game;
     private final WorldRenderer worldRenderer;
-
+    
     public InGameState(Game game) {
         super();
         this.game = game;
@@ -31,16 +33,25 @@ public class InGameState extends BasicGameState {
         return 1;
     }
 
-    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        
-    }
-
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
-        this.worldRenderer.render(0, 0, 800, 600);
+        this.worldRenderer.render(0, 0, gc.getWidth(), gc.getHeight());
     }
 
-    public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
+    public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {    
+        Input input = gc.getInput();        
         
+        if (input.isKeyPressed(Input.KEY_UP)) {
+            game.movePlayer(Direction.UP);
+        } else if (input.isKeyPressed(Input.KEY_DOWN)) {
+            game.movePlayer(Direction.DOWN);
+        } else if (input.isKeyPressed(Input.KEY_LEFT)) {
+            game.movePlayer(Direction.LEFT);
+        } else if (input.isKeyPressed(Input.KEY_RIGHT)) {
+            game.movePlayer(Direction.RIGHT);
+        }
+    }
+    
+    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {    
     }
     
 }
