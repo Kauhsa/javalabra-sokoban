@@ -1,11 +1,13 @@
 package kauhsa.sokoban.core;
 
-import kauhsa.sokoban.core.utils.Point;
-import kauhsa.sokoban.core.utils.PointIterator;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import kauhsa.sokoban.core.utils.Point;
+import kauhsa.sokoban.core.utils.PointIterator;
 
 /**
  * This class contains the WorldObjects and provides methods for accessing them.
@@ -19,7 +21,7 @@ public class World {
     private final int height;
     private final int width;    
     private Set<WorldObject>[][] worldObjectGrid;
-    private Map<WorldObjectType, Set<WorldObject>> worldObjectsByType;
+    private Map<WorldObjectType, List<WorldObject>> worldObjectsByType;
     
     public World(int width, int height) {
         if (height <= 0 || width <= 0) {
@@ -34,10 +36,10 @@ public class World {
     }
 
     private void InitalizeWorldObjectsByType() {
-        worldObjectsByType = new EnumMap<WorldObjectType, Set<WorldObject>>(WorldObjectType.class);
+        worldObjectsByType = new EnumMap<WorldObjectType, List<WorldObject>>(WorldObjectType.class);
         
         for (WorldObjectType type : WorldObjectType.values()) {
-            worldObjectsByType.put(type, new HashSet<WorldObject>(INITIAL_CAPACITY_FOR_EACH_TYPE));
+            worldObjectsByType.put(type, new ArrayList<WorldObject>(INITIAL_CAPACITY_FOR_EACH_TYPE));
         }
     }
     
@@ -61,7 +63,7 @@ public class World {
         return worldObjectGrid[point.getX()][point.getY()];
     }
     
-    public Set<WorldObject> getWorldObjectsOfType(WorldObjectType type) {
+    public List<WorldObject> getWorldObjectsOfType(WorldObjectType type) {
         return worldObjectsByType.get(type);
     }
     
