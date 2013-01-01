@@ -96,4 +96,12 @@ public class Point {
         }
         return true;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 73 * hash + this.x;
+        hash = 73 * hash + this.y;
+        return hash;
+    }
 }
