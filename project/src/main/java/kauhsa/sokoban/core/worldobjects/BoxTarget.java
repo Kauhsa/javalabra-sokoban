@@ -11,7 +11,7 @@ public class BoxTarget extends WorldObject {
 
     @Override
     public WorldObjectType getType() {
-        return WorldObjectType.FLOOR;
+        return WorldObjectType.BOXTARGET;
     }
 
     @Override
