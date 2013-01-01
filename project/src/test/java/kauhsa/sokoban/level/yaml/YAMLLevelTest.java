@@ -59,15 +59,6 @@ public class YAMLLevelTest {
     }
     
     @Test
-    public void floorOnEveryPointTest() throws InvalidLevelException {
-        Level level = getYAMLLevelFromResource("valid1.yaml");
-        World world = level.getWorld();
-        for (Point point : world.getPoints()) {
-            worldHasObjectInPointTest(world, point, WorldObjectType.FLOOR);
-        }
-    }
-    
-    @Test
     public void objectsCreatedCorrectlyTest() throws InvalidLevelException {
         Level level = getYAMLLevelFromResource("valid1.yaml");
         World world = level.getWorld();

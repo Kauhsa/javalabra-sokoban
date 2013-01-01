@@ -26,7 +26,7 @@ public class WorldMovementHandler {
         if (!isAdjacentPointValid(currentPoint, direction)) {
             return false;
         }
-
+        
         // If movement is possible, we can just move the worldObject
         if (checkIfMovementPossible(worldObject, direction)) {
             worldObject.relocate(currentPoint.applyDirection(direction));
@@ -99,8 +99,16 @@ public class WorldMovementHandler {
             return false;
         }
         
+        Point adjacentPoint = currentPoint.applyDirection(direction);
+        
         // The point where we are trying to move is out of the bounds
-        if (!world.isPointInWorld(currentPoint.applyDirection(direction))) {
+        if (!world.isPointInWorld(adjacentPoint)) {
+            return false;
+        }
+        
+        // If the point is empty and there are absolutely no objects, don't
+        // allow moving
+        if (world.getWorldObjectsInPoint(adjacentPoint).isEmpty()) {
             return false;
         }
         
