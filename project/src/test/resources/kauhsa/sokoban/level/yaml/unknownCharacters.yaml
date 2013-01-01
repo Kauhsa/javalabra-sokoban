@@ -1,0 +1,7 @@
+metadata:
+    name:   TestLevel
+    author: Kauhsa
+world: |
+    ...#
+    @..#
+    ...!

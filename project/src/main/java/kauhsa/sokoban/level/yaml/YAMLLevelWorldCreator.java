@@ -29,7 +29,7 @@ public class YAMLLevelWorldCreator {
         while (scanner.hasNextLine()) {
             String currentRow = scanner.nextLine();
             for (int x = 0; x < currentRow.length(); x++) {
-                placeCharToWorld(currentRow.charAt(x), new Point(x, y), world);
+                handlePoint(world, new Point(x, y), currentRow.charAt(x));
             }
             y++;
         }
@@ -53,15 +53,16 @@ public class YAMLLevelWorldCreator {
         return new World(width, height);
     }
     
-    private static void placeCharToWorld(char c, Point point, World world) throws InvalidYAMLLevelException {
-        WorldObject worldObject = worldObjectFromChar(c);
-        world.placeWorldObject(worldObject, point);
+    private static void handlePoint(World world, Point point, char c) throws InvalidYAMLLevelException {
+        world.placeWorldObject(new Floor(), point);
+        if (c != FLOOR_CHAR) {
+            WorldObject worldObject = worldObjectFromChar(c);
+            world.placeWorldObject(worldObject, point);
+        }
     }
     
     private static WorldObject worldObjectFromChar(char c) throws InvalidYAMLLevelException {
-        if (c == FLOOR_CHAR) {
-            return new Floor();
-        } else if (c == WALL_CHAR) {
+        if (c == WALL_CHAR) {
             return new Wall();
         } else if (c == PLAYER_CHAR) {
             return new Player();
