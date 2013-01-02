@@ -4,8 +4,8 @@ import kauhsa.sokoban.core.WorldObject;
 import kauhsa.sokoban.core.WorldObjectType;
 
 /**
- *
- * @author mika
+ * WorldObject for Sokoban's wall. Nothing can move to same locations than
+ * these.
  */
 public class Wall extends WorldObject {
 

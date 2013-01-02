@@ -1,6 +1,5 @@
 package kauhsa.sokoban.ui;
 
-import kauhsa.sokoban.game.Game;
 import kauhsa.sokoban.level.InvalidLevelException;
 import kauhsa.sokoban.level.Level;
 import kauhsa.sokoban.level.yaml.YAMLLevel;
@@ -13,28 +12,28 @@ import org.newdawn.slick.state.StateBasedGame;
  * Hello world!
  *
  */
-public class SokobanGame extends StateBasedGame {
+public class SlickSokobanGame extends StateBasedGame {
 
     public static final int WINDOW_WIDTH = 1024;
     public static final int WINDOW_HEIGHT = 768;
     public static final String WINDOW_TITLE = "Sokoban!";
 
-    public SokobanGame() {
+    public SlickSokobanGame() {
         super(WINDOW_TITLE);
     }
 
     public static void main(String[] args) throws SlickException {
-        AppGameContainer app = new AppGameContainer(new SokobanGame());
+        AppGameContainer app = new AppGameContainer(new SlickSokobanGame());
         app.setDisplayMode(WINDOW_WIDTH, WINDOW_HEIGHT, false);
         app.start();
     }
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        Level level = new YAMLLevel(SokobanGame.class.getResourceAsStream("valid1.yaml"));
-        Game game = null;
+        Level level = new YAMLLevel(SlickSokobanGame.class.getResourceAsStream("valid1.yaml"));
+        kauhsa.sokoban.game.SokobanGame game = null;
         try {
-            game = new Game(level);
+            game = new kauhsa.sokoban.game.SokobanGame(level);
         } catch (InvalidLevelException ex) {
             
         }

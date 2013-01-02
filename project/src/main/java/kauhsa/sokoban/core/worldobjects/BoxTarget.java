@@ -4,8 +4,8 @@ import kauhsa.sokoban.core.WorldObject;
 import kauhsa.sokoban.core.WorldObjectType;
 
 /**
- *
- * @author mika
+ * WorldObject for Sokoban's "box targets" - also called "storage locations".
+ * Sokoban game is over, when all boxes are in same locations than these.
  */
 public class BoxTarget extends WorldObject {
 

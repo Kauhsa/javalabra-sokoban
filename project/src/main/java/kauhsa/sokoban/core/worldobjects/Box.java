@@ -4,8 +4,7 @@ import kauhsa.sokoban.core.WorldObject;
 import kauhsa.sokoban.core.WorldObjectType;
 
 /**
- *
- * @author mika
+ * WorldObject for Sokoban's box. Player WorldObjects can push this object.
  */
 public class Box extends WorldObject {
 

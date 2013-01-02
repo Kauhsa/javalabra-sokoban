@@ -4,8 +4,8 @@ import kauhsa.sokoban.core.WorldObject;
 import kauhsa.sokoban.core.WorldObjectType;
 
 /**
- *
- * @author mika
+ * WorldObject for floor. Objects can not move if there is no WorldObjects in
+ * wanted location - thus Floor is important.
  */
 public class Floor extends WorldObject {
 

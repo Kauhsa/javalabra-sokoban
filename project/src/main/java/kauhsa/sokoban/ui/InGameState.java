@@ -5,7 +5,7 @@
 package kauhsa.sokoban.ui;
 
 import kauhsa.sokoban.core.utils.Direction;
-import kauhsa.sokoban.game.Game;
+import kauhsa.sokoban.game.SokobanGame;
 import kauhsa.sokoban.ui.world.WorldRenderer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -19,10 +19,10 @@ import org.newdawn.slick.state.StateBasedGame;
  * @author mika
  */
 public class InGameState extends BasicGameState {
-    private final Game game;
+    private final SokobanGame game;
     private final WorldRenderer worldRenderer;
     
-    public InGameState(Game game) {
+    public InGameState(SokobanGame game) {
         super();
         this.game = game;
         this.worldRenderer = new WorldRenderer(game.getWorld());

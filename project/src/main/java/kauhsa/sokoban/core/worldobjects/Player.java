@@ -4,8 +4,7 @@ import kauhsa.sokoban.core.WorldObject;
 import kauhsa.sokoban.core.WorldObjectType;
 
 /**
- *
- * @author mika
+ * WorldObject for Sokoban's player entity.
  */
 public class Player extends WorldObject {
 
