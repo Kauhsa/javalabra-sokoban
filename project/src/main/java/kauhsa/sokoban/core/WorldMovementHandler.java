@@ -1,25 +1,36 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.core;
 
+import java.util.ArrayList;
 import kauhsa.sokoban.core.utils.Direction;
 import kauhsa.sokoban.core.utils.Point;
-import java.util.ArrayList;
 
 /**
- *
- * @author mika
+ * Class for implementing movement and pushing logic for WorldObjects.
  */
 public class WorldMovementHandler {
 
     private final World world;
-
+    
+    /**
+     * Initialize WorldMovementHandler.
+     * 
+     * @param world World where we do movement.
+     */
     public WorldMovementHandler(World world) {
         this.world = world;
     }
-
+    
+    /**
+     * Move WorldObject one tile to wanted direction, and if necessary, push
+     * objects while doing it.
+     * 
+     * This will apply whatever rules are defined between WorldObjects
+     * concerning movement.
+     * 
+     * @param worldObject WorldObject we want to move.
+     * @param direction Direction where we want to move.
+     * @return true if movement was successful, otherwise false.
+     */
     public boolean move(WorldObject worldObject, Direction direction) {
         Point currentPoint = worldObject.getPosition();
 
@@ -40,9 +51,10 @@ public class WorldMovementHandler {
     private boolean push(WorldObject worldObject, Direction direction) {
         /*
          * There are some problems in this pushing system - if there is
-         * multiple pushable objects in same position, this will probably
-         * not do what is excepted, as the pushing of all those objects
-         * won't happen at the same time.
+         * multiple pushable objects in same position, this will probably not do
+         * what is excepted as the pushing of all those objects won't happen at 
+         * the same time. One objects will be pushed, and second one will stay 
+         * where it is.
          * 
          * Also if there is tile where you can't move and an pushable object
          * in same position, push will happen but you can't move to the
@@ -95,7 +107,7 @@ public class WorldMovementHandler {
 
     private boolean isAdjacentPointValid(Point currentPoint, Direction direction) {
         // The point where we are trying to more is negative
-        if (currentPoint.appliedDirectionWouldBeInvalid(direction)) {
+        if (currentPoint.wouldAppliedDirectionBeInvalid(direction)) {
             return false;
         }
         

@@ -4,18 +4,15 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Class for iterating every Point object in grid exactly once.
+ * Class for iterating every Point object in imaginary grid exactly once.
  * 
- * If height and width is set to 2, the result would be:
+ * If height and width is set to 2, the iterator would iterate through points
+ * as follows:
  * 
  * (0, 0)
- * (0, 1)
  * (1, 0)
+ * (0, 1)
  * (1, 1)
- * 
- * Order of points is not defined.
- * 
- * @author mika
  */
 public class PointIterator implements Iterable<Point>, Iterator<Point> {
     private int currentX = 0;
@@ -27,10 +24,9 @@ public class PointIterator implements Iterable<Point>, Iterator<Point> {
     /**
      * Create new PointIterator.
      * 
-     * Width or height can't be negative.
-     * 
      * @param width width of grid
      * @param height height of grid
+     * @throws IllegalArgumentException if width or height is negative.
      */
     public PointIterator(int width, int height) {
         if (width < 0 || height < 0) {

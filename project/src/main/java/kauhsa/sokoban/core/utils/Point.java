@@ -1,15 +1,21 @@
 package kauhsa.sokoban.core.utils;
 
 /**
- * Single point in the world.
- *
- * @author mika
+ * Class that represents a single coordinate in two-dimensional grid - often in
+ * {@link World}.
  */
 public class Point {
 
     private final int x;
     private final int y;
 
+    /**
+     * Create a new Point.
+     * 
+     * @param x horizontal coordinate of new Point.
+     * @param y vertical coordinate of new Point.
+     * @throws IllegalArgumentException if x or y is negative.
+     */
     public Point(int x, int y) {
         if (wouldBeInvalid(x, y)) {
             throw new IllegalArgumentException("Point cannot have negative x or y");
@@ -19,18 +25,46 @@ public class Point {
         this.y = y;
     }
 
+    /**
+     * Return if Point created with this x and y coordinate would be invalid or
+     * not.
+     * 
+     * In other words, is x or y negative.
+     * 
+     * @param x x coordinate of imaginary Point.
+     * @param y y coordinate of imaginary Point.
+     * @return true if Point would be invalid, otherwise false.
+     */
     public static boolean wouldBeInvalid(int x, int y) {
         return (x < 0 || y < 0);
     }
-    
+
+    /**
+     * Get x coordinate of this Point.
+     * 
+     * @return x coordinate of this Point.
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Get y coordinate of this Point.
+     * 
+     * @return y coordinate of this Point.
+     */
     public int getY() {
         return y;
     }
-    
+
+    /**
+     * If we had an imaginary grid with defined width and height, return if this
+     * Point would be inside of it.
+     * 
+     * @param width width of the imaginary grid.
+     * @param height height of the imaginary grid.
+     * @return true if this Point would be inside, otherwise false.
+     */
     public boolean pointExistInArray(int width, int height) {
         /*
          * No need to check for negative coordinates, as Point object can't have
@@ -42,15 +76,19 @@ public class Point {
 
         return true;
     }
-
-    public Point copy() {
-        return new Point(this.x, this.y);
-    }
     
+    /**
+     * Return a new Point an one unit away from this Point.
+     * 
+     * @param direction direction we want to apply.
+     * @return new Point an one unit away in defined direction.
+     * @throws IllegalArgumentException if new Point would be invalid -in other
+     * words, it's x or y would be invalid.
+     */
     public Point applyDirection(Direction direction) {
         int x = this.getX();
         int y = this.getY();
-        
+
         if (direction == Direction.DOWN) {
             y++;
         } else if (direction == Direction.UP) {
@@ -60,20 +98,27 @@ public class Point {
         } else if (direction == Direction.RIGHT) {
             x++;
         }
-        
+
         return new Point(x, y);
     }
-    
-    public boolean appliedDirectionWouldBeInvalid(Direction direction) {
+
+    /**
+     * Return if a new Point an one unit away from this Point would be invalid.
+     *
+     * @param direction direction we want to apply.
+     * @return true if the Point would be invalid, otherwise false.
+     * @see applyDirection
+     */
+    public boolean wouldAppliedDirectionBeInvalid(Direction direction) {
         try {
             this.applyDirection(direction);
         } catch (IllegalArgumentException e) {
             return true;
         }
-        
+
         return false;
     }
-    
+
     @Override
     public String toString() {
         return String.format("(%d, %d)", this.x, this.y);
