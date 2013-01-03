@@ -11,8 +11,7 @@ import kauhsa.sokoban.core.worldobjects.Player;
 import kauhsa.sokoban.core.worldobjects.Wall;
 
 /**
- *
- * @author mika
+ * Class for generating Worlds from String-type data used in YAML levels.
  */
 public final class YAMLLevelWorldCreator {
     
@@ -23,6 +22,13 @@ public final class YAMLLevelWorldCreator {
     private final static char BOX_CHAR = 'o';    
     private final static char BOX_TARGET_CHAR = 'x';
     
+    /**
+     * Create new World from String.
+     * 
+     * @param worldString String representation of World.
+     * @return fresh copy of World that worldString represents.
+     * @throws InvalidYAMLLevelException if worldString is invalid.
+     */
     public static World createWorld(String worldString) throws InvalidYAMLLevelException {
         World world = createEmptyWorld(worldString);
         Scanner scanner = new Scanner(worldString);
@@ -41,6 +47,10 @@ public final class YAMLLevelWorldCreator {
     }
     
     private static World createEmptyWorld(String worldString) throws InvalidYAMLLevelException {
+        /* Because we can not create World object without knowing it's width and
+         * height, we have to traverse through it twice. This is the first
+         * traversal, where we keep track of the width and height. */
+        
         Scanner scanner = new Scanner(worldString);
         int width = scanner.nextLine().length();
         int height = 1;
@@ -62,6 +72,7 @@ public final class YAMLLevelWorldCreator {
             world.placeWorldObject(worldObject, point);
         }
         
+        // These type of objects should always have floor beneath them
         if (c == PLAYER_CHAR || c == BOX_CHAR || c == BOX_TARGET_CHAR) {
             world.placeWorldObject(new Floor(), point);
         }
@@ -82,6 +93,6 @@ public final class YAMLLevelWorldCreator {
             return null;
         }
         
-        throw new InvalidYAMLLevelException(String.format("Unknown char %s in world data", c));
+        throw new InvalidYAMLLevelException(String.format("Unknown char '%s' in world data", c));
     }
 }

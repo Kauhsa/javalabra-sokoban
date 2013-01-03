@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.level;
 
 /**
- *
- * @author mika
+ * Base exception for problems in loading level or generating it's World.
  */
 public class InvalidLevelException extends Exception {
 

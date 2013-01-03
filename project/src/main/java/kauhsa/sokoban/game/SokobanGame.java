@@ -27,7 +27,7 @@ public class SokobanGame {
      * in some way.
      */
     public SokobanGame(Level level) throws InvalidLevelException {
-        world = level.getWorld();
+        world = level.generateWorld();
         worldMovementHandler = new WorldMovementHandler(world);
         worldStatus = new WorldStatus(world);
     }

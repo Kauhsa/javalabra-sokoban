@@ -1,41 +1,38 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.level.yaml;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.InputStream;
-import java.io.Reader;
 import kauhsa.sokoban.core.World;
 import kauhsa.sokoban.level.Level;
 import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.error.YAMLException;
 
 /**
- *
- * @author mika
+ * Class for loading Level data that is in YAML format.
  */
 public class YAMLLevel implements Level {
     
     private final YAMLLevelData fileLevelData;
     
-    public YAMLLevel(InputStream inputStream) {        
+    /**
+     * Create new YAMLLevel.
+     * 
+     * @param inputStream YAML-formatted data.
+     */
+    public YAMLLevel(InputStream inputStream) throws InvalidYAMLLevelException {        
         Yaml yaml = new Yaml();
-        fileLevelData = yaml.loadAs(inputStream, YAMLLevelData.class);
+        try {
+            fileLevelData = yaml.loadAs(inputStream, YAMLLevelData.class);
+        } catch (YAMLException e) {
+            throw new InvalidYAMLLevelException("Invalid YAML data");
+        }
     }
 
-    public World getWorld() throws InvalidYAMLLevelException {
-        return YAMLLevelWorldCreator.createWorld(fileLevelData.getWorldString());
+    public World generateWorld() throws InvalidYAMLLevelException {
+        return YAMLLevelWorldCreator.createWorld(fileLevelData.getWorld());
     }
 
-    public String getName() {
-        return fileLevelData.getMetadata("name");
-    }
-
-    public String getAuthor() {
-        return fileLevelData.getMetadata("author");
+    public String getMetadata(String key) {
+        return fileLevelData.getMetadata(key);
     }
     
 }

@@ -1,5 +1,6 @@
 package kauhsa.sokoban.ui;
 
+import kauhsa.sokoban.game.SokobanGame;
 import kauhsa.sokoban.level.InvalidLevelException;
 import kauhsa.sokoban.level.Level;
 import kauhsa.sokoban.level.yaml.YAMLLevel;
@@ -30,9 +31,9 @@ public class SlickSokobanGame extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        Level level = new YAMLLevel(SlickSokobanGame.class.getResourceAsStream("valid1.yaml"));
-        kauhsa.sokoban.game.SokobanGame game = null;
+        SokobanGame game = null;
         try {
+            Level level = new YAMLLevel(SlickSokobanGame.class.getResourceAsStream("valid1.yaml"));
             game = new kauhsa.sokoban.game.SokobanGame(level);
         } catch (InvalidLevelException ex) {
             

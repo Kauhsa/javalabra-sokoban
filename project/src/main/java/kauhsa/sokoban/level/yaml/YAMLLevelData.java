@@ -1,16 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.level.yaml;
 
 import java.util.Map;
 
 /**
- *
- * @author mika
+ * Helper class for SnakeYAML library, which will use this to load YAML data to
+ * memory.
  */
-public class YAMLLevelData {
+class YAMLLevelData {
     private Map<String, String> metadata;
     private String world;
 
@@ -18,7 +14,7 @@ public class YAMLLevelData {
         return metadata.get(key);
     }
 
-    public String getWorldString() {
+    public String getWorld() {
         return world;
     }
 

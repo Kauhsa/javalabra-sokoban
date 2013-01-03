@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.level.yaml;
 
 import kauhsa.sokoban.level.InvalidLevelException;
 
 /**
- *
- * @author mika
+ * Exception for problems within YAMLLevel.
  */
 public class InvalidYAMLLevelException extends InvalidLevelException {
     

@@ -2,30 +2,34 @@
 package kauhsa.sokoban.level;
 
 import kauhsa.sokoban.core.World;
-import kauhsa.sokoban.core.World;
 
 /**
- *
- * @author mika
+ * Interface for Level, which is an container for metadata and also is a
+ * "World-factory" of sorts.
  */
 public interface Level {
     
     /**
+     * Generate World.
      * 
-     * @return 
+     * This method should always create an fresh copy of World.
+     *
+     * @return generated World.
+     * @throws InvalidLevelException
      */
-    public World getWorld() throws InvalidLevelException;
+    public World generateWorld() throws InvalidLevelException;
+    
     
     /**
+     * Get metadata.
      * 
-     * @return 
-     */
-    public String getName() throws InvalidLevelException;
-    
-    /**
+     * Metadata means things like "name" and "author" - Level is
+     * not required to supply any of this, though. Should return null if
+     * metadata for given key is not found.
      * 
-     * @return 
+     * @param key key of metadata
+     * @return metadata.
      */
-    public String getAuthor() throws InvalidLevelException;
+    public String getMetadata(String key);
     
 }

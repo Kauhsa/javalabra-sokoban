@@ -32,14 +32,14 @@ public class YAMLLevelTest {
     @Test
     public void metaDataTest() throws InvalidLevelException {
         Level level = getYAMLLevelFromResource("valid1.yaml");
-        assertEquals("Kauhsa", level.getAuthor());
-        assertEquals("TestLevel", level.getName());
+        assertEquals("Kauhsa", level.getMetadata("name"));
+        assertEquals("TestLevel", level.getMetadata("author"));
     }
     
     @Test
     public void widthAndHeightTest() throws InvalidLevelException {
         Level level = getYAMLLevelFromResource("valid1.yaml");
-        World world = level.getWorld();
+        World world = level.generateWorld();
         assertEquals(5, world.getWidth());        
         assertEquals(3, world.getHeight());
     }
@@ -61,7 +61,7 @@ public class YAMLLevelTest {
     @Test
     public void objectsCreatedCorrectlyTest() throws InvalidLevelException {
         Level level = getYAMLLevelFromResource("valid1.yaml");
-        World world = level.getWorld();
+        World world = level.generateWorld();
         
         worldHasObjectInPointTest(world, new Point(4, 0), WorldObjectType.WALL);
         worldHasObjectInPointTest(world, new Point(4, 1), WorldObjectType.WALL);
@@ -74,13 +74,13 @@ public class YAMLLevelTest {
     @Test(expected=InvalidYAMLLevelException.class)
     public void inconsistentWidthsTest() throws InvalidLevelException {
         Level level = getYAMLLevelFromResource("differentWidths.yaml");
-        World world = level.getWorld();
+        World world = level.generateWorld();
     }
     
     @Test(expected=InvalidYAMLLevelException.class)
     public void unknownCharactersTest() throws InvalidLevelException {
         Level level = getYAMLLevelFromResource("unknownCharacters.yaml");
-        World world = level.getWorld();
+        World world = level.generateWorld();
     }
     
 }
