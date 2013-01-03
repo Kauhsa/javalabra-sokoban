@@ -24,7 +24,7 @@ public class WorldPointImages {
     
     public WorldPointImages(World world) {
         this.world = world;
-        this.worldObjectImage = new WorldObjectImage();        
+        this.worldObjectImage = new WorldObjectImage("/tiles");        
     }
     
     public Image[] imagesInPoint(Point point) {

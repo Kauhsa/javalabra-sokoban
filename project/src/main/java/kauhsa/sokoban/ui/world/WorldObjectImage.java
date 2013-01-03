@@ -7,8 +7,6 @@ package kauhsa.sokoban.ui.world;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import kauhsa.sokoban.core.WorldObject;
 import kauhsa.sokoban.core.WorldObjectType;
 import org.newdawn.slick.Image;
@@ -18,13 +16,16 @@ import org.newdawn.slick.SlickException;
  *
  * @author mika
  */
-public class WorldObjectImage {
+public class WorldObjectImage {    
     private Map<String, Image> imageCache = new HashMap<String, Image>();
+    private final String imageResourcePath;
     
-    public WorldObjectImage() {
-        imageCache.put("FLOOR", resourceToImage("Grass Block new.png"));
+    public WorldObjectImage(String imageResourcePath) {
+        this.imageResourcePath = imageResourcePath;
+        
+        imageCache.put("FLOOR", resourceToImage("Grass Block Resized.png"));
         imageCache.put("PLAYER", resourceToImage("Character Princess Girl.png"));
-        imageCache.put("WALL", resourceToImage("Stone Block Tall new.png"));
+        imageCache.put("WALL", resourceToImage("Stone Block Tall Resized.png"));
         imageCache.put("BOX", resourceToImage("Rock.png"));        
         imageCache.put("BOXTARGET", resourceToImage("Selector.png"));
     }
@@ -46,15 +47,14 @@ public class WorldObjectImage {
         }
     }
             
-    private Image resourceToImage(String location) {
-        InputStream resource = WorldObjectImage.class.getResourceAsStream(location);
+    private Image resourceToImage(String imageName) {
+        String resourceLocation = imageResourcePath + "/" + imageName;
+        InputStream resource = WorldObjectImage.class.getResourceAsStream(resourceLocation);
         
         try {
-            return new Image(resource, location, false);
+            return new Image(resource, imageName, false);
         } catch (SlickException ex) {
-            Logger.getLogger(WorldObjectImage.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(String.format("Error loading image from resource \"%s\"", imageName));
         }
-        
-        return null;
     }
 }

@@ -33,7 +33,7 @@ public class SlickSokobanGame extends StateBasedGame {
     public void initStatesList(GameContainer gc) throws SlickException {
         SokobanGame game = null;
         try {
-            Level level = new YAMLLevel(SlickSokobanGame.class.getResourceAsStream("valid1.yaml"));
+            Level level = new YAMLLevel(SlickSokobanGame.class.getResourceAsStream("/levels/level1.yaml"));
             game = new kauhsa.sokoban.game.SokobanGame(level);
         } catch (InvalidLevelException ex) {
             
