@@ -4,19 +4,17 @@
  */
 package kauhsa.sokoban.ui;
 
-import java.awt.Font;
 import kauhsa.sokoban.game.SokobanGame;
 import kauhsa.sokoban.level.InvalidLevelException;
 import kauhsa.sokoban.level.Level;
 import kauhsa.sokoban.level.yaml.YAMLLevel;
 import kauhsa.sokoban.ui.menu.Menu;
-import kauhsa.sokoban.ui.menu.MenuRenderer;
-import org.newdawn.slick.Game;
+import kauhsa.sokoban.ui.menu.MenuRenderer; 
+import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.state.BasicGameState;
@@ -46,11 +44,17 @@ public class MainMenuState extends BasicGameState {
         mainMenu.addItem("Quit", MENU_QUIT);
         
         // TODO: package font with game or something
-        Font awtFont = new Font("Ubuntu", Font.PLAIN, 24);
-        menuRenderer = new MenuRenderer(mainMenu, loadFont(awtFont), true);
+        Font font;
+        java.awt.Font awtFont = new java.awt.Font("Ubuntu", java.awt.Font.PLAIN, 24);
+        if (awtFont == null) {
+            font = gc.getDefaultFont();
+        } else {
+            font = loadFont(awtFont);
+        }
+        menuRenderer = new MenuRenderer(mainMenu, font, true);
     }
 
-    private UnicodeFont loadFont(Font awtFont) throws SlickException {
+    private UnicodeFont loadFont(java.awt.Font awtFont) throws SlickException {
         UnicodeFont font = new UnicodeFont(awtFont);
         font.addAsciiGlyphs();
         font.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
