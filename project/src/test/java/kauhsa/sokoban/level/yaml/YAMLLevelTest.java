@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
  * @author mika
  */
 public class YAMLLevelTest {
-    private Level getYAMLLevelFromResource(String s) {
+    private Level getYAMLLevelFromResource(String s) throws InvalidLevelException {
         InputStream levelFile = YAMLLevelTest.class.getResourceAsStream(s);
         return new YAMLLevel(levelFile);
     }
