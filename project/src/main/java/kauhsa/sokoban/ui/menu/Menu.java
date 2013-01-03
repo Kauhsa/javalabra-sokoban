@@ -38,4 +38,12 @@ public class Menu<T> {
     public ArrayList<MenuItem<T>> getItems() {
         return items;
     }
+    
+    public int getItemCount() {
+        return items.size();
+    }
+    
+    public MenuItem<T> getItem(int i) {
+        return items.get(i);
+    }
 }

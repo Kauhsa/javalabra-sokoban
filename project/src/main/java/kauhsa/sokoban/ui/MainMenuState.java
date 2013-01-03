@@ -40,18 +40,20 @@ public class MainMenuState extends BasicGameState {
     }
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        mainMenu.addItem("Start", MENU_START);
+        mainMenu.addItem("Start", MENU_START);   
         mainMenu.addItem("Quit", MENU_QUIT);
         
         // TODO: package font with game or something
         Font font;
-        java.awt.Font awtFont = new java.awt.Font("Ubuntu", java.awt.Font.PLAIN, 24);
+        java.awt.Font awtFont = new java.awt.Font("Ubuntu", java.awt.Font.PLAIN, 50);
         if (awtFont == null) {
             font = gc.getDefaultFont();
         } else {
             font = loadFont(awtFont);
         }
-        menuRenderer = new MenuRenderer(mainMenu, font, true);
+        menuRenderer = new MenuRenderer(mainMenu);
+        menuRenderer.setFont(font);
+        menuRenderer.setHorizontalCentered(true);
     }
 
     private UnicodeFont loadFont(java.awt.Font awtFont) throws SlickException {
