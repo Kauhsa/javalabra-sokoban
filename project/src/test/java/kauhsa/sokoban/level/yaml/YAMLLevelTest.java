@@ -32,8 +32,8 @@ public class YAMLLevelTest {
     @Test
     public void metaDataTest() throws InvalidLevelException {
         Level level = getYAMLLevelFromResource("valid1.yaml");
-        assertEquals("Kauhsa", level.getMetadata("name"));
-        assertEquals("TestLevel", level.getMetadata("author"));
+        assertEquals("Kauhsa", level.getMetadata("author"));
+        assertEquals("TestLevel", level.getMetadata("name"));
     }
     
     @Test

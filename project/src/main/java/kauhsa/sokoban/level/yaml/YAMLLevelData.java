@@ -6,7 +6,7 @@ import java.util.Map;
  * Helper class for SnakeYAML library, which will use this to load YAML data to
  * memory.
  */
-class YAMLLevelData {
+public class YAMLLevelData {
     private Map<String, String> metadata;
     private String world;
 
