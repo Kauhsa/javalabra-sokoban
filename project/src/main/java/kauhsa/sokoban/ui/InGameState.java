@@ -19,25 +19,35 @@ import org.newdawn.slick.state.StateBasedGame;
  * @author mika
  */
 public class InGameState extends BasicGameState {
-    private final SokobanGame game;
-    private final WorldRenderer worldRenderer;
+    private SokobanGame game = null;
+    private WorldRenderer worldRenderer = null;
+    public static final int STATE_ID = 1;
     
-    public InGameState(SokobanGame game) {
+    public InGameState() {
         super();
-        this.game = game;
-        this.worldRenderer = new WorldRenderer(game.getWorld());
     }
     
     @Override
     public int getID() {
-        return 1;
+        return STATE_ID;
+    }
+    
+    public void loadGame(SokobanGame game) {        
+        this.game = game;
+        this.worldRenderer = new WorldRenderer(game.getWorld());
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
-        this.worldRenderer.render(0, 0, gc.getWidth(), gc.getHeight());
+        if (game != null) {
+            this.worldRenderer.render(0, 0, gc.getWidth(), gc.getHeight());
+        }
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {    
+        if (game == null) {
+            return;
+        }
+        
         Input input = gc.getInput();        
         
         if (input.isKeyPressed(Input.KEY_UP)) {
@@ -48,10 +58,16 @@ public class InGameState extends BasicGameState {
             game.movePlayer(Direction.LEFT);
         } else if (input.isKeyPressed(Input.KEY_RIGHT)) {
             game.movePlayer(Direction.RIGHT);
+        } else if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+            backToMenu(gc, sbg);
         }
     }
     
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {    
+    }
+
+    private void backToMenu(GameContainer gc, StateBasedGame sbg) {
+        sbg.enterState(MainMenuState.STATE_ID);
     }
     
 }

@@ -26,18 +26,13 @@ public class SlickSokobanGame extends StateBasedGame {
     public static void main(String[] args) throws SlickException {
         AppGameContainer app = new AppGameContainer(new SlickSokobanGame());
         app.setDisplayMode(WINDOW_WIDTH, WINDOW_HEIGHT, false);
+        app.setShowFPS(false);
         app.start();
     }
 
     @Override
-    public void initStatesList(GameContainer gc) throws SlickException {
-        SokobanGame game = null;
-        try {
-            Level level = new YAMLLevel(SlickSokobanGame.class.getResourceAsStream("/levels/level1.yaml"));
-            game = new kauhsa.sokoban.game.SokobanGame(level);
-        } catch (InvalidLevelException ex) {
-            
-        }
-        this.addState(new InGameState(game));
+    public void initStatesList(GameContainer gc) throws SlickException {        
+        this.addState(new MainMenuState());
+        this.addState(new InGameState());
     }
 }
