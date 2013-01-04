@@ -4,7 +4,6 @@
  */
 package kauhsa.sokoban.ui;
 
-import java.util.logging.Logger;
 import kauhsa.sokoban.game.SokobanGame;
 import kauhsa.sokoban.level.InvalidLevelException;
 import kauhsa.sokoban.level.Level;
@@ -19,6 +18,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.Log;
 
 /**
  *
@@ -38,7 +38,7 @@ public class LevelMenuState extends BasicGameState {
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         populateLevelMenu();
         updateWorldSample();
-        levelMenuRenderer.setFont(FontLoader.loadAwtFont("Ubuntu", java.awt.Font.PLAIN, 50, gc));
+        levelMenuRenderer.setFont(FontLoader.loadAwtFontToSlick("Ubuntu", java.awt.Font.PLAIN, 50, gc));
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
@@ -67,7 +67,12 @@ public class LevelMenuState extends BasicGameState {
 
     private void populateLevelMenu() {
         for (Level level : LevelLoader.getLevels()) {
-            levelMenu.addItem(level.getMetadata("name"), level);
+            String name = level.getMetadata("name");
+            if (name != null) {
+                levelMenu.addItem(level.getMetadata("name"), level);
+            } else {
+                Log.warn("Level did not have name - skipping");
+            }
         }
     }
 
@@ -78,9 +83,9 @@ public class LevelMenuState extends BasicGameState {
             inGameState.loadGame(game);            
             sbg.enterState(inGameState.getID());
         } catch (InvalidLevelException ex) {
-            
+            Log.warn("Could not load level: " + ex.getMessage());
         } catch (SlickException ex) {
-            Logger.getLogger(LevelMenuState.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Log.error(ex);
         }
     }
 
@@ -88,7 +93,7 @@ public class LevelMenuState extends BasicGameState {
         try {
             worldSampleRenderer = new WorldRenderer(levelMenu.getSelected().generateWorld());
         } catch (InvalidLevelException ex) {
-            Logger.getLogger(LevelMenuState.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Log.warn("Could not load level: " + ex.getMessage());
         }
     }
     

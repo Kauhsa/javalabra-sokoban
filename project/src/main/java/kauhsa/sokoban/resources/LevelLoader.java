@@ -8,10 +8,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Logger;
 import kauhsa.sokoban.level.Level;
 import kauhsa.sokoban.level.yaml.InvalidYAMLLevelException;
 import kauhsa.sokoban.level.yaml.YAMLLevel;
+import org.newdawn.slick.util.Log;
 import org.newdawn.slick.util.ResourceLoader;
 
 /**
@@ -33,7 +33,7 @@ public class LevelLoader {
                 Level currentLevel = new YAMLLevel(currentResource);
                 levels.add(currentLevel);
             } catch (InvalidYAMLLevelException ex) {
-                continue;
+                Log.warn("Could not add level " + currentResourceLocation + "to level list: " + ex.getMessage());
             }
         }
         

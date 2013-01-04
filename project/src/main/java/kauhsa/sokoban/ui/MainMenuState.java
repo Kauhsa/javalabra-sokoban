@@ -43,14 +43,14 @@ public class MainMenuState extends BasicGameState {
     }
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {        
-        Font headerFont = FontLoader.loadAwtFont("Ubuntu", java.awt.Font.PLAIN, 100, gc);        
+        Font headerFont = FontLoader.loadAwtFontToSlick("Ubuntu", java.awt.Font.PLAIN, 100, gc);        
         header = new Label();
         header.setText("Sokoban!");
         header.setFont(headerFont);
         header.setVerticalAlignment(VerticalAlignment.CENTER);        
         header.setHorizontalAlignment(HorizontalAlignment.MIDDLE);
         
-        Font menuFont = FontLoader.loadAwtFont("Ubuntu", java.awt.Font.PLAIN, 50, gc);        
+        Font menuFont = FontLoader.loadAwtFontToSlick("Ubuntu", java.awt.Font.PLAIN, 50, gc);        
         menuRenderer = new MenuRenderer(mainMenu);
         menuRenderer.setFont(menuFont);
         menuRenderer.setVerticalAlignment(VerticalAlignment.BOTTOM);
@@ -80,26 +80,8 @@ public class MainMenuState extends BasicGameState {
     private void handleMenuSelection(GameContainer gc, StateBasedGame sbg) {
         if (mainMenu.getSelected() == MainMenuButtons.START) {
             sbg.enterState(GameStates.LEVEL_MENU.ordinal());
-            //startGame(gc, sbg);
         } else if (mainMenu.getSelected() == MainMenuButtons.QUIT) {
             gc.exit();
         }
     }
-
-    /* private void startGame(GameContainer gc, StateBasedGame sbg) {
-        Level level;
-        SokobanGame game = null;
-        
-        try {
-            level = new YAMLLevel(ResourceLoader.getResourceAsStream("levels/levels.yaml"));
-            game = new kauhsa.sokoban.game.SokobanGame(level);
-        } catch (InvalidLevelException ex) {
-            gc.exit(); // not done
-        }
-
-        InGameState inGameState = (InGameState) sbg.getState(GameStates.IN_GAME.ordinal());
-        inGameState.loadGame(game);
-        sbg.enterState(inGameState.getID());
-    } */
-
 }

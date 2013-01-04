@@ -15,7 +15,7 @@ import org.newdawn.slick.font.effects.ColorEffect;
  * @author mika
  */
 public class FontLoader {
-    public static Font loadAwtFont(String name, int style, int size, GameContainer gc) throws SlickException {
+    public static Font loadAwtFontToSlick(String name, int style, int size, GameContainer gc) throws SlickException {
         java.awt.Font awtFont = new java.awt.Font(name, style, size);
         
         if (awtFont == null) {
