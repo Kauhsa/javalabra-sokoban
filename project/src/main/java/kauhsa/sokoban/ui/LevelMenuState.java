@@ -71,7 +71,7 @@ public class LevelMenuState extends BasicGameState {
             if (name != null) {
                 levelMenu.addItem(level.getMetadata("name"), level);
             } else {
-                Log.warn("Level did not have name - skipping");
+                levelMenu.addItem("(Unnamed)", level);
             }
         }
     }

@@ -1,2 +1,3 @@
 levels/level_1.yaml
 levels/level_2.yaml
+levels/level_3.yaml

@@ -11,6 +11,10 @@ public class YAMLLevelData {
     private String world;
 
     public String getMetadata(String key) {
+        if (metadata == null) {
+            return null;
+        }
+        
         return metadata.get(key);
     }
 

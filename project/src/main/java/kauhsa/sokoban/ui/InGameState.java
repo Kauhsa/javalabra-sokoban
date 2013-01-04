@@ -45,7 +45,7 @@ public class InGameState extends BasicGameState {
         this.game = game;
         worldRenderer = new WorldRenderer(game.getWorld());        
         
-        levelNameLabel.setText("Level: " + game.getLevel().getMetadata("name"));
+        updateLevelTextLabel();
         updateMoveCountLabel();
     }
 
@@ -102,5 +102,13 @@ public class InGameState extends BasicGameState {
 
     private void updateMoveCountLabel() {
         moveCountLabel.setText("Moves: " + game.getMoveCount());
+    }
+
+    private void updateLevelTextLabel() {
+        String name = game.getLevel().getMetadata("name");
+        if (name == null) {
+            name = "(Untitled)";
+        }
+        levelNameLabel.setText("Level: " + name);
     }
 }
