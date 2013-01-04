@@ -1,9 +1,5 @@
 package kauhsa.sokoban.ui;
 
-import kauhsa.sokoban.game.SokobanGame;
-import kauhsa.sokoban.level.InvalidLevelException;
-import kauhsa.sokoban.level.Level;
-import kauhsa.sokoban.level.yaml.YAMLLevel;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -33,6 +29,7 @@ public class SlickSokobanGame extends StateBasedGame {
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {        
         this.addState(new MainMenuState());
+        this.addState(new LevelMenuState());
         this.addState(new InGameState());
         
         gc.getInput().enableKeyRepeat();

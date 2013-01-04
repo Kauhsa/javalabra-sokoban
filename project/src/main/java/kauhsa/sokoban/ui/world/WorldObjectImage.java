@@ -4,7 +4,6 @@
  */
 package kauhsa.sokoban.ui.world;
 
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import kauhsa.sokoban.core.WorldObject;
@@ -18,16 +17,13 @@ import org.newdawn.slick.SlickException;
  */
 public class WorldObjectImage {    
     private Map<String, Image> imageCache = new HashMap<String, Image>();
-    private final String imageResourcePath;
     
-    public WorldObjectImage(String imageResourcePath) {
-        this.imageResourcePath = imageResourcePath;
-        
-        imageCache.put("FLOOR", resourceToImage("Grass Block Resized.png"));
-        imageCache.put("PLAYER", resourceToImage("Character Princess Girl.png"));
-        imageCache.put("WALL", resourceToImage("Stone Block Tall Resized.png"));
-        imageCache.put("BOX", resourceToImage("Rock.png"));        
-        imageCache.put("BOXTARGET", resourceToImage("Selector.png"));
+    public WorldObjectImage() throws SlickException {        
+        imageCache.put("FLOOR", new Image("tiles/Grass Block Resized.png"));
+        imageCache.put("PLAYER", new Image("tiles/Character Princess Girl.png"));
+        imageCache.put("WALL", new Image("tiles/Stone Block Tall Resized.png"));
+        imageCache.put("BOX", new Image("tiles/Rock.png"));        
+        imageCache.put("BOXTARGET", new Image("tiles/Selector.png"));
     }
     
     public Image getImageForWorldObject(WorldObject worldObject) {
@@ -44,17 +40,6 @@ public class WorldObjectImage {
             return imageCache.get("BOXTARGET");
         } else {
             return imageCache.get("PLAYER");
-        }
-    }
-            
-    private Image resourceToImage(String imageName) {
-        String resourceLocation = imageResourcePath + "/" + imageName;
-        InputStream resource = WorldObjectImage.class.getResourceAsStream(resourceLocation);
-        
-        try {
-            return new Image(resource, imageName, false);
-        } catch (SlickException ex) {
-            throw new RuntimeException(String.format("Error loading image from resource \"%s\"", imageName));
         }
     }
 }

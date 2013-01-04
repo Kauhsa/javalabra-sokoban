@@ -13,6 +13,7 @@ import kauhsa.sokoban.core.World;
 import kauhsa.sokoban.core.WorldObject;
 import kauhsa.sokoban.core.utils.Point;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 /**
  *
@@ -22,9 +23,9 @@ public class WorldPointImages {
     private final World world;
     private final WorldObjectImage worldObjectImage;
     
-    public WorldPointImages(World world) {
+    public WorldPointImages(World world) throws SlickException {
         this.world = world;
-        this.worldObjectImage = new WorldObjectImage("/tiles");        
+        this.worldObjectImage = new WorldObjectImage();        
     }
     
     public Image[] imagesInPoint(Point point) {

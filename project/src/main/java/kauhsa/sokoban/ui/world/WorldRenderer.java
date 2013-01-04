@@ -8,6 +8,7 @@ import kauhsa.sokoban.core.World;
 import kauhsa.sokoban.core.utils.Point;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 /**
  *
@@ -23,7 +24,7 @@ public class WorldRenderer {
     private final World world;
     private final WorldPointImages worldPointImages;
     
-    public WorldRenderer(World world) {
+    public WorldRenderer(World world) throws SlickException {
         this.world = world;        
         this.worldPointImages = new WorldPointImages(world);
     }

@@ -21,7 +21,6 @@ import org.newdawn.slick.state.StateBasedGame;
 public class InGameState extends BasicGameState {
     private SokobanGame game = null;
     private WorldRenderer worldRenderer = null;
-    public static final int STATE_ID = 1;
     
     public InGameState() {
         super();
@@ -29,10 +28,10 @@ public class InGameState extends BasicGameState {
     
     @Override
     public int getID() {
-        return STATE_ID;
+        return GameStates.IN_GAME.ordinal();
     }
     
-    public void loadGame(SokobanGame game) {        
+    public void loadGame(SokobanGame game) throws SlickException {        
         this.game = game;
         this.worldRenderer = new WorldRenderer(game.getWorld());
     }
@@ -67,7 +66,7 @@ public class InGameState extends BasicGameState {
     }
 
     private void backToMenu(GameContainer gc, StateBasedGame sbg) {
-        sbg.enterState(MainMenuState.STATE_ID);
+        sbg.enterState(GameStates.LEVEL_MENU.ordinal());
     }
     
 }

@@ -8,6 +8,8 @@ import kauhsa.sokoban.game.SokobanGame;
 import kauhsa.sokoban.level.InvalidLevelException;
 import kauhsa.sokoban.level.Level;
 import kauhsa.sokoban.level.yaml.YAMLLevel;
+import kauhsa.sokoban.resources.FontLoader;
+import kauhsa.sokoban.ui.label.Label;
 import kauhsa.sokoban.ui.menu.Menu;
 import kauhsa.sokoban.ui.menu.MenuRenderer; 
 import kauhsa.sokoban.ui.utils.HorizontalAlignment;
@@ -21,6 +23,7 @@ import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.ResourceLoader;
 
 /**
  *
@@ -28,38 +31,37 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MainMenuState extends BasicGameState {
 
-    public static final int STATE_ID = 2;    
     private final int EDGE_DISTANCE = 50;
     
     Menu<MainMenuButtons> mainMenu = new Menu<MainMenuButtons>();
     MenuRenderer menuRenderer;
+    Label header;
 
     @Override
     public int getID() {
-        return STATE_ID;
+        return GameStates.MAIN_MENU.ordinal();
     }
 
-    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {        
+        Font headerFont = FontLoader.loadAwtFont("Ubuntu", java.awt.Font.PLAIN, 100, gc);        
+        header = new Label();
+        header.setText("Sokoban!");
+        header.setFont(headerFont);
+        header.setVerticalAlignment(VerticalAlignment.CENTER);        
+        header.setHorizontalAlignment(HorizontalAlignment.MIDDLE);
+        
+        Font menuFont = FontLoader.loadAwtFont("Ubuntu", java.awt.Font.PLAIN, 50, gc);        
+        menuRenderer = new MenuRenderer(mainMenu);
+        menuRenderer.setFont(menuFont);
+        menuRenderer.setVerticalAlignment(VerticalAlignment.BOTTOM);
+        menuRenderer.setHorizontalAlignment(HorizontalAlignment.RIGHT);       
+        
         mainMenu.addItem("Start", MainMenuButtons.START);   
         mainMenu.addItem("Quit", MainMenuButtons.QUIT);     
-        
-        Font font = initalizeFont(gc);
-        
-        menuRenderer = new MenuRenderer(mainMenu);
-        menuRenderer.setFont(font);
-        menuRenderer.setVerticalAlignment(VerticalAlignment.BOTTOM);
-        menuRenderer.setHorizontalAlignment(HorizontalAlignment.RIGHT);        
-    }
-
-    private UnicodeFont loadFont(java.awt.Font awtFont) throws SlickException {
-        UnicodeFont font = new UnicodeFont(awtFont);
-        font.addAsciiGlyphs();
-        font.getEffects().add(new ColorEffect(java.awt.Color.WHITE));
-        font.loadGlyphs();
-        return font;
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
+        header.render(grphcs, 0, 0, gc.getWidth(), gc.getHeight() / 2);
         menuRenderer.render(grphcs, EDGE_DISTANCE, EDGE_DISTANCE, gc.getWidth() - EDGE_DISTANCE * 2, gc.getHeight() - EDGE_DISTANCE * 2);
     }
 
@@ -77,37 +79,27 @@ public class MainMenuState extends BasicGameState {
 
     private void handleMenuSelection(GameContainer gc, StateBasedGame sbg) {
         if (mainMenu.getSelected() == MainMenuButtons.START) {
-            startGame(gc, sbg);
+            sbg.enterState(GameStates.LEVEL_MENU.ordinal());
+            //startGame(gc, sbg);
         } else if (mainMenu.getSelected() == MainMenuButtons.QUIT) {
             gc.exit();
         }
     }
 
-    private void startGame(GameContainer gc, StateBasedGame sbg) {
+    /* private void startGame(GameContainer gc, StateBasedGame sbg) {
         Level level;
         SokobanGame game = null;
         
         try {
-            level = new YAMLLevel(SlickSokobanGame.class.getResourceAsStream("/levels/level1.yaml"));
+            level = new YAMLLevel(ResourceLoader.getResourceAsStream("levels/levels.yaml"));
             game = new kauhsa.sokoban.game.SokobanGame(level);
         } catch (InvalidLevelException ex) {
             gc.exit(); // not done
         }
 
-        InGameState inGameState = (InGameState) sbg.getState(InGameState.STATE_ID);
+        InGameState inGameState = (InGameState) sbg.getState(GameStates.IN_GAME.ordinal());
         inGameState.loadGame(game);
         sbg.enterState(inGameState.getID());
-    }
+    } */
 
-    private Font initalizeFont(GameContainer gc) throws SlickException {
-        // TODO: package font with game or something
-        Font font;
-        java.awt.Font awtFont = new java.awt.Font("Ubuntu", java.awt.Font.PLAIN, 50);
-        if (awtFont == null) {
-            font = gc.getDefaultFont();
-        } else {
-            font = loadFont(awtFont);
-        }
-        return font;
-    }
 }
