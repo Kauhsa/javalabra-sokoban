@@ -123,7 +123,7 @@ public class Label {
             graphics.setColor(color);
         }
 
-        graphics.drawString(textShortedToWidth(), getHorizontalPosition() + x, getVerticalPosition() + y);
+        graphics.drawString(textShortedToWidth(), (int) getHorizontalPosition() + x, (int) getVerticalPosition() + y);
 
         graphics.setFont(oldFont);
         graphics.setColor(oldColor);
