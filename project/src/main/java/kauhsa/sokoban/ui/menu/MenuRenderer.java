@@ -79,7 +79,7 @@ public class MenuRenderer {
 
         if (verticalAlignment == VerticalAlignment.CENTER) {
             verticalOffset = height / 2 - (menuItemsShown() * singleMenuItemHeight()) / 2;
-        } else if (verticalAlignment == VerticalAlignment.TOP) {
+        } else if (verticalAlignment == VerticalAlignment.BOTTOM) {
             verticalOffset = height - (menuItemsShown() * singleMenuItemHeight());
         }
 

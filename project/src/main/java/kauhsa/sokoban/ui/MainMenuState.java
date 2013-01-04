@@ -47,8 +47,8 @@ public class MainMenuState extends BasicGameState {
         
         menuRenderer = new MenuRenderer(mainMenu);
         menuRenderer.setFont(font);
-        menuRenderer.setVerticalAlignment(VerticalAlignment.CENTER);
-        menuRenderer.setHorizontalAlignment(HorizontalAlignment.LEFT);        
+        menuRenderer.setVerticalAlignment(VerticalAlignment.BOTTOM);
+        menuRenderer.setHorizontalAlignment(HorizontalAlignment.RIGHT);        
     }
 
     private UnicodeFont loadFont(java.awt.Font awtFont) throws SlickException {
