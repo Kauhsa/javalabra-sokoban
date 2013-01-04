@@ -19,6 +19,7 @@ public class SokobanGame {
     private final WorldStatus worldStatus;
     private boolean isFinished;
     private final Level level;
+    private int moveCount;
 
     /**
      * Initialize a new Sokoban game.
@@ -58,7 +59,9 @@ public class SokobanGame {
      */
     public void movePlayer(Direction direction, int index) {
         worldLoadedCheck();
-        worldMovementHandler.move(getPlayer(0), direction);
+        if (worldMovementHandler.move(getPlayer(0), direction)) {
+            moveCount++;
+        }
         updateIsFinished();
     }
 
@@ -98,5 +101,10 @@ public class SokobanGame {
     public Level getLevel() {
         return level;
     }
+
+    public int getMoveCount() {
+        return moveCount;
+    }
+    
     
 }

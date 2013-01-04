@@ -9,6 +9,9 @@ import java.util.logging.Logger;
 import kauhsa.sokoban.core.utils.Direction;
 import kauhsa.sokoban.game.SokobanGame;
 import kauhsa.sokoban.level.InvalidLevelException;
+import kauhsa.sokoban.resources.FontLoader;
+import kauhsa.sokoban.ui.label.Label;
+import kauhsa.sokoban.ui.utils.HorizontalAlignment;
 import kauhsa.sokoban.ui.world.WorldRenderer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -26,6 +29,8 @@ public class InGameState extends BasicGameState {
 
     private SokobanGame game = null;
     private WorldRenderer worldRenderer = null;
+    private Label levelNameLabel = null;
+    private Label moveCountLabel = null;
 
     public InGameState() {
         super();
@@ -38,13 +43,20 @@ public class InGameState extends BasicGameState {
 
     public void loadGame(SokobanGame game) throws SlickException {
         this.game = game;
-        this.worldRenderer = new WorldRenderer(game.getWorld());
+        worldRenderer = new WorldRenderer(game.getWorld());        
+        
+        levelNameLabel.setText("Level: " + game.getLevel().getMetadata("name"));
+        updateMoveCountLabel();
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
-        if (game != null) {
-            this.worldRenderer.render(0, 0, gc.getWidth(), gc.getHeight());
+        if (game == null) {
+            return;
         }
+
+        this.worldRenderer.render(25, 50, gc.getWidth() - 50, gc.getHeight() - 75);
+        this.levelNameLabel.render(grphcs, 50, 50, gc.getWidth() / 2 - 50, 50);
+        this.moveCountLabel.render(grphcs, gc.getWidth() / 2 + 50, 50, gc.getWidth() / 2 - 100, 50);
     }
 
     public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
@@ -67,9 +79,17 @@ public class InGameState extends BasicGameState {
         } else if (input.isKeyPressed(Input.KEY_R)) {
             restart();
         }
+        
+        updateMoveCountLabel();
     }
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+        moveCountLabel = new Label();        
+        moveCountLabel.setFont(FontLoader.loadAwtFontToSlick("Ubuntu", 0, 30, null));
+        moveCountLabel.setHorizontalAlignment(HorizontalAlignment.RIGHT);
+        
+        levelNameLabel = new Label();
+        levelNameLabel.setFont(FontLoader.loadAwtFontToSlick("Ubuntu", 0, 30, null));
     }
 
     private void restart() throws SlickException {
@@ -78,5 +98,9 @@ public class InGameState extends BasicGameState {
         } catch (InvalidLevelException ex) {
             Log.error("Could not restart level", ex);
         }
+    }
+
+    private void updateMoveCountLabel() {
+        moveCountLabel.setText("Moves: " + game.getMoveCount());
     }
 }
