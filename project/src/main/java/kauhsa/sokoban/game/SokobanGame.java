@@ -18,6 +18,7 @@ public class SokobanGame {
     private final WorldMovementHandler worldMovementHandler;
     private final WorldStatus worldStatus;
     private boolean isFinished;
+    private final Level level;
 
     /**
      * Initialize a new Sokoban game.
@@ -27,6 +28,7 @@ public class SokobanGame {
      * in some way.
      */
     public SokobanGame(Level level) throws InvalidLevelException {
+        this.level = level;
         world = level.generateWorld();
         worldMovementHandler = new WorldMovementHandler(world);
         worldStatus = new WorldStatus(world);
@@ -92,4 +94,9 @@ public class SokobanGame {
     public boolean isFinished() {
         return isFinished;
     }
+
+    public Level getLevel() {
+        return level;
+    }
+    
 }
