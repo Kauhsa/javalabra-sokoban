@@ -121,8 +121,8 @@ public class MenuRenderer {
                 label.setColor(inactiveColor);
             }
 
-            float verticalRenderPosition = getMenuItemVerticalPosition(menuItemIndex) + y;
-            label.render(graphics, 0, verticalRenderPosition, width, singleMenuItemHeight());
+            float verticalRenderPosition = getMenuItemVerticalPosition(menuItemIndex);
+            label.render(graphics, x, verticalRenderPosition + y, width, singleMenuItemHeight());
         }
     }
 
