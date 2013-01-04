@@ -10,6 +10,8 @@ import kauhsa.sokoban.level.Level;
 import kauhsa.sokoban.level.yaml.YAMLLevel;
 import kauhsa.sokoban.ui.menu.Menu;
 import kauhsa.sokoban.ui.menu.MenuRenderer; 
+import kauhsa.sokoban.ui.utils.HorizontalAlignment;
+import kauhsa.sokoban.ui.utils.VerticalAlignment;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -26,12 +28,10 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class MainMenuState extends BasicGameState {
 
-    public static final int STATE_ID = 2;
-    
+    public static final int STATE_ID = 2;    
     private final int EDGE_DISTANCE = 50;
-    private final int MENU_START = 0;
-    private final int MENU_QUIT = 1;
-    Menu<Integer> mainMenu = new Menu<Integer>();
+    
+    Menu<MainMenuButtons> mainMenu = new Menu<MainMenuButtons>();
     MenuRenderer menuRenderer;
 
     @Override
@@ -40,8 +40,8 @@ public class MainMenuState extends BasicGameState {
     }
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-        mainMenu.addItem("Start", MENU_START);   
-        mainMenu.addItem("Quit", MENU_QUIT);
+        mainMenu.addItem("Start", MainMenuButtons.START);   
+        mainMenu.addItem("Quit", MainMenuButtons.QUIT);        
         
         // TODO: package font with game or something
         Font font;
@@ -51,9 +51,11 @@ public class MainMenuState extends BasicGameState {
         } else {
             font = loadFont(awtFont);
         }
+        
         menuRenderer = new MenuRenderer(mainMenu);
         menuRenderer.setFont(font);
-        menuRenderer.setHorizontalCentered(true);
+        menuRenderer.setVerticalAlignment(VerticalAlignment.CENTER);
+        menuRenderer.setHorizontalAlignment(HorizontalAlignment.MIDDLE);        
     }
 
     private UnicodeFont loadFont(java.awt.Font awtFont) throws SlickException {
@@ -81,9 +83,9 @@ public class MainMenuState extends BasicGameState {
     }
 
     private void handleMenuSelection(GameContainer gc, StateBasedGame sbg) {
-        if (mainMenu.getSelected() == MENU_START) {
+        if (mainMenu.getSelected() == MainMenuButtons.START) {
             startGame(gc, sbg);
-        } else if (mainMenu.getSelected() == MENU_QUIT) {
+        } else if (mainMenu.getSelected() == MainMenuButtons.QUIT) {
             gc.exit();
         }
     }

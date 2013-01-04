@@ -29,10 +29,12 @@ public class SlickSokobanGame extends StateBasedGame {
         app.setShowFPS(false);
         app.start();
     }
-
+    
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {        
         this.addState(new MainMenuState());
         this.addState(new InGameState());
+        
+        gc.getInput().enableKeyRepeat();
     }
 }
