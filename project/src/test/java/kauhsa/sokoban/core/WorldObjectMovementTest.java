@@ -5,16 +5,11 @@
 package kauhsa.sokoban.core;
 import kauhsa.sokoban.core.utils.Direction;
 import kauhsa.sokoban.core.utils.Point;
-import java.util.ArrayList;
-import java.util.Collection;
 import kauhsa.sokoban.core.worldobjects.Box;
 import kauhsa.sokoban.core.worldobjects.Floor;
 import kauhsa.sokoban.core.worldobjects.Player;
 import kauhsa.sokoban.core.worldobjects.Wall;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -30,8 +25,6 @@ public class WorldObjectMovementTest {
     public void setUp() {
         world = new World(3, 3);        
         worldMovementHandler = new WorldMovementHandler(world);   
-        
-        fillWorldWithFloor();
     }
     
     private void fillWorldWithFloor() {
@@ -72,7 +65,8 @@ public class WorldObjectMovementTest {
     }
     
     @Test
-    public void testCanNotMoveOutsideWorld() {       
+    public void testCanNotMoveOutsideWorld() {  
+        fillWorldWithFloor();
         Player player = placePlayer(new Point(1, 1));
         
         checkMovementAndNewPoint(player, Direction.LEFT, new Point(0, 1));        
@@ -88,7 +82,8 @@ public class WorldObjectMovementTest {
     }
     
     @Test
-    public void testCanNotMoveToWall1() {             
+    public void testCanNotMoveToWall1() {      
+        fillWorldWithFloor();
         Player player = placePlayer(new Point(1, 1));
         placeWall(new Point(0, 1));
         
@@ -99,7 +94,8 @@ public class WorldObjectMovementTest {
     }
     
     @Test
-    public void testCanNotMoveToWall2() {              
+    public void testCanNotMoveToWall2() {     
+        fillWorldWithFloor();
         Player player = placePlayer(new Point(1, 1));
         placeWall(new Point(0, 1));         
         placeWall(new Point(2, 1));
@@ -113,7 +109,8 @@ public class WorldObjectMovementTest {
     }
     
     @Test
-    public void testPush() {             
+    public void testPush() {        
+        fillWorldWithFloor();
         Player player = placePlayer(new Point(0, 1));
         Box box = placeBox(new Point(1, 1));
         
@@ -122,7 +119,8 @@ public class WorldObjectMovementTest {
     }
 
     @Test
-    public void testCanNotPushWall() {              
+    public void testCanNotPushWall() {
+        fillWorldWithFloor();
         Player player = placePlayer(new Point(0, 1));
         Wall wall = placeWall(new Point(1, 1));         
               
@@ -131,7 +129,8 @@ public class WorldObjectMovementTest {
     }
     
     @Test
-    public void testCanNotPushOtherPlayer() {              
+    public void testCanNotPushOtherPlayer() {   
+        fillWorldWithFloor();
         Player player = placePlayer(new Point(0, 1));
         Player player2 = placePlayer(new Point(1, 1));        
               
@@ -140,7 +139,8 @@ public class WorldObjectMovementTest {
     }
     
     @Test
-    public void testCanNotPushOutsideWorld() {             
+    public void testCanNotPushOutsideWorld() {
+        fillWorldWithFloor();
         Player player = placePlayer(new Point(0, 1));
         Box box = placeBox(new Point(1, 1));
         
@@ -151,7 +151,8 @@ public class WorldObjectMovementTest {
     }
     
     @Test
-    public void testCanNotPushTwoBoxes() {             
+    public void testCanNotPushTwoBoxes() {   
+        fillWorldWithFloor();
         Player player = placePlayer(new Point(0, 1));
         Box box = placeBox(new Point(1, 1));
         Box box2 = placeBox(new Point(2, 1));
@@ -162,13 +163,24 @@ public class WorldObjectMovementTest {
     }
     
     @Test
-    public void testCanNotPushToWall() {             
+    public void testCanNotPushToWall() {   
+        fillWorldWithFloor();
         Player player = placePlayer(new Point(0, 1));
         Box box = placeBox(new Point(1, 1));
         placeWall(new Point(2, 1));
         
         checkMovementAndNewPoint(player, Direction.RIGHT, new Point(0, 1));
         checkWorldObjectIsInPoint(box, new Point(1, 1));
+    }
+    
+    @Test
+    public void testCanNotMoveToEmptyPoint() {
+        Player player = placePlayer(new Point(1, 1));
+        
+        checkMovementAndNewPoint(player, Direction.UP, new Point(1, 1));
+        checkMovementAndNewPoint(player, Direction.DOWN, new Point(1, 1));
+        checkMovementAndNewPoint(player, Direction.LEFT, new Point(1, 1));
+        checkMovementAndNewPoint(player, Direction.RIGHT, new Point(1, 1));
     }
        
 }

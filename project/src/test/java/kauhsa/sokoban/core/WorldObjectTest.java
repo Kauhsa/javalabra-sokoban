@@ -1,5 +1,6 @@
 package kauhsa.sokoban.core;
 
+import kauhsa.sokoban.core.utils.Point;
 import kauhsa.sokoban.core.worldobjects.Floor;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -28,5 +29,21 @@ public class WorldObjectTest {
     @Test
     public void testPositionAtInitalization() {
         assertNull(floor.getPosition());
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void testSettingNullWorld() {
+        floor.setWorld(null);
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void testSettingNullPosition() {
+        floor.setWorld(world);
+        floor.setPosition(null);
+    }
+    
+    @Test(expected=IllegalStateException.class)
+    public void testSettingPositionBeforeWorld() {
+        floor.setPosition(new Point(1, 1));
     }
 }

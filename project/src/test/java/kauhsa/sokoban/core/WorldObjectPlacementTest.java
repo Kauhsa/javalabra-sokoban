@@ -43,4 +43,36 @@ public class WorldObjectPlacementTest {
         assertTrue("New position should contain floor", world.getWorldObjectsInPoint(new Point(1, 0)).contains(floor));
         assertEquals("floor's position should be now 1, 0", new Point(1, 0), floor.getPosition());
     }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void testPlacementToNullPoint() {
+        Floor floor = new Floor();
+        world.placeWorldObject(floor, null);
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void testNullObjectPlacement() {
+        world.placeWorldObject(null, new Point(0, 0));
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void testPlacementOutOfBounds() {
+        Floor floor = new Floor();
+        world.placeWorldObject(floor, new Point(100, 100));
+    }
+    
+    @Test(expected=IllegalStateException.class)
+    public void testPlacementOfAlreadyPlacedObject() {
+        Floor floor = new Floor();
+        world.placeWorldObject(floor, new Point(1, 1));        
+        world.placeWorldObject(floor, new Point(1, 2));
+    }
+    
+    @Test(expected=IllegalStateException.class)
+    public void testPlacementOfObjectPlacedInOtherWorld() {
+        Floor floor = new Floor();
+        World world2 = new World(10, 10);
+        world.placeWorldObject(floor, new Point(1, 1));
+        world2.placeWorldObject(floor, new Point(1, 2));
+    }
 }

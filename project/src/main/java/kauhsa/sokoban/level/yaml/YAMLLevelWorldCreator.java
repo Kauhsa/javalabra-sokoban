@@ -3,6 +3,7 @@ package kauhsa.sokoban.level.yaml;
 import java.util.Scanner;
 import kauhsa.sokoban.core.World;
 import kauhsa.sokoban.core.WorldObject;
+import kauhsa.sokoban.core.WorldObjectType;
 import kauhsa.sokoban.core.utils.Point;
 import kauhsa.sokoban.core.worldobjects.Box;
 import kauhsa.sokoban.core.worldobjects.BoxTarget;
@@ -41,6 +42,10 @@ public final class YAMLLevelWorldCreator {
                 handlePoint(world, new Point(x, y), currentRow.charAt(x));
             }
             y++;
+        }
+        
+        if (world.getWorldObjectsOfType(WorldObjectType.PLAYER).isEmpty()) {
+            throw new InvalidYAMLLevelException("No players in level");
         }
         
         return world;

@@ -51,4 +51,14 @@ public class WorldPointTest {
         assertFalse(world.isPointInWorld(new Point(15, 15)));
         assertFalse(world.isPointInWorld(new Point(Integer.MAX_VALUE, Integer.MAX_VALUE)));
     }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void testGetObjectsFromInvalidLocation() {
+        world.getWorldObjectsInPoint(new Point(100, 100));
+    }
+    
+    @Test(expected=IllegalArgumentException.class)
+    public void testGetObjectsFromNullLocation() {
+        world.getWorldObjectsInPoint(null);
+    }
 }

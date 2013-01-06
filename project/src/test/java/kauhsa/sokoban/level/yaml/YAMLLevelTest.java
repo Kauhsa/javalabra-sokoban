@@ -37,6 +37,23 @@ public class YAMLLevelTest {
     }
     
     @Test
+    public void noMetaDataTest() throws InvalidLevelException {
+        Level level = getYAMLLevelFromResource("noMetaData.yaml");
+        assertNull(level.getMetadata("name"));
+    }
+    
+    @Test(expected=InvalidLevelException.class)
+    public void noWorldDataTest() throws InvalidLevelException {
+        Level level = getYAMLLevelFromResource("noWorldData.yaml");
+    }
+    
+    @Test(expected=InvalidLevelException.class)
+    public void noPlayerTest() throws InvalidLevelException {
+        Level level = getYAMLLevelFromResource("noPlayer.yaml");
+        World world = level.generateWorld();
+    }    
+    
+    @Test
     public void widthAndHeightTest() throws InvalidLevelException {
         Level level = getYAMLLevelFromResource("valid1.yaml");
         World world = level.generateWorld();
@@ -69,6 +86,10 @@ public class YAMLLevelTest {
         worldHasObjectInPointTest(world, new Point(0, 1), WorldObjectType.PLAYER);
         worldHasObjectInPointTest(world, new Point(3, 2), WorldObjectType.BOX);        
         worldHasObjectInPointTest(world, new Point(2, 2), WorldObjectType.BOXTARGET);
+        
+        worldHasObjectInPointTest(world, new Point(0, 1), WorldObjectType.FLOOR);        
+        worldHasObjectInPointTest(world, new Point(3, 2), WorldObjectType.FLOOR);        
+        worldHasObjectInPointTest(world, new Point(2, 2), WorldObjectType.FLOOR);
     }
     
     @Test(expected=InvalidYAMLLevelException.class)
@@ -81,6 +102,11 @@ public class YAMLLevelTest {
     public void unknownCharactersTest() throws InvalidLevelException {
         Level level = getYAMLLevelFromResource("unknownCharacters.yaml");
         World world = level.generateWorld();
+    }
+    
+    @Test(expected=InvalidYAMLLevelException.class)
+    public void gibberishDataTest() throws InvalidLevelException {
+        Level level = getYAMLLevelFromResource("gibberish.yaml");
     }
     
 }
