@@ -1,0 +1,32 @@
+title WorldMovementHandler.move(WorldObject worldObject, Direction direction)
+
+caller -> this: move(worldObject, direction)
+this -> worldObject: currentPoint = getPosition()
+
+this -> currentPoint: wouldAppliedDirectionBeInvalid(direction)
+this -> currentPoint: adjacentPoint = applyDirection(direction)
+this -> world: isPointInWorld(adjacentPoint)
+this -> world: getWorldObjectsInPoint(adjacentPoint).isEmpty()
+
+alt if applied direction invalid, point not in world or no objects in that point
+    this -> caller: false
+else else try to move the object
+
+loop all world objects in adjacent point
+    this -> adjacentWorldObject: canMove(worldObject)
+    alt if canMove is true foll all objects, let's just move
+        this -> worldObject: relocate(adjacentPoint)
+        this -> caller: true
+    else otherwise try pushing
+        loop all world objects in adjacent point
+            this -> this: move(adjacentWorldObject, direction)
+        end
+        alt if all movements were successful and there was at least one of them
+            this -> this: moveSuccessful = move(worldObject, direction)
+            this -> caller: moveSuccessful
+        else
+            this -> caller: false
+        end
+end
+
+end
