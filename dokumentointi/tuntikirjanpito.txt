@@ -8,3 +8,5 @@
 01.12.  9h      Kenttien latausta, hieman pelilogiikkaa ja paljon GUI:n vääntämistä
 02.12.  2h      Javadocseja
 03.12.  5h      Javadocseja, GUI:n edistämistä, hieman luokkakaaviota
+04.12.  5h      GUI:n edistämistä
+06.12.  4h      Javadocseja, sekvenssikaavioita
