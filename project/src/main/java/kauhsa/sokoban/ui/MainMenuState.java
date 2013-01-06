@@ -32,14 +32,14 @@ public class MainMenuState extends BasicGameState {
     }
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {        
-        Font headerFont = FontLoader.loadAwtFontToSlick("Ubuntu", java.awt.Font.PLAIN, 100, gc);        
+        Font headerFont = FontLoader.loadAwtFontToSlick("Ubuntu", java.awt.Font.PLAIN, 100);        
         header = new Label();
         header.setText("Sokoban!");
         header.setFont(headerFont);
         header.setVerticalAlignment(VerticalAlignment.CENTER);        
         header.setHorizontalAlignment(HorizontalAlignment.MIDDLE);
         
-        Font menuFont = FontLoader.loadAwtFontToSlick("Ubuntu", java.awt.Font.PLAIN, 50, gc);        
+        Font menuFont = FontLoader.loadAwtFontToSlick("Ubuntu", java.awt.Font.PLAIN, 50);        
         menuRenderer = new MenuRenderer(mainMenu);
         menuRenderer.setFont(menuFont);
         menuRenderer.setVerticalAlignment(VerticalAlignment.BOTTOM);

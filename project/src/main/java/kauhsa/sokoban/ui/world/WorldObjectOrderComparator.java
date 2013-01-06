@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.ui.world;
 
 import java.util.Comparator;
@@ -11,8 +7,7 @@ import kauhsa.sokoban.core.WorldObject;
 import kauhsa.sokoban.core.WorldObjectType;
 
 /**
- *
- * @author mika
+ * Comparator class that defines the rendering order between two WorldObjects.
  */
 public class WorldObjectOrderComparator implements Comparator<WorldObject> {
 
@@ -28,6 +23,5 @@ public class WorldObjectOrderComparator implements Comparator<WorldObject> {
     
     public int compare(WorldObject firstWO, WorldObject secondWO) {
         return orderMap.get(firstWO.getType()).compareTo(orderMap.get(secondWO.getType()));
-    }
-    
+    }    
 }

@@ -83,11 +83,11 @@ public class InGameState extends BasicGameState {
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         moveCountLabel = new Label();        
-        moveCountLabel.setFont(FontLoader.loadAwtFontToSlick("Ubuntu", 0, 30, null));
+        moveCountLabel.setFont(FontLoader.loadAwtFontToSlick("Ubuntu", 0, 30));
         moveCountLabel.setHorizontalAlignment(HorizontalAlignment.RIGHT);
         
         levelNameLabel = new Label();
-        levelNameLabel.setFont(FontLoader.loadAwtFontToSlick("Ubuntu", 0, 30, null));
+        levelNameLabel.setFont(FontLoader.loadAwtFontToSlick("Ubuntu", 0, 30));
     }
 
     private void restart() throws SlickException {

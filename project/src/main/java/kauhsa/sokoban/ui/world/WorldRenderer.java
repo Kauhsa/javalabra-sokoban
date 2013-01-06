@@ -1,25 +1,24 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.ui.world;
 
 import kauhsa.sokoban.core.World;
 import kauhsa.sokoban.core.utils.Point;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
- *
- * @author mika
+ * Class for rendering a world.
  */
-public class WorldRenderer {
-    
+public class WorldRenderer {    
     private final World world;
     private final WorldPointImages worldPointImages;
     private final TileSet tileSet;
     
+    /**
+     * Create a new WorldRenderer.
+     * 
+     * @param world world that will be rendered.
+     * @param tileSet tileSet that will be used for rendering the world.
+     */
     public WorldRenderer(World world, TileSet tileSet) throws SlickException {
         this.world = world;        
         this.worldPointImages = new WorldPointImages(world);
@@ -30,6 +29,14 @@ public class WorldRenderer {
         return new TilePositionManager(tileSet, width, height, this.world.getWidth(), this.world.getHeight());
     }
     
+    /**
+     * Render a world to specific location.
+     * 
+     * @param x horizontal position of rendered world.
+     * @param y vertical position of rendered world.
+     * @param width width of rendered world.
+     * @param height height of rendered world.
+     */
     public void render(float x, float y, float width, float height) {
         TilePositionManager tilePositionManager = initializeTilePositionManager(x, y, width, height);        
         float scale = tilePositionManager.getScale();      

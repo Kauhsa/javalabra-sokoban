@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.resources;
 
 import java.io.InputStream;
@@ -15,16 +11,19 @@ import org.newdawn.slick.util.Log;
 import org.newdawn.slick.util.ResourceLoader;
 
 /**
- *
- * @author mika
+ * Class containing helper functions for loading levels bundled with the game.
  */
 public class LevelLoader {
     private static final String LEVELS_RESOURCE_LOCATION = "levels/levels.txt";
     
+    /**
+     * Get List of Levels bundled with the game.
+     * 
+     * @return List of Level objects.
+     */
     public static List<Level> getLevels() {
         ArrayList<Level> levels = new ArrayList<Level>();        
-        InputStream levelsFile = ResourceLoader.getResourceAsStream(LEVELS_RESOURCE_LOCATION);
-        Scanner scanner = new Scanner(levelsFile);
+        Scanner scanner = getLevelResourceScanner();
         
         while (scanner.hasNextLine()) {
             String currentResourceLocation = scanner.nextLine();            
@@ -33,15 +32,24 @@ public class LevelLoader {
             }
             
             InputStream currentResource = ResourceLoader.getResourceAsStream(currentResourceLocation);
-            
-            try {
-                Level currentLevel = new YAMLLevel(currentResource);
-                levels.add(currentLevel);
-            } catch (InvalidYAMLLevelException ex) {
-                Log.warn("Could not add level " + currentResourceLocation + "to level list: " + ex.getMessage());
-            }
+            addLevelToList(currentResource, levels, currentResourceLocation);
         }
         
         return levels;
+    }
+
+    private static Scanner getLevelResourceScanner() {
+        InputStream levelsFile = ResourceLoader.getResourceAsStream(LEVELS_RESOURCE_LOCATION);
+        Scanner scanner = new Scanner(levelsFile);
+        return scanner;
+    }
+    
+    private static void addLevelToList(InputStream currentResource, ArrayList<Level> levels, String currentResourceLocation) {
+        try {
+            Level currentLevel = new YAMLLevel(currentResource);
+            levels.add(currentLevel);
+        } catch (InvalidYAMLLevelException ex) {
+            Log.warn("Could not add level " + currentResourceLocation + "to level list: " + ex.getMessage());
+        }
     }
 }
