@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.ui;
 
 import java.util.HashMap;
@@ -13,8 +9,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
- *
- * @author mika
+ * TileSet that implements tiles found from here:
+ * http://www.lostgarden.com/2007/05/cutegod-prototyping-challenge.html
  */
 public class CuteTileSet implements TileSet {    
     private Map<String, Image> imageCache = new HashMap<String, Image>();    

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.ui;
 
 import kauhsa.sokoban.core.utils.Direction;
@@ -20,8 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.Log;
 
 /**
- *
- * @author mika
+ * Slick GameState for actual gameplay.
  */
 public class InGameState extends BasicGameState {
 
@@ -39,6 +34,11 @@ public class InGameState extends BasicGameState {
         return GameStates.IN_GAME.ordinal();
     }
 
+    /**
+     * Load SokobanGame to be played in this GameState.
+     * 
+     * @param game game to be played.
+     */
     public void loadGame(SokobanGame game) throws SlickException {
         this.game = game;
         worldRenderer = new WorldRenderer(game.getWorld(), new CuteTileSet());        

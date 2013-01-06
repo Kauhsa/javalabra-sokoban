@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.ui;
 
 import kauhsa.sokoban.game.SokobanGame;
@@ -21,8 +17,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.Log;
 
 /**
- *
- * @author mika
+ * Slick GameState for selecting the level to be played.
  */
 public class LevelMenuState extends BasicGameState {
     

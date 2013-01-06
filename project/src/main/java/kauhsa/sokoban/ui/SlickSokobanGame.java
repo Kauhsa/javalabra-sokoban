@@ -6,8 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 /**
- * Hello world!
- *
+ * Sokoban game implemented in Slick.
  */
 public class SlickSokobanGame extends StateBasedGame {
 

@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.ui.utils;
 
 /**
- *
- * @author mika
+ * Enum for different horizontal alignments.
  */
 public enum HorizontalAlignment {
     LEFT, MIDDLE, RIGHT;

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.ui.label;
 
 import kauhsa.sokoban.ui.utils.HorizontalAlignment;
@@ -11,8 +7,10 @@ import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 
 /**
- *
- * @author mika
+ * UI element for text.
+ * 
+ * Text can be shown in different colors and fonts - Label also supports
+ * different horizontal and vertical alignments.
  */
 public class Label {
 
@@ -108,7 +106,19 @@ public class Label {
 
         return sb.toString();
     }
-
+    
+    /**
+     * Render the label.
+     * 
+     * If the text is too long for the width given for label, it will be
+     * shortened - although with a bit crude method.
+     * 
+     * @param graphics Slick Graphics this label will be rendered to.
+     * @param x Leftmost coordinate.
+     * @param y Topmost coordinate.
+     * @param width Maximum width.
+     * @param height Maximum height.
+     */
     public void render(Graphics graphics, float x, float y, float width, float height) {
         this.width = width;
         this.height = height;

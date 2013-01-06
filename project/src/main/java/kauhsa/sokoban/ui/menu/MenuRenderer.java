@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.ui.menu;
 
 import kauhsa.sokoban.ui.label.Label;
@@ -12,8 +8,7 @@ import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 
 /**
- *
- * @author mika
+ * Class for rendering Menu.
  */
 public class MenuRenderer {
 
@@ -25,7 +20,12 @@ public class MenuRenderer {
     private Color activeColor = Color.yellow;
     private float height;
     private int currentScreenPosition = 0;
-
+    
+    /**
+     * Create a new MenuRenderer.
+     * 
+     * @param menu menu that will be rendered.
+     */
     public MenuRenderer(Menu menu) {
         this.menu = menu;
     }
@@ -102,6 +102,18 @@ public class MenuRenderer {
         return currentScreenPosition + menuItemsShown() - 1;
     }
 
+    /**
+     * Render a menu to Slick Graphics.
+     * 
+     * If there are too many menu items to fit on rendering area, menu will be
+     * scrolled so the selected item is always shown.
+     * 
+     * @param graphics Slick Graphics where the menu will be rendered.
+     * @param x Horizontal starting point for rendering.
+     * @param y Vertical starting point for rendering.
+     * @param width Maximum width of menu.
+     * @param height Maximum height of menu.
+     */
     public void render(Graphics graphics, float x, float y, float width, float height) {
         this.height = height;
         updateScreenToShowMenuItem(menu.getSelectedIndex());

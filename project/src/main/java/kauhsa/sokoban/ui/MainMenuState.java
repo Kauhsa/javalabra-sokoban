@@ -1,13 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.ui;
 
-import kauhsa.sokoban.game.SokobanGame;
-import kauhsa.sokoban.level.InvalidLevelException;
-import kauhsa.sokoban.level.Level;
-import kauhsa.sokoban.level.yaml.YAMLLevel;
 import kauhsa.sokoban.resources.FontLoader;
 import kauhsa.sokoban.ui.label.Label;
 import kauhsa.sokoban.ui.menu.Menu;
@@ -19,21 +11,18 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.UnicodeFont;
-import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.util.ResourceLoader;
 
 /**
- *
- * @author mika
+ * Slick GameState for the main menu, which is also the first State entered
+ * when the game launches.
  */
 public class MainMenuState extends BasicGameState {
 
     private final int EDGE_DISTANCE = 50;
     
-    Menu<MainMenuButtons> mainMenu = new Menu<MainMenuButtons>();
+    Menu<MainMenuItems> mainMenu = new Menu<MainMenuItems>();
     MenuRenderer menuRenderer;
     Label header;
 
@@ -56,8 +45,8 @@ public class MainMenuState extends BasicGameState {
         menuRenderer.setVerticalAlignment(VerticalAlignment.BOTTOM);
         menuRenderer.setHorizontalAlignment(HorizontalAlignment.RIGHT);       
         
-        mainMenu.addItem("Start", MainMenuButtons.START);   
-        mainMenu.addItem("Quit", MainMenuButtons.QUIT);     
+        mainMenu.addItem("Start", MainMenuItems.START);   
+        mainMenu.addItem("Quit", MainMenuItems.QUIT);     
     }
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
@@ -78,9 +67,9 @@ public class MainMenuState extends BasicGameState {
     }
 
     private void handleMenuSelection(GameContainer gc, StateBasedGame sbg) {
-        if (mainMenu.getSelected() == MainMenuButtons.START) {
+        if (mainMenu.getSelected() == MainMenuItems.START) {
             sbg.enterState(GameStates.LEVEL_MENU.ordinal());
-        } else if (mainMenu.getSelected() == MainMenuButtons.QUIT) {
+        } else if (mainMenu.getSelected() == MainMenuItems.QUIT) {
             gc.exit();
         }
     }

@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.ui.utils;
 
 /**
- *
- * @author mika
+ * Enum for different vertical alignments.
  */
 public enum VerticalAlignment {
     TOP, CENTER, BOTTOM;
