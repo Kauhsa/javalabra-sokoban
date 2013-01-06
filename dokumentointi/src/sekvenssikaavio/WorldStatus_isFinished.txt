@@ -1,0 +1,22 @@
+title WorldStatus.isFinished()
+
+caller -> this: isFinished()
+
+this -> boxPoints: new Set<Point>
+this -> world: boxObjects = getWorldObjectsOfType(WorldObjectType.BOX)    
+loop all boxObjects
+    this -> worldObject: position = getPosition()
+    this -> boxPoints: add(position)
+end
+
+this -> targetPoints: new Set<Point>    
+this -> world: boxTargetObjects = getWorldObjectsOfType(WorldObjectType.BOXTARGET)    
+loop all boxTargetObjects
+    this -> worldObject: position = getPosition()
+    this -> targetPoints: add(position)
+end
+
+this -> boxPoints: finished = containsAll(targetPoints)
+
+this -> caller: finished
+
