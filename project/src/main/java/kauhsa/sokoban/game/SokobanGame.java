@@ -57,7 +57,7 @@ public class SokobanGame {
      * @param direction wanted direction.
      * @param index player we want to move.
      */
-    public void movePlayer(Direction direction, int index) {
+    private void movePlayer(Direction direction, int index) {
         worldLoadedCheck();
         if (worldMovementHandler.move(getPlayer(0), direction)) {
             moveCount++;

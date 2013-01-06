@@ -2,6 +2,7 @@ metadata:
     name:   TestLevel
     author: Kauhsa
 world: |
-    @___#
-    ____#
-    __ox#
+    @_____#
+    ______#
+    __ox__#
+    ______#

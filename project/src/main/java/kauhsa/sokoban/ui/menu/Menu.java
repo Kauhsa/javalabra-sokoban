@@ -28,15 +28,19 @@ public class Menu<T> {
     }
     
     public T getSelected() {
-        return items.get(getSelectedIndex()).getItem();
+        if (getSelectedIndex() != -1) {
+            return items.get(getSelectedIndex()).getItem();
+        }
+        
+        return null;
     }
     
     public int getSelectedIndex() {
         if (currentSelection >= items.size()) {
             return items.size() - 1;
-        } else {            
-            return currentSelection;
-        }
+        }        
+        
+        return currentSelection;        
     }
     
     public ArrayList<MenuItem<T>> getItems() {
