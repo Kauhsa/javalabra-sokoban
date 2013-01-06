@@ -2,12 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package kauhsa.sokoban.ui.world;
+package kauhsa.sokoban.ui;
 
 import java.util.HashMap;
 import java.util.Map;
 import kauhsa.sokoban.core.WorldObject;
 import kauhsa.sokoban.core.WorldObjectType;
+import kauhsa.sokoban.ui.world.TileSet;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -15,10 +16,15 @@ import org.newdawn.slick.SlickException;
  *
  * @author mika
  */
-public class WorldObjectImage {    
-    private Map<String, Image> imageCache = new HashMap<String, Image>();
+public class CuteTileSet implements TileSet {    
+    private Map<String, Image> imageCache = new HashMap<String, Image>();    
     
-    public WorldObjectImage() throws SlickException {        
+    private final float TILE_WIDTH = 101;
+    private final float TILE_HEIGHT = 211;    
+    private final float TILE_HORIZONTAL_MOVE = 100;
+    private final float TILE_VERTICAL_MOVE = 80;
+    
+    public CuteTileSet() throws SlickException {        
         imageCache.put("FLOOR", new Image("tiles/Grass Block Resized.png"));
         imageCache.put("PLAYER", new Image("tiles/Character Princess Girl.png"));
         imageCache.put("WALL", new Image("tiles/Stone Block Tall Resized.png"));
@@ -26,6 +32,7 @@ public class WorldObjectImage {
         imageCache.put("BOXTARGET", new Image("tiles/Selector.png"));
     }
     
+    @Override
     public Image getImageForWorldObject(WorldObject worldObject) {
         WorldObjectType worldObjectType = worldObject.getType();
         if (worldObjectType == WorldObjectType.WALL) {
@@ -41,5 +48,21 @@ public class WorldObjectImage {
         } else {
             return imageCache.get("PLAYER");
         }
+    }
+
+    public float getTileWidth() {
+        return TILE_WIDTH;
+    }
+
+    public float getTileHeight() {
+        return TILE_HEIGHT;
+    }
+
+    public float getTileHorizontalMovement() {
+        return TILE_HORIZONTAL_MOVE;
+    }
+
+    public float getTileVerticalMovement() {
+        return TILE_VERTICAL_MOVE;
     }
 }

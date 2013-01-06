@@ -25,6 +25,10 @@ public class YAMLLevel implements Level {
         } catch (YAMLException e) {
             throw new InvalidYAMLLevelException("Invalid YAML data");
         }
+        
+        if (fileLevelData.getWorld() == null) {
+            throw new InvalidYAMLLevelException("No world data in level");
+        }
     }
 
     public World generateWorld() throws InvalidYAMLLevelException {

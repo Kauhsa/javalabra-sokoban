@@ -18,7 +18,7 @@ public class Label {
 
     private String text = "";
     private Font font = null;
-    private Color color = null;
+    private Color color = Color.white;
     private VerticalAlignment verticalAlignment = VerticalAlignment.TOP;
     private HorizontalAlignment horizontalAlignment = HorizontalAlignment.LEFT;
     private float width;
@@ -112,20 +112,23 @@ public class Label {
     public void render(Graphics graphics, float x, float y, float width, float height) {
         this.width = width;
         this.height = height;
-
+        setGraphicsFontAsFont(graphics);
+        
+        // Save old font and color so they can be restored after rendering
         Font oldFont = graphics.getFont();
-        if (font != null) {
-            graphics.setFont(font);
-        }
-
+        graphics.setFont(font);
         Color oldColor = graphics.getColor();
-        if (color != null) {
-            graphics.setColor(color);
-        }
-
+        graphics.setColor(color);
+        
         graphics.drawString(textShortedToWidth(), (int) getHorizontalPosition() + x, (int) getVerticalPosition() + y);
-
+        
         graphics.setFont(oldFont);
         graphics.setColor(oldColor);
+    }
+
+    private void setGraphicsFontAsFont(Graphics graphics) {
+        if (font == null) {
+            font = graphics.getFont();
+        }
     }
 }

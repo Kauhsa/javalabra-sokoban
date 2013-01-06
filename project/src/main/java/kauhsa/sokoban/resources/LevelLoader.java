@@ -27,8 +27,13 @@ public class LevelLoader {
         Scanner scanner = new Scanner(levelsFile);
         
         while (scanner.hasNextLine()) {
-            String currentResourceLocation = scanner.nextLine();
+            String currentResourceLocation = scanner.nextLine();            
+            if (currentResourceLocation.isEmpty()) {
+                continue;
+            }
+            
             InputStream currentResource = ResourceLoader.getResourceAsStream(currentResourceLocation);
+            
             try {
                 Level currentLevel = new YAMLLevel(currentResource);
                 levels.add(currentLevel);

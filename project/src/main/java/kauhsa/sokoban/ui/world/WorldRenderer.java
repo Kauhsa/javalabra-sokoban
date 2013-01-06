@@ -15,22 +15,19 @@ import org.newdawn.slick.SlickException;
  * @author mika
  */
 public class WorldRenderer {
-    private final float TILE_WIDTH = 101;
-    private final float TILE_HEIGHT = 211;
-    
-    private final float TILE_HORIZONTAL_MOVE = 100;
-    private final float TILE_VERTICAL_MOVE = 80;
     
     private final World world;
     private final WorldPointImages worldPointImages;
+    private final TileSet tileSet;
     
-    public WorldRenderer(World world) throws SlickException {
+    public WorldRenderer(World world, TileSet tileSet) throws SlickException {
         this.world = world;        
         this.worldPointImages = new WorldPointImages(world);
+        this.tileSet = tileSet;
     }
     
     private TilePositionManager initializeTilePositionManager(float x, float y, float width, float height) {
-        return new TilePositionManager(TILE_WIDTH, TILE_HEIGHT, TILE_HORIZONTAL_MOVE, TILE_VERTICAL_MOVE, width, height, this.world.getWidth(), this.world.getHeight());
+        return new TilePositionManager(tileSet, width, height, this.world.getWidth(), this.world.getHeight());
     }
     
     public void render(float x, float y, float width, float height) {

@@ -4,6 +4,7 @@
  */
 package kauhsa.sokoban.ui.world;
 
+import kauhsa.sokoban.ui.CuteTileSet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -21,11 +22,11 @@ import org.newdawn.slick.SlickException;
  */
 public class WorldPointImages {
     private final World world;
-    private final WorldObjectImage worldObjectImage;
+    private final CuteTileSet worldObjectImage;
     
     public WorldPointImages(World world) throws SlickException {
         this.world = world;
-        this.worldObjectImage = new WorldObjectImage();        
+        this.worldObjectImage = new CuteTileSet();        
     }
     
     public Image[] imagesInPoint(Point point) {

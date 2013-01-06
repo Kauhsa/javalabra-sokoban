@@ -45,7 +45,7 @@ public class LevelMenuState extends BasicGameState {
         levelMenuRenderer.render(grphcs, 50, 50, gc.getWidth() / 2 - 100, gc.getHeight() - 100);
         
         if (worldSampleRenderer != null) {
-            worldSampleRenderer.render(gc.getWidth() / 2 + 50, 50, gc.getWidth() / 2 - 100, gc.getHeight() / 2 - 100);
+            worldSampleRenderer.render(gc.getWidth() / 2 + 50, 50, gc.getWidth() / 2 - 100, gc.getHeight() - 100);
         }
     }
 
@@ -91,7 +91,7 @@ public class LevelMenuState extends BasicGameState {
 
     private void updateWorldSample() throws SlickException {
         try {
-            worldSampleRenderer = new WorldRenderer(levelMenu.getSelected().generateWorld());
+            worldSampleRenderer = new WorldRenderer(levelMenu.getSelected().generateWorld(), new CuteTileSet());
         } catch (InvalidLevelException ex) {
             Log.warn("Could not load level: " + ex.getMessage());
         }

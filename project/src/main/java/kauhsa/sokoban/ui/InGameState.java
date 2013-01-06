@@ -4,8 +4,6 @@
  */
 package kauhsa.sokoban.ui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import kauhsa.sokoban.core.utils.Direction;
 import kauhsa.sokoban.game.SokobanGame;
 import kauhsa.sokoban.level.InvalidLevelException;
@@ -43,7 +41,7 @@ public class InGameState extends BasicGameState {
 
     public void loadGame(SokobanGame game) throws SlickException {
         this.game = game;
-        worldRenderer = new WorldRenderer(game.getWorld());        
+        worldRenderer = new WorldRenderer(game.getWorld(), new CuteTileSet());        
         
         updateLevelTextLabel();
         updateMoveCountLabel();
@@ -107,7 +105,7 @@ public class InGameState extends BasicGameState {
     private void updateLevelTextLabel() {
         String name = game.getLevel().getMetadata("name");
         if (name == null) {
-            name = "(Untitled)";
+            name = "(Unnamed)";
         }
         levelNameLabel.setText("Level: " + name);
     }

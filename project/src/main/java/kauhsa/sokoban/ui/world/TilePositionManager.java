@@ -23,11 +23,11 @@ public class TilePositionManager {
     private float horizontalRenderPosition;
     private float verticalRenderPosition;
 
-    public TilePositionManager(float tileWidth, float tileHeight, float tileHorizontalMovement, float tileVerticalMovement, float canvasWidth, float canvasHeight, int worldWidth, int worldHeight) {
-        this.tileWidth = tileWidth;
-        this.tileHeight = tileHeight;
-        this.tileHorizontalMovement = tileHorizontalMovement;        
-        this.tileVerticalMovement = tileVerticalMovement;
+    public TilePositionManager(TileSet tileSet, float canvasWidth, float canvasHeight, int worldWidth, int worldHeight) {
+        this.tileWidth = tileSet.getTileWidth();
+        this.tileHeight = tileSet.getTileHeight();
+        this.tileHorizontalMovement = tileSet.getTileHorizontalMovement();        
+        this.tileVerticalMovement = tileSet.getTileVerticalMovement();
         this.canvasWidth = canvasWidth;
         this.canvasHeight = canvasHeight;
         this.worldWidth = worldWidth;
@@ -63,7 +63,7 @@ public class TilePositionManager {
     }
     
     public float getHorizontalTilePosition(int x) {
-        return (float) (Math.floor(horizontalRenderPosition) + (x * tileHorizontalMovement * scale));
+        return (float) Math.floor(horizontalRenderPosition) + (x * tileHorizontalMovement * scale);
     }
     
     public float getVerticalTilePosition(int y) {
