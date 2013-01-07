@@ -1,4 +1,4 @@
-package kauhsa.sokoban.ui.world;
+package kauhsa.sokoban.ui.cutetileset;
 
 import java.util.Comparator;
 import java.util.EnumMap;
@@ -9,11 +9,11 @@ import kauhsa.sokoban.core.WorldObjectType;
 /**
  * Comparator class that defines the rendering order between two WorldObjects.
  */
-public class WorldObjectOrderComparator implements Comparator<WorldObject> {
+public class CuteTileSetRenderOrderComparator implements Comparator<WorldObject> {
 
     private final Map<WorldObjectType, Integer> orderMap = new EnumMap<WorldObjectType, Integer>(WorldObjectType.class);
     
-    public WorldObjectOrderComparator() {
+    public CuteTileSetRenderOrderComparator() {
         orderMap.put(WorldObjectType.FLOOR, 1);
         orderMap.put(WorldObjectType.BOXTARGET, 2);
         orderMap.put(WorldObjectType.BOX, 3);

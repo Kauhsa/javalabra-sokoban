@@ -1,5 +1,6 @@
 package kauhsa.sokoban.ui.world;
 
+import java.util.Comparator;
 import kauhsa.sokoban.core.WorldObject;
 import org.newdawn.slick.Image;
 
@@ -53,4 +54,11 @@ public interface TileSet {
      * @return the difference in vertical axis between two tiles.
      */
     public float getTileVerticalMovement();
+    
+    /**
+     * Get Comparator that defines the rendering order of tiles.
+     * 
+     * @return Comparator of WorldObjects.
+     */
+    public Comparator<WorldObject> getRenderOrderComparator();
 }

@@ -21,7 +21,7 @@ public class WorldRenderer {
      */
     public WorldRenderer(World world, TileSet tileSet) throws SlickException {
         this.world = world;        
-        this.worldPointImages = new WorldPointImages(world);
+        this.worldPointImages = new WorldPointImages(world, tileSet);
         this.tileSet = tileSet;
     }
     

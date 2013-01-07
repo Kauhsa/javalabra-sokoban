@@ -5,7 +5,6 @@ import java.util.Set;
 import kauhsa.sokoban.core.World;
 import kauhsa.sokoban.core.WorldObject;
 import kauhsa.sokoban.core.utils.Point;
-import kauhsa.sokoban.ui.CuteTileSet;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -15,16 +14,16 @@ import org.newdawn.slick.SlickException;
  */
 public class WorldPointImages {
     private final World world;
-    private final TileSet worldObjectImage;
+    private final TileSet tileSet;
     
     /**
      * Create new WorldPointImages object.
      * 
      * @param world world rendered.
      */
-    public WorldPointImages(World world) throws SlickException {
+    public WorldPointImages(World world, TileSet tileSet) throws SlickException {
         this.world = world;
-        this.worldObjectImage = new CuteTileSet();        
+        this.tileSet = tileSet;
     }
     
     /**
@@ -40,11 +39,11 @@ public class WorldPointImages {
         WorldObject[] worldObjects = new WorldObject[worldObjectList.size()];
         worldObjects = world.getWorldObjectsInPoint(point).toArray(worldObjects);
         
-        Arrays.sort(worldObjects, new WorldObjectOrderComparator());
+        Arrays.sort(worldObjects, tileSet.getRenderOrderComparator());
 
         Image[] images = new Image[worldObjects.length];
         for (int i = 0; i < images.length; i++) {
-            images[i] = worldObjectImage.getImageForWorldObject(worldObjects[i]);
+            images[i] = tileSet.getImageForWorldObject(worldObjects[i]);
         }
         
         return images;

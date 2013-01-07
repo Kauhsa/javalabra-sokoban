@@ -1,5 +1,6 @@
-package kauhsa.sokoban.ui;
+package kauhsa.sokoban.ui.cutetileset;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import kauhsa.sokoban.core.WorldObject;
@@ -60,5 +61,9 @@ public class CuteTileSet implements TileSet {
 
     public float getTileVerticalMovement() {
         return TILE_VERTICAL_MOVE;
+    }
+
+    public Comparator<WorldObject> getRenderOrderComparator() {
+        return new CuteTileSetRenderOrderComparator();
     }
 }

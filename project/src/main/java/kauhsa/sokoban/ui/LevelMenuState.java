@@ -5,6 +5,7 @@ import kauhsa.sokoban.level.InvalidLevelException;
 import kauhsa.sokoban.level.Level;
 import kauhsa.sokoban.resources.FontLoader;
 import kauhsa.sokoban.resources.LevelLoader;
+import kauhsa.sokoban.ui.cutetileset.CuteTileSet;
 import kauhsa.sokoban.ui.menu.Menu;
 import kauhsa.sokoban.ui.menu.MenuRenderer;
 import kauhsa.sokoban.ui.world.WorldRenderer;

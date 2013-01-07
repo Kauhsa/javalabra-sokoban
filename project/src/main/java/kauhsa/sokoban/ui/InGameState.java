@@ -4,6 +4,7 @@ import kauhsa.sokoban.core.utils.Direction;
 import kauhsa.sokoban.game.SokobanGame;
 import kauhsa.sokoban.level.InvalidLevelException;
 import kauhsa.sokoban.resources.FontLoader;
+import kauhsa.sokoban.ui.cutetileset.CuteTileSet;
 import kauhsa.sokoban.ui.label.Label;
 import kauhsa.sokoban.ui.utils.HorizontalAlignment;
 import kauhsa.sokoban.ui.world.WorldRenderer;
