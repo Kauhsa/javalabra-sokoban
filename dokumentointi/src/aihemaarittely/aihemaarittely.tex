@@ -17,26 +17,20 @@ Sokoban on melko yksinkertainen, ruudukkopohjainen puzzle-peli, jossa ruudukossa
     
 Pelistä löytyy kunnollinen kuvaus wikipediasta: \url{http://en.wikipedia.org/wiki/Sokoban}
     
-\section*{Suunnitellut ominaisuudet}
+\section*{Ominaisuudet}
+Projekti koostuu muutamasta osiosta, joita voisi ajatella omiksi kokonaisuuksikseen:
 
-\subsection*{Keskeisimmät ominaisuudet}
+\subsection*{Sokoban-engine}
+Projektissa on toteutettu melko joustava Sokoban-engine, joka mahdollistaa monenlaisten erityyppisten objektien toteuttamisen helposti - esimerkkinä mainittakoon esimerkiksi kivet, joita voi työntää useamman kerralla tai vaikkapa lattia, johon ei voi työntää kiviä.
 
-Eli ominaisuudet, jotka nyt ainakin tulevat.
+Toteutettuna ei kuitenkaan ole kuin perus-Sokobanin eri objektit - olemassa olevan koodin pyörittelyyn ja viilaamiseen tuntui kuluvan pelottavan paljon aikaa ja päätin olla hamstraamatta ylimääräisiä ominaisuuksia.
 
-\begin{itemize}
-    \item Graafinen käyttöliittymä - todennäköisesti Slickillä
-    \item Kaikki tavallisen sokobanin ominaisuudet
-    \item Kenttien lataus tiedostosta
-\end{itemize}
+Engine tukee myös useampaa pelaajaobjektia, joista pelaaja voi valita liikuttamansa pelaajan, mutta tätä ei ole toteutettu käyttöliittymässä.
 
-\subsection*{Muut ominaisuudet}
+\subsection*{YAML-lataaja}
+Sokoban-engineen voi ladata kenttiä YAML-muotoisista tiedostoista. Kenttäformaatissa on pieniä rajoituksia - esimerkiksi laatikoiden maaleja ei voi laittaa alkutilanteessa laatikoiden alle.
 
-Jos jaksaa/löytyy motivaatiota/ehtii -osasto.
-
-\begin{itemize}
-    \item Highscore-lista
-    \item Useampi ohjattava hahmo - ruudukossa on siis useampi liikuteltava hahmo, ja pelaaja voi valita mitä niistä haluaa liikuttaa. Ei tarkoita siis moninpeliä. 
-    \item Omaperäisiä tilejä tavallisten Sokoban-tilejen lisäksi
-\end{itemize}
+\subsection*{Graafinen käyttöliittymä}
+Pelin graafinen käyttöliittymä on toteutettu Slickillä. Suurin osa käyttöliittymäkoodista koostuu erilaisista käyttöliittymäelementeistä - esimerkiksi valikko ja "label", joita voi hyvin käyttää tämän projektin ulkopuolellakin. Käyttöliittymäelementit ovat melko monipuolisia, ja tukevat esimerkiksi keskittämistä mihin tahansa reunaan pysty- ja vaakatasossa.
 
 \end{document}
