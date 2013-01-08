@@ -41,7 +41,7 @@ public class LevelMenuState extends BasicGameState {
         levelMenuRenderer.render(grphcs, 50, 50, gc.getWidth() / 2 - 100, gc.getHeight() - 100);
 
         if (worldSampleRenderer != null) {
-            worldSampleRenderer.render(gc.getWidth() / 2 + 50, 50, gc.getWidth() / 2 - 100, gc.getHeight() - 100);
+            worldSampleRenderer.render(grphcs, gc.getWidth() / 2 + 50, 50, gc.getWidth() / 2 - 100, gc.getHeight() - 100);
         }
     }
 

@@ -49,7 +49,7 @@ public class InGameState extends BasicGameState {
             return;
         }
 
-        this.worldRenderer.render(25, 50, gc.getWidth() - 50, gc.getHeight() - 75);
+        this.worldRenderer.render(grphcs, 25, 50, gc.getWidth() - 50, gc.getHeight() - 75);
         this.levelNameLabel.render(grphcs, 50, 50, gc.getWidth() / 2 - 50, 50);
         this.moveCountLabel.render(grphcs, gc.getWidth() / 2 + 50, 50, gc.getWidth() / 2 - 100, 50);
     }

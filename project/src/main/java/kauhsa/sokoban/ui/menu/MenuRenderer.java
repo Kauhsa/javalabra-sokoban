@@ -1,22 +1,17 @@
 package kauhsa.sokoban.ui.menu;
 
+import kauhsa.sokoban.ui.elements.UIElement;
 import kauhsa.sokoban.ui.label.Label;
-import kauhsa.sokoban.ui.utils.HorizontalAlignment;
 import kauhsa.sokoban.ui.utils.VerticalAlignment;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
 
 /**
  * Class for rendering Menu.
  */
-public class MenuRenderer {
+public class MenuRenderer extends UIElement {
 
     private final Menu menu;
-    private Font font = null;
-    private VerticalAlignment verticalAlignment = VerticalAlignment.TOP;
-    private HorizontalAlignment horizontalAlignment = HorizontalAlignment.LEFT;
-    private Color inactiveColor = Color.white;
     private Color activeColor = Color.yellow;
     private float height;
     private int currentScreenPosition = 0;
@@ -34,44 +29,12 @@ public class MenuRenderer {
         return menu;
     }
 
-    public Font getFont() {
-        return font;
-    }
-
-    public Color getInactiveColor() {
-        return inactiveColor;
-    }
-
     public Color getActiveColor() {
         return activeColor;
     }
 
-    public void setFont(Font font) {
-        this.font = font;
-    }
-
-    public void setInactiveColor(Color inactiveColor) {
-        this.inactiveColor = inactiveColor;
-    }
-
     public void setActiveColor(Color activeColor) {
         this.activeColor = activeColor;
-    }
-
-    public VerticalAlignment getVerticalAlignment() {
-        return verticalAlignment;
-    }
-
-    public void setVerticalAlignment(VerticalAlignment verticalAlignment) {
-        this.verticalAlignment = verticalAlignment;
-    }
-
-    public HorizontalAlignment getHorizontalAlignment() {
-        return horizontalAlignment;
-    }
-
-    public void setHorizontalAlignment(HorizontalAlignment horizontalAlignment) {
-        this.horizontalAlignment = horizontalAlignment;
     }
 
     /**
@@ -160,7 +123,7 @@ public class MenuRenderer {
             if (menuItemIndex == menu.getSelectedIndex()) {
                 label.setColor(activeColor);
             } else {
-                label.setColor(inactiveColor);
+                label.setColor(color);
             }
 
             float verticalRenderPosition = getMenuItemVerticalPosition(menuItemIndex);

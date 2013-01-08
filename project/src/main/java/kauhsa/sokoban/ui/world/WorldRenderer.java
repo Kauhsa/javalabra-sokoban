@@ -2,13 +2,15 @@ package kauhsa.sokoban.ui.world;
 
 import kauhsa.sokoban.core.World;
 import kauhsa.sokoban.core.utils.Point;
+import kauhsa.sokoban.ui.elements.UIElement;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
  * Class for rendering a world.
  */
-public class WorldRenderer {    
+public class WorldRenderer extends UIElement {    
     private final World world;
     private final WorldPointImages worldPointImages;
     private final TileSet tileSet;
@@ -25,7 +27,7 @@ public class WorldRenderer {
         this.tileSet = tileSet;
     }
     
-    private TilePositionManager initializeTilePositionManager(float x, float y, float width, float height) {
+    private TilePositionManager initializeTilePositionManager(float width, float height) {
         return new TilePositionManager(tileSet, width, height, this.world.getWidth(), this.world.getHeight());
     }
     
@@ -37,8 +39,8 @@ public class WorldRenderer {
      * @param width width of rendered world.
      * @param height height of rendered world.
      */
-    public void render(float x, float y, float width, float height) {
-        TilePositionManager tilePositionManager = initializeTilePositionManager(x, y, width, height);        
+    public void render(Graphics graphics, float x, float y, float width, float height) {
+        TilePositionManager tilePositionManager = initializeTilePositionManager(width, height);        
         float scale = tilePositionManager.getScale();      
         
         for (Point point : world.getPoints()) {
@@ -50,5 +52,4 @@ public class WorldRenderer {
             }
         }        
     }
-
 }
