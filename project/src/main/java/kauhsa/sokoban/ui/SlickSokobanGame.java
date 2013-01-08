@@ -1,5 +1,6 @@
 package kauhsa.sokoban.ui;
 
+import kauhsa.sokoban.resources.LevelLoader;
 import kauhsa.sokoban.ui.gamestates.InGameState;
 import kauhsa.sokoban.ui.gamestates.LevelDoneState;
 import kauhsa.sokoban.ui.gamestates.LevelMenuState;
@@ -17,6 +18,8 @@ public class SlickSokobanGame extends StateBasedGame {
     public static final int WINDOW_WIDTH = 1024;
     public static final int WINDOW_HEIGHT = 768;
     public static final String WINDOW_TITLE = "Sokoban!";
+    
+    private static final String LEVELS_RESOURCE_LOCATION = "levels/levels.txt";
 
     public SlickSokobanGame() {
         super(WINDOW_TITLE);
@@ -32,7 +35,7 @@ public class SlickSokobanGame extends StateBasedGame {
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {        
         this.addState(new MainMenuState());
-        this.addState(new LevelMenuState());
+        this.addState(new LevelMenuState(LevelLoader.getLevels(LEVELS_RESOURCE_LOCATION)));
         this.addState(new InGameState());
         this.addState(new LevelDoneState());
         

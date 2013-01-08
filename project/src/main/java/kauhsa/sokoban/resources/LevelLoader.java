@@ -15,16 +15,15 @@ import org.newdawn.slick.util.ResourceLoader;
  */
 public class LevelLoader {
 
-    private static final String LEVELS_RESOURCE_LOCATION = "levels/levels.txt";
-
     /**
      * Get List of Levels bundled with the game.
      *
+     * @param levelsResourceLocation resource location of levels file
      * @return List of Level objects.
      */
-    public static List<Level> getLevels() {
+    public static List<Level> getLevels(String levelsResourceLocation) {
         ArrayList<Level> levels = new ArrayList<Level>();
-        Scanner scanner = getLevelResourceScanner();
+        Scanner scanner = getLevelResourceScanner(levelsResourceLocation);
 
         while (scanner.hasNextLine()) {
             String currentResourceLocation = scanner.nextLine();
@@ -42,11 +41,12 @@ public class LevelLoader {
     /**
      * Get scanner containing the lines from file listing all levels in the
      * game.
-     *
+     * 
+     * @param levelsResourceLocation resource location of levels file
      * @return Scanner containing lines of level resource locations.
      */
-    private static Scanner getLevelResourceScanner() {
-        InputStream levelsFile = ResourceLoader.getResourceAsStream(LEVELS_RESOURCE_LOCATION);
+    private static Scanner getLevelResourceScanner(String levelsResourceLocation) {
+        InputStream levelsFile = ResourceLoader.getResourceAsStream(levelsResourceLocation);
         Scanner scanner = new Scanner(levelsFile);
         return scanner;
     }

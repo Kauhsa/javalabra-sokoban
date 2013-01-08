@@ -1,5 +1,6 @@
 package kauhsa.sokoban.ui.gamestates;
 
+import java.util.List;
 import kauhsa.sokoban.game.SokobanGame;
 import kauhsa.sokoban.level.InvalidLevelException;
 import kauhsa.sokoban.level.Level;
@@ -22,10 +23,19 @@ import org.newdawn.slick.util.Log;
  */
 public class LevelMenuState extends BasicGameState {
 
+    final List<Level> levels;
     Menu<Level> levelMenu = new Menu<Level>();
     MenuRenderer levelMenuRenderer = new MenuRenderer(levelMenu);
     WorldRenderer worldSampleRenderer = null;
-
+    
+    /**
+     * Create a new LevelMenuState.
+     * @param levels levels to be shown in menu
+     */
+    public LevelMenuState(List<Level> levels) {
+        this.levels = levels;
+    }
+    
     @Override
     public int getID() {
         return GameStates.LEVEL_MENU.ordinal();
@@ -66,7 +76,7 @@ public class LevelMenuState extends BasicGameState {
      * Load the levels of the game to menu.
      */
     private void populateLevelMenu() {
-        for (Level level : LevelLoader.getLevels()) {
+        for (Level level : levels) {
             String name = level.getMetadata("name");
             if (name != null) {
                 levelMenu.addItem(level.getMetadata("name"), level);
