@@ -1,4 +1,4 @@
-package kauhsa.sokoban.ui;
+package kauhsa.sokoban.ui.gamestates;
 
 import kauhsa.sokoban.core.utils.Direction;
 import kauhsa.sokoban.game.SokobanGame;

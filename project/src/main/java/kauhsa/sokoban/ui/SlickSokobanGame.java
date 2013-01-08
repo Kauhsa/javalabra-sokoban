@@ -1,5 +1,9 @@
 package kauhsa.sokoban.ui;
 
+import kauhsa.sokoban.ui.gamestates.MainMenuState;
+import kauhsa.sokoban.ui.gamestates.LevelMenuState;
+import kauhsa.sokoban.ui.gamestates.LevelDoneState;
+import kauhsa.sokoban.ui.gamestates.InGameState;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;

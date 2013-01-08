@@ -45,6 +45,10 @@ public class TilePositionManager {
         this.calculate();
     }
 
+    /**
+     * Calculate scale and some offsets using the information given on
+     * constructor.
+     */
     private void calculate() {
         float worldPixelWidth = (worldWidth - 1) * tileHorizontalMovement + tileWidth;
         float worldPixelHeight = (worldHeight - 1) * tileVerticalMovement + tileHeight;

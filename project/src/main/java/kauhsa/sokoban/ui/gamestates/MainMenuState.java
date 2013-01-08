@@ -1,4 +1,4 @@
-package kauhsa.sokoban.ui;
+package kauhsa.sokoban.ui.gamestates;
 
 import kauhsa.sokoban.resources.FontLoader;
 import kauhsa.sokoban.ui.label.Label;

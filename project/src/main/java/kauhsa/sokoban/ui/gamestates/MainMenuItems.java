@@ -1,4 +1,4 @@
-package kauhsa.sokoban.ui;
+package kauhsa.sokoban.ui.gamestates;
 
 /**
  * Enum for different selections in main menu.
