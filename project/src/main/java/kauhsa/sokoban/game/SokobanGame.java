@@ -35,18 +35,32 @@ public class SokobanGame {
         worldStatus = new WorldStatus(world);
     }
 
+    /**
+     * Throw an IllegalStateException if Game does not have a World set.
+     * 
+     * @throws IllegalStateException if world is not set.
+     */
     private void worldLoadedCheck() {
         if (world == null) {
             throw new IllegalStateException("World is not initalized");
         }
     }
 
+    /**
+     * Update the finished status of the game.
+     */
     private void updateIsFinished() {
         if (!isFinished && worldStatus.isFinished()) {
             isFinished = true;
         }
     }
 
+    /**
+     * Get the specific player WorldObject in World.
+     * 
+     * @param index index of the returned player.
+     * @return player WorldObject.
+     */
     private WorldObject getPlayer(int index) {
         return world.getWorldObjectsOfType(WorldObjectType.PLAYER).get(index);
     }
@@ -98,13 +112,24 @@ public class SokobanGame {
         return isFinished;
     }
 
+    /**
+     * Get the Level currently loaded to this game.
+     * 
+     * @return Level currently loaded to this game.
+     */
     public Level getLevel() {
         return level;
     }
 
+    /**
+     * Get the amount of moves player has done.
+     * 
+     * Moves that don't actually do anything - for example, trying to move
+     * through wall - do not increase moveCount.
+     * 
+     * @return 
+     */
     public int getMoveCount() {
         return moveCount;
     }
-    
-    
 }

@@ -82,24 +82,24 @@ public class Point {
      * 
      * @param direction direction we want to apply.
      * @return new Point an one unit away in defined direction.
-     * @throws IllegalArgumentException if new Point would be invalid -in other
+     * @throws IllegalArgumentException if new Point would be invalid - in other
      * words, it's x or y would be invalid.
      */
     public Point applyDirection(Direction direction) {
-        int x = this.getX();
-        int y = this.getY();
+        int newX = this.getX();
+        int newY = this.getY();
 
         if (direction == Direction.DOWN) {
-            y++;
+            newY++;
         } else if (direction == Direction.UP) {
-            y--;
+            newY--;
         } else if (direction == Direction.LEFT) {
-            x--;
+            newX--;
         } else if (direction == Direction.RIGHT) {
-            x++;
+            newX++;
         }
 
-        return new Point(x, y);
+        return new Point(newX, newY);
     }
 
     /**

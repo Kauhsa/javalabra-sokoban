@@ -22,6 +22,12 @@ public class FontLoader {
         return loadSlickFont(awtFont);        
     }
     
+    /**
+     * Load the Ascii glyphs for Slick font from Awt font and return Slick font.
+     * 
+     * @param awtFont font Awt font used for loading Slick font.
+     * @return Slick font.
+     */
     private static UnicodeFont loadSlickFont(java.awt.Font awtFont) throws SlickException {
         UnicodeFont font = new UnicodeFont(awtFont);
         font.addAsciiGlyphs();

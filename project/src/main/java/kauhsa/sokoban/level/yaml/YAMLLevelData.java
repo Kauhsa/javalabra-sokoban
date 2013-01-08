@@ -3,10 +3,11 @@ package kauhsa.sokoban.level.yaml;
 import java.util.Map;
 
 /**
- * Helper class for SnakeYAML library, which will use this to load YAML data to
- * memory.
+ * Helper class for SnakeYAML library, which will use this class to load YAML
+ * data to memory.
  */
 public class YAMLLevelData {
+
     private Map<String, String> metadata;
     private String world;
 
@@ -14,7 +15,7 @@ public class YAMLLevelData {
         if (metadata == null) {
             return null;
         }
-        
+
         return metadata.get(key);
     }
 

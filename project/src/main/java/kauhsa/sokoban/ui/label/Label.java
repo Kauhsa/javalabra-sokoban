@@ -62,14 +62,30 @@ public class Label {
         this.horizontalAlignment = horizontalAlignment;
     }
 
+    /**
+     * Get width of current text in pixels.
+     * 
+     * @return width of current text using currently set font.
+     */
     private float getTextWidth() {
         return font.getWidth(text);
     }
 
+    /**
+     * Get height of current text in pixels.
+     * 
+     * @return height of current text using currently set font.
+     */
     private float getTextHeight() {
         return font.getHeight(text);
     }
 
+    /**
+     * Get vertical rendering position of text, depending on currently set
+     * vertical alignment.
+     * 
+     * @return vertical rendering position of text.
+     */
     private float getVerticalPosition() {
         if (verticalAlignment == VerticalAlignment.TOP) {
             return 0;
@@ -80,6 +96,12 @@ public class Label {
         }
     }
 
+    /**
+     * Get horizontal rendering position of text, depending on currently set
+     * horizontal alignment.
+     * 
+     * @return horizontal rendering position of text.
+     */
     private float getHorizontalPosition() {
         if (horizontalAlignment == HorizontalAlignment.LEFT) {
             return 0;
@@ -89,7 +111,12 @@ public class Label {
             return width - getTextWidth();
         }
     }
-
+    
+    /**
+     * Shorten currently text set so it fits to width of this Label.
+     * 
+     * @return text shortened for width of the Label.
+     */
     private String textShortedToWidth() {
         if (font.getWidth(text) <= width) {
             return text;
@@ -136,6 +163,11 @@ public class Label {
         graphics.setColor(oldColor);
     }
 
+    /**
+     * If no font is set for this Label, use the current font of Graphics.
+     *      
+     * @param graphics currently used Slick Graphics.
+     */
     private void setGraphicsFontAsFont(Graphics graphics) {
         if (font == null) {
             font = graphics.getFont();

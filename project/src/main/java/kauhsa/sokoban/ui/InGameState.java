@@ -26,10 +26,6 @@ public class InGameState extends BasicGameState {
     private Label levelNameLabel = null;
     private Label moveCountLabel = null;
 
-    public InGameState() {
-        super();
-    }
-
     @Override
     public int getID() {
         return GameStates.IN_GAME.ordinal();
@@ -95,6 +91,9 @@ public class InGameState extends BasicGameState {
         levelNameLabel.setFont(FontLoader.loadAwtFontToSlick("Ubuntu", 0, 30));
     }
 
+    /**
+     * Load the currently loaded SokobanGame again.
+     */
     private void restart() throws SlickException {
         try {
             loadGame(new SokobanGame(game.getLevel()));
@@ -103,10 +102,16 @@ public class InGameState extends BasicGameState {
         }
     }
 
+    /**
+     * Update the label showing current move count.
+     */
     private void updateMoveCountLabel() {
         moveCountLabel.setText("Moves: " + game.getMoveCount());
     }
 
+    /**
+     * Update the label showing current level name.
+     */
     private void updateLevelTextLabel() {
         String name = game.getLevel().getMetadata("name");
         if (name == null) {

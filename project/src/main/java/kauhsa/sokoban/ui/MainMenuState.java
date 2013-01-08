@@ -66,6 +66,12 @@ public class MainMenuState extends BasicGameState {
         }
     }
 
+    /**
+     * Do whatever actions are appropriate for current menu selection.
+     * 
+     * @param gc current GameContainer.
+     * @param sbg current StateBasedGame.
+     */
     private void handleMenuSelection(GameContainer gc, StateBasedGame sbg) {
         if (mainMenu.getSelected() == MainMenuItems.START) {
             sbg.enterState(GameStates.LEVEL_MENU.ordinal());

@@ -11,7 +11,7 @@ import kauhsa.sokoban.core.utils.PointIterator;
 
 /**
  * Represents two-dimensional grid, where each square can contain one or more
- * {@link WorldObject}s.
+ * {@link WorldObject} objects.
  */
 public class World {
     private static final int INITIAL_CAPACITY_FOR_EACH_TYPE = 50;
@@ -43,6 +43,10 @@ public class World {
         InitalizeWorldObjectGrid();
     }
 
+    /**
+     * Initalize worldObjectsByType to contain an empty List for every
+     * WorldObjectType that exist.
+     */
     private void InitalizeWorldObjectsByType() {
         worldObjectsByType = new EnumMap<WorldObjectType, List<WorldObject>>(WorldObjectType.class);
         
@@ -51,6 +55,10 @@ public class World {
         }
     }
     
+    /**
+     * Initalize worldObjectGrid to contain an empty Set for every point
+     * in world.
+     */
     private void InitalizeWorldObjectGrid() {
         worldObjectGrid = new Set[this.width][this.height];
         
@@ -120,25 +128,51 @@ public class World {
         return new PointIterator(this.width, this.height);
     }
     
+    /**
+     * Raise an IllegalArgumentException if Point is null.
+     *
+     * @param point Point to be checked.
+     * @throws IllegalArgumentException if argument point is null
+     */
     private void pointNullCheck(Point point) {
         if (point == null) {
             throw new IllegalArgumentException("Point can not be null");
         }
     }
     
-    private void worldObjectNullCheck(WorldObject wo) {
-        if (wo == null) {
+    /**
+     * Raise an IllegalArgumentException if WorldObject is null.
+     * 
+     * @param worldObject WorldObject to be checked.
+     * @throws IllegalArgumentException if argument worldObject is null.
+     */
+    private void worldObjectNullCheck(WorldObject worldObject) {
+        if (worldObject == null) {
             throw new IllegalArgumentException("WorldObject can not be null");
         }
     }
     
-    private void worldObjectInThisWorldCheck(WorldObject wo) {
-        worldObjectNullCheck(wo);
-        if (wo.getWorld() != this) {
+    /**
+     * Raise an IllegalArgumentException is WorldObject is in other world than
+     * this.
+     * 
+     * @param worldObject WorldObject to be checked.
+     * @throws IllegalArgumentException if argument worldObject is not in this
+     * world.
+     */
+    private void worldObjectInThisWorldCheck(WorldObject worldObject) {
+        worldObjectNullCheck(worldObject);
+        if (worldObject.getWorld() != this) {
             throw new IllegalArgumentException("WorldObject must be bound to this World");
         }
     }
     
+    /**
+     * Raise an IllegalArgumentException if Point is not in this world.
+     * 
+     * @param point Point to be checked.
+     * @throws IllegalArgumentException if argument point is not in this world.
+     */
     private void pointInThisWorldCheck(Point point) {
         pointNullCheck(point);
         if (!isPointInWorld(point)) {

@@ -47,7 +47,14 @@ public class WorldMovementHandler {
         // Otherwise we will try pushing it instead
         return push(worldObject, direction);
     }
-
+    
+    /**
+     * Try to push a WorldObject to specific Direction.
+     * 
+     * @param worldObject worldObject to be pushed.
+     * @param direction direction where worldObject is pushed to.
+     * @return true if worldObject was pushed successfully, otherwise false.
+     */
     private boolean push(WorldObject worldObject, Direction direction) {
         /*
          * There are some problems in this pushing system - if there is
@@ -90,10 +97,28 @@ public class WorldMovementHandler {
             return false;
         }
     }
-
+    
+    /**
+     * Check if any WorldObject in the Point worldObject would be moved to
+     * resists movement.
+     * 
+     * Also checks if there is any objects at all in the new location - if so,
+     * don't allow movement.
+     * 
+     * @param worldObject WorldObject that would be moved.
+     * @param direction Direction that worldObject would be moved.
+     * @return true if it is fine to move the worldObject to wanted direction,
+     * otherwise false.
+     */
     private boolean checkIfMovementPossible(WorldObject worldObject, Direction direction) {
         Point adjacentPoint = worldObject.getPosition().applyDirection(direction);
 
+        // If the point is empty and there are absolutely no objects, don't
+        // allow moving
+        if (world.getWorldObjectsInPoint(adjacentPoint).isEmpty()) {
+            return false;
+        }
+        
         // Check if object can be in the space next to it without pushing
         boolean canMove = true;
         for (WorldObject adjacentWorldObject : world.getWorldObjectsInPoint(adjacentPoint)) {
@@ -105,22 +130,22 @@ public class WorldMovementHandler {
         return canMove;
     }
 
-    private boolean isAdjacentPointValid(Point currentPoint, Direction direction) {
+    /**
+     * Check if the Point next to Point given as parameter is inside the bounds
+     * of the world.
+     * 
+     * @param point Point whose neighbor is checked.
+     * @param direction Direction where the neighbor Point is.
+     * @return true if the neighbor point is inside the world, otherwise false.
+     */
+    private boolean isAdjacentPointValid(Point point, Direction direction) {
         // The point where we are trying to more is negative
-        if (currentPoint.wouldAppliedDirectionBeInvalid(direction)) {
+        if (point.wouldAppliedDirectionBeInvalid(direction)) {
             return false;
         }
-        
-        Point adjacentPoint = currentPoint.applyDirection(direction);
         
         // The point where we are trying to move is out of the bounds
-        if (!world.isPointInWorld(adjacentPoint)) {
-            return false;
-        }
-        
-        // If the point is empty and there are absolutely no objects, don't
-        // allow moving
-        if (world.getWorldObjectsInPoint(adjacentPoint).isEmpty()) {
+        if (!world.isPointInWorld(point.applyDirection(direction))) {
             return false;
         }
         

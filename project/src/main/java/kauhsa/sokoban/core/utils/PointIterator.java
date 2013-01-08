@@ -41,10 +41,18 @@ public class PointIterator implements Iterable<Point>, Iterator<Point> {
         return hasNext;
     }
     
+    /**
+     * Create a Point from the internal state of iterator.
+     * 
+     * @return new Point.
+     */
     private Point pointFromCurrentPosition() {
         return new Point(currentX, currentY);
     }
     
+    /**
+     * Update the internal state of iterator.
+     */
     private void advance() {
         if (currentX >= width - 1) {
             currentX = 0;

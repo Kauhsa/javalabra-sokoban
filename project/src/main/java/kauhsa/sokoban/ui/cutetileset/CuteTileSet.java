@@ -21,6 +21,11 @@ public class CuteTileSet implements TileSet {
     private final float TILE_HORIZONTAL_MOVE = 100;
     private final float TILE_VERTICAL_MOVE = 80;
     
+    /**
+     * Create a new CuteTileSet and load images to cache.
+     * 
+     * @throws SlickException if something goes wrong when loading Images.
+     */
     public CuteTileSet() throws SlickException {        
         imageCache.put("FLOOR", new Image("tiles/Grass Block Resized.png"));
         imageCache.put("PLAYER", new Image("tiles/Character Princess Girl.png"));

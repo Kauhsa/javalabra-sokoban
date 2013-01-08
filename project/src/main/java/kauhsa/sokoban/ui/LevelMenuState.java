@@ -21,7 +21,7 @@ import org.newdawn.slick.util.Log;
  * Slick GameState for selecting the level to be played.
  */
 public class LevelMenuState extends BasicGameState {
-    
+
     Menu<Level> levelMenu = new Menu<Level>();
     MenuRenderer levelMenuRenderer = new MenuRenderer(levelMenu);
     WorldRenderer worldSampleRenderer = null;
@@ -39,7 +39,7 @@ public class LevelMenuState extends BasicGameState {
 
     public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
         levelMenuRenderer.render(grphcs, 50, 50, gc.getWidth() / 2 - 100, gc.getHeight() - 100);
-        
+
         if (worldSampleRenderer != null) {
             worldSampleRenderer.render(gc.getWidth() / 2 + 50, 50, gc.getWidth() / 2 - 100, gc.getHeight() - 100);
         }
@@ -61,6 +61,9 @@ public class LevelMenuState extends BasicGameState {
         }
     }
 
+    /**
+     * Load the levels of the game to menu.
+     */
     private void populateLevelMenu() {
         for (Level level : LevelLoader.getLevels()) {
             String name = level.getMetadata("name");
@@ -72,11 +75,17 @@ public class LevelMenuState extends BasicGameState {
         }
     }
 
+    /**
+     * Do whatever actions are appropriate for current menu selection.
+     *
+     * @param gc current GameContainer.
+     * @param sbg current StateBasedGame.
+     */
     private void handleMenuSelection(GameContainer gc, StateBasedGame sbg) {
         try {
-            SokobanGame game = new SokobanGame(levelMenu.getSelected());            
+            SokobanGame game = new SokobanGame(levelMenu.getSelected());
             InGameState inGameState = (InGameState) sbg.getState(GameStates.IN_GAME.ordinal());
-            inGameState.loadGame(game);            
+            inGameState.loadGame(game);
             sbg.enterState(inGameState.getID());
         } catch (InvalidLevelException ex) {
             Log.warn("Could not load level: " + ex.getMessage());
@@ -85,6 +94,9 @@ public class LevelMenuState extends BasicGameState {
         }
     }
 
+    /**
+     * Update the image of currently selected level.
+     */
     private void updateWorldSample() throws SlickException {
         try {
             worldSampleRenderer = new WorldRenderer(levelMenu.getSelected().generateWorld(), new CuteTileSet());
@@ -92,5 +104,4 @@ public class LevelMenuState extends BasicGameState {
             Log.warn("Could not load level: " + ex.getMessage());
         }
     }
-    
 }

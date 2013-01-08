@@ -51,6 +51,13 @@ public abstract class WorldObject {
      */
     public abstract boolean canPush(WorldObject worldObject);
     
+    /**
+     * Set the World of this WorldObject.
+     * 
+     * @param world World to be set to this WorldObject.
+     * @throws IllegalArgumentException if world is null.
+     * @throws IllegalStateException if WorldObject already has a world set.
+     */
     protected void setWorld(World world) {
         if (this.world != null) {
             throw new IllegalStateException("The world can be assigned only once");
@@ -61,6 +68,13 @@ public abstract class WorldObject {
         this.world = world;
     }
     
+    /**
+     * Set the position of this WorldObject.
+     * 
+     * @param point the position of this WorldObject.
+     * @throws IllegalStateException WorldObject does not have World set.
+     * @throws IllegalArgumentException Point is not valid for the set World.
+     */
     protected void setPosition(Point point) {
         if (this.world == null) {
             throw new IllegalStateException("The world is not set for this WorldObject");
@@ -95,7 +109,7 @@ public abstract class WorldObject {
      * Just a convenience method - you can use relocateWorldObject in {@link
      * World} instead.
      * 
-     * @see World.relocateWorldObject
+     * @see World#relocateWorldObject(WorldObject, Point) 
      */
     public void relocate(Point point) {
         this.world.relocateWorldObject(this, point);

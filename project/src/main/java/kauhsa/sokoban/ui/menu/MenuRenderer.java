@@ -20,10 +20,10 @@ public class MenuRenderer {
     private Color activeColor = Color.yellow;
     private float height;
     private int currentScreenPosition = 0;
-    
+
     /**
      * Create a new MenuRenderer.
-     * 
+     *
      * @param menu menu that will be rendered.
      */
     public MenuRenderer(Menu menu) {
@@ -74,6 +74,13 @@ public class MenuRenderer {
         this.horizontalAlignment = horizontalAlignment;
     }
 
+    /**
+     * Get the vertical rendering position of specific menu item. This applies
+     * whatever vertical alignment is set for MenuRenderer.
+     *
+     * @param index index of the wanted menu item.
+     * @return vertical rendering position of menu item.
+     */
     private float getMenuItemVerticalPosition(int index) {
         float verticalOffset = 0;
 
@@ -86,28 +93,51 @@ public class MenuRenderer {
         return singleMenuItemHeight() * (index - currentScreenPosition) + verticalOffset;
     }
 
+    /**
+     * Get height of one menu item.
+     *
+     * @return height of one menu item in pixels.
+     */
     private int singleMenuItemHeight() {
         return font.getLineHeight();
     }
-    
+
+    /**
+     * Return the amount of menu items that can be rendered to screen at the
+     * same time.
+     * 
+     * It is guaranteed that at least one menu item can be rendered to screen.
+     *
+     * @return amount of menu items that currently fit to screen.
+     */
     private int menuItemsFit() {
         return Math.max((int) height / singleMenuItemHeight(), 1);
     }
 
+    /**
+     * Get the amount of menu items that are shown on the screen.
+     * 
+     * @return amount of menu items rendered.
+     */
     private int menuItemsShown() {
         return Math.min(menuItemsFit(), menu.getItemCount());
     }
 
+    /**
+     * Get the index of last shown menu item.
+     * 
+     * @return index of last shown menu item.
+     */
     private int lastShownMenuItemIndex() {
         return currentScreenPosition + menuItemsShown() - 1;
     }
 
     /**
      * Render a menu to Slick Graphics.
-     * 
+     *
      * If there are too many menu items to fit on rendering area, menu will be
      * scrolled so the selected item is always shown.
-     * 
+     *
      * @param graphics Slick Graphics where the menu will be rendered.
      * @param x Horizontal starting point for rendering.
      * @param y Vertical starting point for rendering.
@@ -138,11 +168,16 @@ public class MenuRenderer {
         }
     }
 
-    private void updateScreenToShowMenuItem(int newSelectedIndex) {
-        if (newSelectedIndex < currentScreenPosition) {
-            currentScreenPosition = newSelectedIndex;
-        } else if (newSelectedIndex > lastShownMenuItemIndex()) {
-            currentScreenPosition = newSelectedIndex - menuItemsFit() + 1;
+    /**
+     * Update the position of menu to show a specific menu item.
+     * 
+     * @param menuItemIndex index of menu item to be shown on menu.
+     */
+    private void updateScreenToShowMenuItem(int menuItemIndex) {
+        if (menuItemIndex < currentScreenPosition) {
+            currentScreenPosition = menuItemIndex;
+        } else if (menuItemIndex > lastShownMenuItemIndex()) {
+            currentScreenPosition = menuItemIndex - menuItemsFit() + 1;
         }
     }
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kauhsa.sokoban.core;
 
 import java.util.HashSet;
@@ -24,6 +20,12 @@ public class WorldStatus {
         this.world = world;
     }
     
+    /**
+     * Get set of Points where WorldObjects of specific type are.
+     * 
+     * @param worldObjectType type of WorldObjects whose positions are returned.
+     * @return set of Points containing the positions of worldObjects.
+     */
     private Set<Point> getPointsOfWorldObjectType(WorldObjectType worldObjectType) {
         Set<Point> points = new HashSet<Point>();
         
