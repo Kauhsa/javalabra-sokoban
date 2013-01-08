@@ -26,7 +26,7 @@ public class LevelDoneState extends BasicGameState {
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
         congratulationLabel.setFont(FontLoader.loadAwtFontToSlick("Ubuntu", java.awt.Font.PLAIN, 80));
-        congratulationLabel.setText("Congratulations!");
+        congratulationLabel.setText("Level cleared!");
         congratulationLabel.setHorizontalAlignment(HorizontalAlignment.MIDDLE);        
         congratulationLabel.setVerticalAlignment(VerticalAlignment.CENTER);
     }
