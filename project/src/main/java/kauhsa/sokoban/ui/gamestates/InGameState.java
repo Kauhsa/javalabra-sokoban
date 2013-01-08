@@ -70,6 +70,7 @@ public class InGameState extends BasicGameState {
         } else if (input.isKeyPressed(Input.KEY_RIGHT)) {
             game.movePlayer(Direction.RIGHT);
         } else if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+            input.clearKeyPressedRecord();
             sbg.enterState(GameStates.LEVEL_MENU.ordinal());
         } else if (input.isKeyPressed(Input.KEY_R)) {
             restart();

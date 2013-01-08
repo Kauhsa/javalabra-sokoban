@@ -57,6 +57,7 @@ public class LevelMenuState extends BasicGameState {
         } else if (input.isKeyPressed(Input.KEY_ENTER)) {
             handleMenuSelection(gc, sbg);
         } else if (input.isKeyPressed(Input.KEY_ESCAPE)) {
+            input.clearKeyPressedRecord();
             sbg.enterState(GameStates.MAIN_MENU.ordinal());
         }
     }
@@ -86,6 +87,7 @@ public class LevelMenuState extends BasicGameState {
             SokobanGame game = new SokobanGame(levelMenu.getSelected());
             InGameState inGameState = (InGameState) sbg.getState(GameStates.IN_GAME.ordinal());
             inGameState.loadGame(game);
+            gc.getInput().clearKeyPressedRecord();
             sbg.enterState(inGameState.getID());
         } catch (InvalidLevelException ex) {
             Log.warn("Could not load level: " + ex.getMessage());
