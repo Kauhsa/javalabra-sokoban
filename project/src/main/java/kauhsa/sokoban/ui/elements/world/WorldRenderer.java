@@ -1,4 +1,4 @@
-package kauhsa.sokoban.ui.world;
+package kauhsa.sokoban.ui.elements.world;
 
 import kauhsa.sokoban.core.World;
 import kauhsa.sokoban.core.utils.Point;

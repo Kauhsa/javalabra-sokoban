@@ -1,4 +1,4 @@
-package kauhsa.sokoban.ui.world;
+package kauhsa.sokoban.ui.elements.world;
 
 /**
  * Class that calculates tile scale and positions based on size of world and

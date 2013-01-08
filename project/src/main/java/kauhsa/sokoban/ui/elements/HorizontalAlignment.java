@@ -1,4 +1,4 @@
-package kauhsa.sokoban.ui.utils;
+package kauhsa.sokoban.ui.elements;
 
 /**
  * Enum for different horizontal alignments.

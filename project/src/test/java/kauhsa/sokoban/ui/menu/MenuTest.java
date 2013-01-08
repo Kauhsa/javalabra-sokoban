@@ -1,6 +1,7 @@
 
 package kauhsa.sokoban.ui.menu;
 
+import kauhsa.sokoban.ui.elements.menu.Menu;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;

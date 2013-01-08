@@ -1,11 +1,11 @@
 package kauhsa.sokoban.ui.gamestates;
 
 import kauhsa.sokoban.resources.FontLoader;
-import kauhsa.sokoban.ui.label.Label;
-import kauhsa.sokoban.ui.menu.Menu;
-import kauhsa.sokoban.ui.menu.MenuRenderer; 
-import kauhsa.sokoban.ui.utils.HorizontalAlignment;
-import kauhsa.sokoban.ui.utils.VerticalAlignment;
+import kauhsa.sokoban.ui.elements.label.Label;
+import kauhsa.sokoban.ui.elements.menu.Menu;
+import kauhsa.sokoban.ui.elements.menu.MenuRenderer; 
+import kauhsa.sokoban.ui.elements.HorizontalAlignment;
+import kauhsa.sokoban.ui.elements.VerticalAlignment;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

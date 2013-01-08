@@ -1,7 +1,5 @@
 package kauhsa.sokoban.ui.elements;
 
-import kauhsa.sokoban.ui.utils.HorizontalAlignment;
-import kauhsa.sokoban.ui.utils.VerticalAlignment;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;

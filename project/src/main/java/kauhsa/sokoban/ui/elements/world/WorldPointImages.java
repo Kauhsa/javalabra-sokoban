@@ -1,4 +1,4 @@
-package kauhsa.sokoban.ui.world;
+package kauhsa.sokoban.ui.elements.world;
 
 import java.util.Arrays;
 import java.util.Set;

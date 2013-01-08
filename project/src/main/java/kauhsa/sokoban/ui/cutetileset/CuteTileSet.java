@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import kauhsa.sokoban.core.WorldObject;
 import kauhsa.sokoban.core.WorldObjectType;
-import kauhsa.sokoban.ui.world.TileSet;
+import kauhsa.sokoban.ui.elements.world.TileSet;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 

@@ -1,8 +1,8 @@
-package kauhsa.sokoban.ui.menu;
+package kauhsa.sokoban.ui.elements.menu;
 
 import kauhsa.sokoban.ui.elements.UIElement;
-import kauhsa.sokoban.ui.label.Label;
-import kauhsa.sokoban.ui.utils.VerticalAlignment;
+import kauhsa.sokoban.ui.elements.label.Label;
+import kauhsa.sokoban.ui.elements.VerticalAlignment;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 

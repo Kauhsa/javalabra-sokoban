@@ -1,7 +1,8 @@
-package kauhsa.sokoban.ui.label;
+package kauhsa.sokoban.ui.elements.label;
 
-import kauhsa.sokoban.ui.utils.HorizontalAlignment;
-import kauhsa.sokoban.ui.utils.VerticalAlignment;
+import kauhsa.sokoban.ui.elements.UIElement;
+import kauhsa.sokoban.ui.elements.HorizontalAlignment;
+import kauhsa.sokoban.ui.elements.VerticalAlignment;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Graphics;
@@ -12,13 +13,9 @@ import org.newdawn.slick.Graphics;
  * Text can be shown in different colors and fonts - Label also supports
  * different horizontal and vertical alignments.
  */
-public class Label {
+public class Label extends UIElement {
 
     private String text = "";
-    private Font font = null;
-    private Color color = Color.white;
-    private VerticalAlignment verticalAlignment = VerticalAlignment.TOP;
-    private HorizontalAlignment horizontalAlignment = HorizontalAlignment.LEFT;
     private float width;
     private float height;
 
@@ -28,38 +25,6 @@ public class Label {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public Font getFont() {
-        return font;
-    }
-
-    public void setFont(Font font) {
-        this.font = font;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public VerticalAlignment getVerticalAlignment() {
-        return verticalAlignment;
-    }
-
-    public void setVerticalAlignment(VerticalAlignment verticalAlignment) {
-        this.verticalAlignment = verticalAlignment;
-    }
-
-    public HorizontalAlignment getHorizontalAlignment() {
-        return horizontalAlignment;
-    }
-
-    public void setHorizontalAlignment(HorizontalAlignment horizontalAlignment) {
-        this.horizontalAlignment = horizontalAlignment;
     }
 
     /**

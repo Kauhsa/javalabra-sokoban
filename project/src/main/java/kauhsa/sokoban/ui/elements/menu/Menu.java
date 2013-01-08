@@ -1,4 +1,4 @@
-package kauhsa.sokoban.ui.menu;
+package kauhsa.sokoban.ui.elements.menu;
 
 import java.util.ArrayList;
 import java.util.List;

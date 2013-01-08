@@ -1,4 +1,4 @@
-package kauhsa.sokoban.ui.menu;
+package kauhsa.sokoban.ui.elements.menu;
 
 /**
  * Container class for menu item and it's String representation.
