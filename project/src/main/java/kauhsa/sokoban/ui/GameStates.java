@@ -6,5 +6,5 @@ package kauhsa.sokoban.ui;
  * convenient way of doing that.
  */
 public enum GameStates {
-    MAIN_MENU, IN_GAME, LEVEL_MENU;
+    MAIN_MENU, IN_GAME, LEVEL_MENU, LEVEL_DONE;
 }

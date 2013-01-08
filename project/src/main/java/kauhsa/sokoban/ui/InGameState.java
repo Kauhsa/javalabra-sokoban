@@ -80,6 +80,10 @@ public class InGameState extends BasicGameState {
         }
         
         updateMoveCountLabel();
+        
+        if (game.isFinished()) {
+            sbg.enterState(GameStates.LEVEL_DONE.ordinal());
+        }
     }
 
     public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {

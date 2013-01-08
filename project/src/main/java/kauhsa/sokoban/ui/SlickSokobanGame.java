@@ -30,6 +30,7 @@ public class SlickSokobanGame extends StateBasedGame {
         this.addState(new MainMenuState());
         this.addState(new LevelMenuState());
         this.addState(new InGameState());
+        this.addState(new LevelDoneState());
         
         gc.getInput().enableKeyRepeat();
     }
