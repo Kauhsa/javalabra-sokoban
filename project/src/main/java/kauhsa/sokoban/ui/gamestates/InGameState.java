@@ -14,6 +14,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.BlobbyTransition;
 import org.newdawn.slick.util.Log;
 
 /**
@@ -79,7 +80,7 @@ public class InGameState extends BasicGameState {
         updateMoveCountLabel();
         
         if (game.isFinished()) {
-            sbg.enterState(GameStates.LEVEL_DONE.ordinal());
+            sbg.enterState(GameStates.LEVEL_DONE.ordinal(), null, new BlobbyTransition());
         }
     }
 
