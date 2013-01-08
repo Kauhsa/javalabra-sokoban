@@ -12,12 +12,12 @@
     </files>
 
     <fileSets>
-        <fileSet>
+        <!-- <fileSet>
             <directory>src/main/resources</directory>
             <outputDirectory>resources</outputDirectory>
-        </fileSet>
+        </fileSet> -->
 
-        <!-- LWJGL natives -->
+        <!-- natives -->
         <fileSet>
             <directory>${natives}</directory>
             <outputDirectory>${release.natives}</outputDirectory>
