@@ -1,7 +1,5 @@
+package kauhsa.sokoban.ui.elements.menu;
 
-package kauhsa.sokoban.ui.menu;
-
-import kauhsa.sokoban.ui.elements.menu.Menu;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -61,5 +59,13 @@ public class MenuTest {
         menu.moveUp();
         menu.moveUp();
         assertEquals(0, menu.getSelectedIndex());
+    }
+    
+    @Test
+    public void getMenuItemTest() {
+        addItems();
+        assertEquals("Thung", menu.getSelected());
+        menu.moveDown();
+        assertEquals("thyng", menu.getSelected());
     }
 }
