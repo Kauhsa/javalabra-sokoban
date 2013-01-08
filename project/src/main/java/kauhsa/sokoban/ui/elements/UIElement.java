@@ -8,7 +8,7 @@ import org.newdawn.slick.Graphics;
  * Abstract base class for different UI elements.
  * 
  * The implementing class does not have necessarily use all the properties
- * UIElement has - it is okay to not use font to anything and to ignore
+ * UIElement has - it is okay to not use font for anything and to ignore
  * alignment.
  */
 abstract public class UIElement {
