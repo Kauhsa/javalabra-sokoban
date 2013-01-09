@@ -10,3 +10,6 @@
 03.12.  5h      Javadocseja, GUI:n edistämistä, hieman luokkakaaviota
 04.12.  5h      GUI:n edistämistä
 06.12.  4h      Javadocseja, sekvenssikaavioita
+07.12.  1h      Pientä refaktorointia
+08.12.  5h      Refaktorointia, dokumentaation päivitystä ja GUI:n viimeistelyä
+09.12.  0,5h    Dokumentaation päivitystä
